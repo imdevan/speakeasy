@@ -26,22 +26,13 @@ export default class App extends Component {
           <title>WesVance: Business, Code & Design for Creative Entreprnuers</title>
           <link rel="canonical" href="http://wesvance.com/" />
         </Helmet>
-        <ScrollToTop>
-          <div className="App">
-            <div id="appBody">
-              <Switch>
-                <Route exact path="/" component={WelcomePage}/>
-                <Route path="/about" component={AboutPage}/>
-                <Route path='/posts/:postSlug' component={PostPage} />
-                <Route path="/posts" component={BlogPage} />
-                <Route component={Error404Page} />
-              </Switch>
-            </div>
-            <div id="appNav">
-              <NavBar/>
-            </div>
-          </div>
-        </ScrollToTop>
+        <Switch>
+          <Route exact path="/" component={WelcomePage}/>
+          <Route path="/about" component={AboutPage}/>
+          <Route path='/posts/:postSlug' component={PostPage} />
+          <Route path="/posts" component={BlogPage} />
+          <Route component={Error404Page} />
+        </Switch>
       </div>
     )
   }

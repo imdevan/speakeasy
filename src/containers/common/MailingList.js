@@ -4,9 +4,14 @@ import {bindActionCreators} from 'redux';
 import '../../assets/styles/components/common/MailingList.scss';
 import * as uiActions from '../../actions/uiActions';
 import * as mailchimpActions from '../../actions/mailchimpActions';
+import {blue600} from 'material-ui/styles/colors';
+import TextField from 'material-ui/TextField';
 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import Confetti from 'react-confetti'
 import TextInput from './form/TextInput';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class MailingList extends React.Component{
   constructor(props, context){
@@ -78,23 +83,30 @@ class MailingList extends React.Component{
 
   displayForm(formPlaceholder, buttonText){
     return(
+      <MuiThemeProvider muiTheme={getMuiTheme({ palette: {
+          primary1Color: blue600
+        }})}>
+
       <div className="mailingListForm">
         {this.displayFormMessages(this.state.message)}
         <div className="row">
           <div className="col-sm-12 col-md-8">
-            <TextInput
-              name={'mailingListEmail'}
-              type={'text'}
-              className={'mailingListEmail'}
+            <TextField
+              type='email'
               onChange={this.onChangeEmail}
-              placeholder={formPlaceholder}
-              value={this.state.email}/>
+              value={this.state.email}
+              floatingLabelText="You rock"
+            />
           </div>
           <div className="col-sm-12 col-md-4">
-            <button className="btn btn-default" onClick={this.submitNewMember}>{buttonText}</button>
+            <RaisedButton  label={buttonText} primary={true}
+            className='btn-primary h-100' style={{height: '100%'}} onClick={this.submitNewMember}/>
+
           </div>
         </div>
       </div>
+    </MuiThemeProvider>
+
     );
   }
 
@@ -157,4 +169,3 @@ function mapDispatchToProps(dispatch){
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MailingList);
-
