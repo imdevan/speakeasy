@@ -3,17 +3,11 @@
 
 @import "globals";
 
-@import './common/buttons';
-@import './common/forms';
 @import './common/text';
 @import './common/fonts';
 @import './common/links';
-@import './common/lists';
-@import './common/pageElements';
-@import './common/images';
 
 html {
-  user-select: none;
   height: 100%;
 }
 

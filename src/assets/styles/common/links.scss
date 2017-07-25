@@ -1,15 +1,26 @@
 @import '../globals';
 
-a{
+a {
   color: $primary-color;
-  text-decoration: none !important;
-}
-a:hover{
-  color: $primary-color;
-  text-decoration: none;
-}
-a:visited{
-  // color: 
-  text-decoration: none;
+
+  &:hover{
+    text-decoration: underline;
+  }
+
+  &:visited{
+    text-decoration: none;
+  }
+
+  @media (min-width: $md-breakpoint){
+    color: $dark-font-color;
+  }
 }
 
+
+.c-no-underline {
+  text-decoration: none !important;
+
+  &:hover {
+    text-decoration: none !important;
+  }
+}

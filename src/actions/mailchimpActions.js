@@ -2,6 +2,7 @@ import * as constants from './actionTypes';
 import * as ui from './uiActions';
 
 import Axios from '../config/axios';
+import {apiUrl} from '../config/config';
 
 export function successRequestingSubscribers(response){
   return { type: constants.SUBSCRIBER_COUNT, subscribers: response.data.response};
@@ -16,7 +17,7 @@ export function requestMailchimpSubscribers(){
   return function(dispatch){
     dispatch(ui.loadingChanged(true));
 
-    let requestUrl = '/api/subscribers'
+    let requestUrl = `${apiUrl}/subscribers`
     return Axios.get(requestUrl).then(
       response => dispatch(successRequestingSubscribers(response))
     ).then(
@@ -31,7 +32,7 @@ export function requestAddMailchimpSubscriber(email, ref){
   return function(dispatch){
     dispatch(ui.loadingChanged(true));
 
-    let requestUrl = '/api/subscribers';
+    let requestUrl = `${apiUrl}/subscribers`;
     return Axios({
       method: 'post',
       url: requestUrl,

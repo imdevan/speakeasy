@@ -1,43 +1,35 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import '../../assets/styles/components/welcome/WelcomePage.scss';
 import * as uiActions from '../../actions/uiActions';
 
-import MailingList from '../common/MailingList';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import { Grid, Row, Col } from 'react-bootstrap';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import RaisedButton from 'material-ui/RaisedButton';
-
 import {blue600, darkBlack, fullWhite} from 'material-ui/styles/colors';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import PropTypes from 'prop-types';
-import { Grid, Row, Col } from 'react-bootstrap';
 
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import MailingList from '../common/MailingList';
+import TopNav from '../../components/TopNav';
+
+import defaultTheme from '../../config/theme.js';
+
 injectTapEventPlugin();
 
 class WelcomePage extends React.Component {
   static propTypes = {
     page: PropTypes.object,
     className: PropTypes.string,
-    cards: PropTypes.array,
-    theme: PropTypes.object
+    cards: PropTypes.array
   };
 
   static defaultProps = {
-    page: {
-      title: 'React Starter Kit'
-    },
-    className: '',
-    theme: {
-      ...darkBaseTheme,
-      palette: {
-        ...darkBaseTheme.palette,
-        primary1Color: blue600,
-      }
-    }
+    page: { title: 'React Starter Kit' },
+    className: ''
   };
 
   constructor(props, context){
@@ -47,11 +39,12 @@ class WelcomePage extends React.Component {
   }
 
   render(){
-    const {page, className, theme} = this.props;
+    const {page, className} = this.props;
 
     return(
-      <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
+      <MuiThemeProvider muiTheme={getMuiTheme(defaultTheme)}>
         <div className={className}>
+          <TopNav />
           {/* <AppBar title="My AppBar" className='mb-5'/> */}
           <div>
             <Grid>

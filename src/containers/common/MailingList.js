@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import '../../assets/styles/components/common/MailingList.scss';
 import * as uiActions from '../../actions/uiActions';
 import * as mailchimpActions from '../../actions/mailchimpActions';
 import {blue600} from 'material-ui/styles/colors';
@@ -10,7 +9,7 @@ import TextField from 'material-ui/TextField';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import Confetti from 'react-confetti'
-import TextInput from './form/TextInput';
+// import TextInput from './form/TextInput';
 import RaisedButton from 'material-ui/RaisedButton';
 
 class MailingList extends React.Component{
@@ -134,7 +133,7 @@ class MailingList extends React.Component{
   }
   render(){
     return(
-      <div className="MailingList">
+      <div>
         {this.displayConfetti()}
         <div className="row">
           <div className="col-sm-12">
@@ -142,11 +141,7 @@ class MailingList extends React.Component{
             {this.displayBody(this.props.body)}
           </div>
         </div>
-        <div className="row">
-          <div className="col">
-            {this.displayForm('Your email address...', 'Join ' + this.props.subscribers + ' Awesome People')}
-          </div>
-        </div>
+            {this.displayForm('Your email address...', 'Subscribe')}
       </div>
     );
   }

@@ -1,84 +1,9 @@
 @import "../globals";
 
-
-h1 {
-  font-family: Lato;
-  font-weight: 300;
-
-  user-select: auto;
-  -webkit-user-select: auto;
-}
-h2 {
-  font-family: Lato;
-  font-weight: 300;
-
-  user-select: auto;
-  -webkit-user-select: auto;
-}
-h3 {
-  font-family: Lato;
-  font-weight: 400;
-
-  user-select: auto;
-  -webkit-user-select: auto;
-}
-h4 {
-  font-family: Lato;
-  font-weight: 400;
-
-  user-select: auto;
-  -webkit-user-select: auto;
-}
-h5 {
-  font-family: Lato;
-  font-weight: 400;
-
-  user-select: auto;
-  -webkit-user-select: auto;
-}
-h6 {
-  font-family: Lato;
-  font-weight: 400;
-
-  user-select: auto;
-  -webkit-user-select: auto;
-}
-
-p{
-  font-family: Lato;
-  font-weight: 400;
-  font-size: 20px;
-  user-select: auto;
-  -webkit-user-select: auto;
-}
-
-li{
-  font-family: Lato;
-  font-weight: 300;
-
-  user-select: auto;
-  -webkit-user-select: auto;
-}
-
-p.quote {
-  font-family: Lato;
-  font-weight: 400;
-  font-style: italic;
-
-  user-select: auto;
-  -webkit-user-select: auto;
-}
-
-
-.redText{
-  color: $red-color;
-}
-.greenText{
-  color: $green-color;
-}
-.blueText{
-  color: $blue-color;
-}
-.purpleText{
-  color: $purple-color;
+.text {
+  &-red {color: $red-color}
+  &-green {color: $green-color}
+  &-blue {color: $blue-color}
+  &-purple {color: $purple-color}
+  &-gray {color: $gray-color}
 }

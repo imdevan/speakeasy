@@ -2,12 +2,12 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 import {bindActionCreators} from 'redux';
-import '../../../assets/styles/components/blog/post/Posts.scss';
 import * as postActions from '../../../actions/postActions';
 
 import sanitizeHtml from 'sanitize-html'; //https://www.npmjs.com/package/sanitize-html
 // import Spinner from '../../common/ReactSpinner';
 import SkeletonBox from '../../common/skeleton/SkeletonBox';
+import {Grid, Row, Col} from 'react-bootstrap';
 
 class Posts extends React.Component{
   constructor(props, context){
@@ -33,9 +33,9 @@ class Posts extends React.Component{
   displayPosts(posts){
     if(posts){
       if(posts.length > 0){
-        return(posts.map((post) => {
-          return this.renderPostByType(post)
-        }));
+        return <Grid>
+            {posts.map(post => this.postRow(post))}
+          </Grid>
       }else{
         return(<h1>Sorry No Posts Found :(</h1>)
       }
@@ -109,14 +109,16 @@ class Posts extends React.Component{
 
   postRow(post){
     return(
-      <div key={post.id} className="postContainer">
-        <div className="row">
-          <div className="col-12">
-            <Link to={'/posts/' + post.slug}><h3>{post.title.rendered}</h3></Link>
-            <div className="postBody" dangerouslySetInnerHTML={this.sanitizeInput(post.content.rendered)}/>
-          </div>
-        </div>
-      </div>
+      <Row key={post.id}>
+        <Col className='col'>
+          <h3 className='my-4'>
+            <Link to={`/blog/${post.slug}`}
+            dangerouslySetInnerHTML={{__html: post.title.rendered}}/>
+          </h3>
+          {/* <div className="postBody"
+            dangerouslySetInnerHTML={{__html:post.content.rendered}}/> */}
+        </Col>
+      </Row>
     )
   }
 
@@ -140,11 +142,7 @@ class Posts extends React.Component{
   }
 
   render(){
-    return(
-      <div className="PostsContainer">
-        {this.displayPosts(this.props.posts)}
-      </div>
-    );
+    return this.displayPosts(this.props.posts);
   }
 }
 
@@ -161,4 +159,3 @@ function mapDispatchToProps(dispatch){
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);
-

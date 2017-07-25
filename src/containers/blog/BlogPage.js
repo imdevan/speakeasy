@@ -2,17 +2,23 @@ import React from 'react';
 import {connect} from 'react-redux';
 // import { Link } from 'react-router';
 import {bindActionCreators} from 'redux';
-import '../../assets/styles/components/blog/BlogPage.scss';
 import * as postActions from '../../actions/postActions';
 import * as categoryActions from '../../actions/categoryActions';
 
+import {Grid, Row, Col} from 'react-bootstrap';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import TextField from 'material-ui/TextField';
+import Card from 'material-ui/Card';
+import lightTheme from '../../config/lightTheme.js';
+
 import Fuse from 'fuse.js'; // PROVIDES FUZZY SEARCH
-import TextInput from '../common/form/TextInput';
 import SkeletonBox from '../common/skeleton/SkeletonBox';
 import HorizontalSocialButtons from '../common/HorizontalSocialButtons';
-import Banner from '../common/Banner';
 import MailingList from '../common/MailingList';
 import Posts from './post/Posts';
+import social from '../../config/social.js';
+import TopNav from '../../components/TopNav';
 
 class BlogPage extends React.Component{
   constructor(props, context){
@@ -77,11 +83,31 @@ class BlogPage extends React.Component{
 
   renderSocialShare(){
     return(
-      <HorizontalSocialButtons
-        twitterLink={'http://twitter.com/wesadvance'}
-        facebookLink={'https://facebook.com/wesadvance'}
-        githubLink={'https://github.com/wesvance'}
-        emailLink={'mailto:me@wesvance.com?Subject=Hey Wes!'}/>
+      <div>
+        <Row className=' flex justify-content-around'>
+          <Col xs={4}>
+            <a href={social.twitter} target="_blank" className='d-block w-100'>
+              <h3 className='my-0'>
+                <i className="fa fa-twitter"></i>
+              </h3>
+            </a>
+          </Col>
+          <Col xs={4}>
+            <a href={social.facebook} target="_blank" className='d-block w-100'>
+              <h3 className='my-0'>
+                <i className="fa fa-facebook"></i>
+              </h3>
+            </a>
+          </Col>
+          <Col xs={4}>
+            <a href={social.email} target="_blank" className='d-block w-100'>
+              <h3 className='my-0'>
+                <i className="fa fa-envelope-o"></i>
+              </h3>
+            </a>
+          </Col>
+        </Row>
+      </div>
     )
   }
 
@@ -144,64 +170,60 @@ class BlogPage extends React.Component{
   setSearch(e){
     this.setState({search: e.target.value})
   }
-
   render(){
     return(
-      <div id="BlogPage">
-        <Banner
-          topLine={'BUSINESS,'}
-          bottomLine={'CODE & DESIGN'}
-          subtitle={'Weekly'}
-          icon={'fa fa-paper-plane-o'}
-          />
-
-        <div className="blogContainer">
-          <div className="container">
-            <div className="row">
-              <div className="col">
-                 <p>This blog sits at the intersection in the 'magic triangle' of buiness, code and design.
-                These articles highlight the harmony and synergy of this intersection</p>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-8">
-                <Posts posts={
-                  this.renderPosts(
-                    this.props.posts,
-                    this.state.search,
-                    this.state.activeCategories)
-                }/>
-              </div>
-              <div className="col-md-4 mobileHide">
-                <TextInput
-                  type={'text'}
-                  name={'searchPosts'}
-                  placeholder={'Search Posts...'}
+      <MuiThemeProvider muiTheme={getMuiTheme(lightTheme)} >
+        <div>
+          <TopNav />
+          <Grid>
+            <Row className='my-5'>
+              <Col className='col'>
+                <h1>
+                  Blog
+                </h1>
+                <p>
+                  Take notes.
+                </p>
+              </Col>
+            </Row>
+            <Row className='my-5'>
+              <Col xs={12} md={8}>
+                  <Posts posts={
+                    this.renderPosts(
+                      this.props.posts,
+                      this.state.search,
+                      this.state.activeCategories)
+                  }/>
+              </Col>
+              <Col xs={12} md={4}>
+                <TextField
+                  type='text'
                   value={this.state.search}
                   onChange={this.setSearch}
-                  autoComplete={false}
-                />
+                  floatingLabelText='Search Posts'
+                  className='mb-3'/>
 
-                <h4>Categories</h4>
-                {this.renderCategories(this.props.categories.allCategories)}
-
-                <h4>Follow Me!</h4>
-                {this.renderSocialShare()}
-              </div>
-            </div>
-          </div>
+                <div className='mb-3'>
+                  <h4>Categories</h4>
+                  {this.renderCategories(this.props.categories.allCategories)}
+                </div>
+                <div>
+                  <h4>Say Hello</h4>
+                  <Card className='py-3 px-3 w-100'>
+                    {this.renderSocialShare()}
+                  </Card>
+                </div>
+              </Col>
+            </Row>
+            <Row className='my-5'>
+              <Col xs={12} lg={8} lgOffset={2}>
+                <MailingList
+                  header={'Awesome, spam-less, articles right to your inbox.'}/>
+              </Col>
+            </Row>
+          </Grid>
         </div>
-
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-12 col-md-10 col-lg-9 offset-md-2 offset-lg-3">
-              <MailingList
-                header={'Love these articles? I bet you’d love more!'}
-                body={"Helpful, awesome and spam-less articles right to your inbox, every Wednesday - Just for subscribers."}/>
-            </div>
-          </div>
-        </div>
-      </div>
+      </MuiThemeProvider>
     );
   }
 }
@@ -229,4 +251,3 @@ function mapDispatchToProps(dispatch){
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BlogPage);
-

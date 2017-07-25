@@ -65,14 +65,13 @@ class HorizontalSocialButtons extends React.Component{
   }
 
   render(){
+    const {className} = this.props;
     return(
-      <div className="horizontalSocialContainer">
-        <div className="button">
-          {this.displayTwitterLink(this.props.twitterLink)}
-          {this.displayFacebookLink(this.props.facebookLink)}
-          {this.displayGithubLink(this.props.githubLink)}
-          {this.displayEmailLink(this.props.emailLink)}
-        </div>
+      <div className={`${className} flex justify-content-center`}>
+        {this.displayTwitterLink(this.props.twitterLink)}
+        {this.displayFacebookLink(this.props.facebookLink)}
+        {this.displayGithubLink(this.props.githubLink)}
+        {this.displayEmailLink(this.props.emailLink)}
       </div>
     );
   }
@@ -94,4 +93,3 @@ function mapDispatchToProps(dispatch){
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HorizontalSocialButtons);
-

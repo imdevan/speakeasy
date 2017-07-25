@@ -1,10 +1,10 @@
 import * as constants from './actionTypes';
 import * as ui from './uiActions';
-
+import {apiUrl} from '../config/config';
 import Axios from '../config/axios';
 
 export function successRequestingPosts(response){
-  return { type: constants.ADD_POSTS, posts: response.data.response};
+  return { type: constants.ADD_POSTS, posts: response.data};
 }
 
 export function successPostingComment(response){
@@ -29,7 +29,7 @@ export function removePost(){
 export function submitNewComent(post, comment){
   return function(dispatch){
     dispatch(ui.loadingChanged(true));
-    let requestUrl = `/api/posts/${post.id}/comments`
+    let requestUrl = `${apiUrl}/posts/${post.id}/comments`
     return Axios.post(requestUrl, {
       email: comment.email,
       name: comment.name,
@@ -46,14 +46,17 @@ export function submitNewComent(post, comment){
 export function requestAllPosts(){
   return function(dispatch){
     dispatch(ui.loadingChanged(true));
-    let requestUrl = '/api/posts';
+    let requestUrl = `${apiUrl}/posts`;
     // let requestUrl = '/posts'
     return Axios.get(requestUrl).then(
-      response => dispatch(successRequestingPosts(response))
+      response => {
+        dispatch(successRequestingPosts(response))
+      }
     ).then(
       response => dispatch(ui.loadingChanged(false))
     ).catch(e => {
-        dispatch(ui.displayError(e.response.data.response.detail)), dispatch(ui.loadingChanged(false))
+        dispatch(ui.displayError(e.response.data.response.detail))
+        dispatch(ui.loadingChanged(false))
       }
     )
   }
@@ -63,7 +66,7 @@ export function requestPost(slug){
   return function(dispatch){
     dispatch(ui.loadingChanged(true));
     // let requestUrl = '/posts/' + slug;
-    let requestUrl = '/api/posts/' + slug;
+    let requestUrl = `${apiUrl}/posts/${slug}`;
     return Axios.get(requestUrl).then(
       response => dispatch(successRequestingPost(response))
     ).then(

@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 
-// import '../assets/styles/components/App.scss';
-
 // import ReactSpinner from './common/ReactSpinner';
-import NavBar from './common/NavBar';
 import ScrollToTop from './ScrollToTop';
 
 import {Helmet} from "react-helmet";
@@ -23,14 +20,13 @@ export default class App extends Component {
       <div id="contentWrapper">
         <Helmet>
           <meta charSet="utf-8" />
-          <title>WesVance: Business, Code & Design for Creative Entreprnuers</title>
-          <link rel="canonical" href="http://wesvance.com/" />
+          <title>React Starter + Wordpress</title>
         </Helmet>
         <Switch>
-          <Route exact path="/" component={WelcomePage}/>
-          <Route path="/about" component={AboutPage}/>
-          <Route path='/posts/:postSlug' component={PostPage} />
-          <Route path="/posts" component={BlogPage} />
+          <Route exact path="/" component={WelcomePage} />
+          <Route path="/about" component={AboutPage} />
+          <Route path='/blog/:postSlug' component={PostPage} />
+          <Route path="/blog" component={BlogPage} />
           <Route component={Error404Page} />
         </Switch>
       </div>

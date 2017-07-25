@@ -1,5 +1,5 @@
 // Global variables go here ;D
-$primary-color: #FFCC00;
+$primary-color: rgb(30, 136, 229);
 $primary-color-alt: #FFDC4F;
 
 $dark-font-color: #29292C;
@@ -8,19 +8,18 @@ $dark-background-color: #29292C;
 $light-font-color: #FFFFFF;
 $light-background-color: #FFFFFF;
 
-
-$input-background-color: #FFFFFF;
-
 $purple-color: #BD0FE1;
 $green-color: #55CE81;
 $green-color-alt: #2AAD81;
 
 $blue-color: #4990E2;
 $red-color: #FF001F;
-
+$gray-color: gray;
 
 $dark-border-color: #979797;
 $light-border-color: #EAEAEA;
 $borderBase: solid 1px lighten($dark-border-color, 60%);
 
 $standard-shadow: 0px 2px 4px rgba(0,0,0,.5);
+
+$md-breakpoint: 720px;

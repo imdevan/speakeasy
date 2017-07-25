@@ -2,8 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 // import * as commonActions from '../../actions/commonActions';
 
-// import '../../assets/styles/components/common/skeleton/SkeletonBox.scss';
-
 class SkeletonBox extends React.Component{
   constructor(props, context){
     super(props, context);

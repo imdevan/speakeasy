@@ -1,7 +1,5 @@
-let apiUrl = 'http://localhost:3001'
-if (process.env.NODE_ENV === 'production') {
-  apiUrl = ''
-}
+const apiUrl = 'http://freelanceafternoon.com/wp-json/wp/v2'; 
+
 export {
   apiUrl
 }
