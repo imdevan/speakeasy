@@ -1,4 +1,4 @@
-import { SET, RESET } from '../types/user'
+import { SET_USER, RESET_USER } from '../actions/user'
 
 const initialState = {
   email: 'user@example.com'
@@ -6,12 +6,11 @@ const initialState = {
 
 export default function reducer(state=initialState, action) {
   switch (action.type) {
-    case SET:
+    case SET_USER:
       return {...state, ...action.payload}
-    case RESET:
+    case RESET_USER:
       return {...initialState}
     default:
       return state
   }
 }
-

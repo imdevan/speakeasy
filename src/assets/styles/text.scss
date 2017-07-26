@@ -1,0 +1,13 @@
+.c-text {
+  &-red {color: $red}
+  &-green {color: $green}
+  &-blue {color: $blue}
+  &-purple {color: $purple}
+  &-gray {color: $gray}
+}
+
+*::selection {
+  color: $white;
+  text-shadow: shadow(text-sm);
+  background: $blue;
+}

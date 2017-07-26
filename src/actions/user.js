@@ -1,4 +1,5 @@
-import { SET, RESET } from '../types/user'
+const SET_USER = 'SET_USER';
+const RESET_USER = 'RESET_USER';
 
 export function set(payload){
   return {
@@ -12,4 +13,3 @@ export function reset(){
     type: RESET
   }
 }
-

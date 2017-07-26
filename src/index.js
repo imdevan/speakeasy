@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 import configureStore from './store/configureStore'
 import './assets/styles/index.scss'
-import App from './containers/App'
+import App from './App'
 
 import store from './store/store';
 

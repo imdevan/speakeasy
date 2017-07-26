@@ -1,9 +1,15 @@
+// NODE MODULES
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import { Link } from 'react-router-dom';
+import sanitizeHtml from 'sanitize-html'; //https://www.npmjs.com/package/sanitize-html
+import {Helmet} from "react-helmet";
+
+// ACTIONS
 import * as postActions from '../../../actions/postActions';
 
+// VENDOR UI COMPONENTS
+import { Link } from 'react-router-dom';
 import {Grid, Row, Col} from 'react-bootstrap';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -11,14 +17,13 @@ import TextField from 'material-ui/TextField';
 import Card from 'material-ui/Card';
 import lightTheme from '../../../config/lightTheme.js';
 
-import MailingList from '../../common/MailingList';
-import VerticalShareButtons from '../../common/VerticalShareButtons';
-import HorizontalShareButtons from '../../common/HorizontalShareButtons';
-import sanitizeHtml from 'sanitize-html'; //https://www.npmjs.com/package/sanitize-html
-import SkeletonBox from '../../common/skeleton/SkeletonBox';
+// CUSTOM UI COMPONENTS
+import MailingList from '../../../components/MailingList';
+import VerticalShareButtons from '../../../components/VerticalShareButtons';
+import HorizontalShareButtons from '../../../components/HorizontalShareButtons';
+import SkeletonBox from '../../../components/SkeletonBox';
 import TopNav from '../../../components/TopNav';
 
-import {Helmet} from "react-helmet";
 
 class PostPage extends React.Component{
   constructor(props, context){
@@ -398,22 +403,22 @@ class PostPage extends React.Component{
           <TopNav />
           <Grid className='py-5'>
             <Row className='mb-5'>
-              <Col className='col'>
+              <Col sm={12}>
                 {this.displayTitle(post)}
               </Col>
             </Row>
             <Row className='mb-5'>
-              <Col className='col'>
+              <Col sm={12}>
                 {this.displayLengthTag(post)}
               </Col>
             </Row>
             <Row className='mb-5'>
-              <Col className='col'>
+              <Col sm={12}>
                 {this.displayBody(post)}
               </Col>
             </Row>
             <Row className='mb-5'>
-              <Col className='col'>
+              <Col sm={12}>
                 {this.displayTags(post)}
               </Col>
             </Row>

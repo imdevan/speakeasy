@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as uiActions from '../../actions/uiActions';
-import * as mailchimpActions from '../../actions/mailchimpActions';
+import * as uiActions from '../actions/uiActions';
+import * as mailchimpActions from '../actions/mailchimpActions';
 import {blue600} from 'material-ui/styles/colors';
 import TextField from 'material-ui/TextField';
 

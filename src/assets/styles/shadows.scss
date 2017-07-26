@@ -1,0 +1,7 @@
+$shadows: (
+  text-sm: rgba(41, 36, 32, 0.25) 7px 7px 14px
+);
+
+@function shadow($shadow) {
+  @return map-get($shadows, $shadow);
+}

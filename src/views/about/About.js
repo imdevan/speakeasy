@@ -11,8 +11,8 @@ import lightTheme from '../../config/lightTheme';
 
 import ReactMarkdown from 'react-markdown';
 
-import MailingList from '../common/MailingList';
-import HorizontalSocialButtons from '../common/HorizontalSocialButtons';
+import MailingList from '../../components/MailingList';
+import HorizontalSocialButtons from '../../components/HorizontalSocialButtons';
 import TopNav from '../../components/TopNav';
 import aboutContent from './AboutContent';
 // var aboutContent = '# test';
@@ -25,12 +25,12 @@ class AboutPage extends React.Component{
         <TopNav />
         <Grid>
           <Row className='my-5'>
-            <Col className='col'>
+            <Col sm={12}>
               <ReactMarkdown source={aboutContent} />
             </Col>
           </Row>
           <Row className='my-5'>
-            <Col className='col'>
+            <Col sm={12}>
               <MailingList
                 body={"Helpful, awesome, spam-less articles teaching business, code and design right to your inbox, every Wednesday - Just for subscribers."}/>
             </Col>

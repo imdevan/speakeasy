@@ -13,37 +13,19 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import RaisedButton from 'material-ui/RaisedButton';
 import {blue600, darkBlack, fullWhite} from 'material-ui/styles/colors';
 
-import MailingList from '../common/MailingList';
+import MailingList from '../../components/MailingList';
 import TopNav from '../../components/TopNav';
 
-import defaultTheme from '../../config/theme.js';
+import defaultTheme from '../../config/theme';
+import project from '../../config/project';
 
 injectTapEventPlugin();
 
-class WelcomePage extends React.Component {
-  static propTypes = {
-    page: PropTypes.object,
-    className: PropTypes.string,
-    cards: PropTypes.array
-  };
-
-  static defaultProps = {
-    page: { title: 'React Starter Kit' },
-    className: ''
-  };
-
-  constructor(props, context){
-    super(props, context);
-    this.state = {
-    };
-  }
-
+class Home extends React.Component {
   render(){
-    const {page, className} = this.props;
-
     return(
       <MuiThemeProvider muiTheme={getMuiTheme(defaultTheme)}>
-        <div className={className}>
+        <div>
           <TopNav />
           {/* <AppBar title="My AppBar" className='mb-5'/> */}
           <div>
@@ -51,7 +33,7 @@ class WelcomePage extends React.Component {
               <Row>
                 <Col sm={12} className='d-flex justify-content-center my-5'>
                   <h1>
-                    {page.title}
+                    {project.title}
                   </h1>
                 </Col>
               </Row>
@@ -59,7 +41,7 @@ class WelcomePage extends React.Component {
                 <Col sm={12} md={6}  className='mb-5'>
                   <Card style={{background: darkBlack}}
                     className='text-center h-100'>
-                    <CardTitle style={{color: fullWhite}} title='This page contains the React.js library.'/>
+                    <CardTitle style={{color: fullWhite}} title='This page contains the React library.'/>
                     <Row>
                       <Col sm={8} className='mx-auto'>
                         <hr color='#66A6E6'/>
@@ -91,10 +73,10 @@ class WelcomePage extends React.Component {
                 </Col>
               </Row>
               <Row>
-                <Col sm={12} md={6} className='mb-5'>
+                <Col sm={12} className='mb-5'>
                     <Card style={{background: darkBlack}}
                       className='text-center h-100'>
-                      <CardTitle style={{color: fullWhite}} title='Forms and other inputs lean on  the material-ui.js library' />
+                      <CardTitle style={{color: fullWhite}} title='Forms and other inputs lean on  the material-ui library' />
                       <Row>
                         <Col sm={8} className='mx-auto'>
                           <hr color='#66A6E6'/>
@@ -135,4 +117,4 @@ function mapDispatchToProps(dispatch){
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(WelcomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

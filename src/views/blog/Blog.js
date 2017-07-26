@@ -10,14 +10,14 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import TextField from 'material-ui/TextField';
 import Card from 'material-ui/Card';
-import lightTheme from '../../config/lightTheme.js';
+import lightTheme from '../../config/lightTheme';
 
 import Fuse from 'fuse.js'; // PROVIDES FUZZY SEARCH
-import SkeletonBox from '../common/skeleton/SkeletonBox';
-import HorizontalSocialButtons from '../common/HorizontalSocialButtons';
-import MailingList from '../common/MailingList';
-import Posts from './post/Posts';
-import social from '../../config/social.js';
+import SkeletonBox from '../../components/SkeletonBox';
+import HorizontalSocialButtons from '../../components/HorizontalSocialButtons';
+import MailingList from '../../components/MailingList';
+import Posts from '../../components/Posts';
+import social from '../../config/social';
 import TopNav from '../../components/TopNav';
 
 class BlogPage extends React.Component{
@@ -85,21 +85,21 @@ class BlogPage extends React.Component{
     return(
       <div>
         <Row className=' flex justify-content-around'>
-          <Col xs={4}>
+          <Col sm={4}>
             <a href={social.twitter} target="_blank" className='d-block w-100'>
               <h3 className='my-0'>
                 <i className="fa fa-twitter"></i>
               </h3>
             </a>
           </Col>
-          <Col xs={4}>
+          <Col sm={4}>
             <a href={social.facebook} target="_blank" className='d-block w-100'>
               <h3 className='my-0'>
                 <i className="fa fa-facebook"></i>
               </h3>
             </a>
           </Col>
-          <Col xs={4}>
+          <Col sm={4}>
             <a href={social.email} target="_blank" className='d-block w-100'>
               <h3 className='my-0'>
                 <i className="fa fa-envelope-o"></i>
@@ -177,7 +177,7 @@ class BlogPage extends React.Component{
           <TopNav />
           <Grid>
             <Row className='my-5'>
-              <Col className='col'>
+              <Col sm={12}>
                 <h1>
                   Blog
                 </h1>
@@ -187,7 +187,7 @@ class BlogPage extends React.Component{
               </Col>
             </Row>
             <Row className='my-5'>
-              <Col xs={12} md={8}>
+              <Col sm={12} md={8}>
                   <Posts posts={
                     this.renderPosts(
                       this.props.posts,
@@ -195,7 +195,7 @@ class BlogPage extends React.Component{
                       this.state.activeCategories)
                   }/>
               </Col>
-              <Col xs={12} md={4}>
+              <Col sm={12} md={4}>
                 <TextField
                   type='text'
                   value={this.state.search}
@@ -216,7 +216,7 @@ class BlogPage extends React.Component{
               </Col>
             </Row>
             <Row className='my-5'>
-              <Col xs={12} lg={8} lgOffset={2}>
+              <Col sm={12} lg={8} lgOffset={2}>
                 <MailingList
                   header={'Awesome, spam-less, articles right to your inbox.'}/>
               </Col>

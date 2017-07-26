@@ -2,11 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 import {bindActionCreators} from 'redux';
-import * as postActions from '../../../actions/postActions';
+import * as postActions from '../actions/postActions';
 
 import sanitizeHtml from 'sanitize-html'; //https://www.npmjs.com/package/sanitize-html
 // import Spinner from '../../common/ReactSpinner';
-import SkeletonBox from '../../common/skeleton/SkeletonBox';
+import SkeletonBox from './SkeletonBox';
 import {Grid, Row, Col} from 'react-bootstrap';
 
 class Posts extends React.Component{
@@ -33,9 +33,9 @@ class Posts extends React.Component{
   displayPosts(posts){
     if(posts){
       if(posts.length > 0){
-        return <Grid>
+        return <div>
             {posts.map(post => this.postRow(post))}
-          </Grid>
+          </div>
       }else{
         return(<h1>Sorry No Posts Found :(</h1>)
       }
@@ -110,7 +110,7 @@ class Posts extends React.Component{
   postRow(post){
     return(
       <Row key={post.id}>
-        <Col className='col'>
+        <Col sm={12}>
           <h3 className='my-4'>
             <Link to={`/blog/${post.slug}`}
             dangerouslySetInnerHTML={{__html: post.title.rendered}}/>
