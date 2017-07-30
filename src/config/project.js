@@ -1,6 +1,7 @@
 const project = {
-  title: 'React Starter Kit',
-  description: 'A kick start for your react projects.'
+  title: 'Bison Studio',
+  description: 'A kick start for your react projects.',
+  url: 'http://bisonstudio.co'
 }
 
 export default project;

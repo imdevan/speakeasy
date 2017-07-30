@@ -2,6 +2,28 @@ $shadows: (
   text-sm: rgba(41, 36, 32, 0.25) 7px 7px 14px
 );
 
+$box-shadows: (
+  sm:  7px 7px 14px rgba(41, 36, 32, 0.25),
+  md: 0px 8px 24px rgba(40, 44, 52, 0.25),
+  lg: 0px 16px 48px rgba(40, 44, 52, 0.25)
+);
+
 @function shadow($shadow) {
   @return map-get($shadows, $shadow);
+}
+
+.c-shadow {
+  @each $shadow, $shadow-val in $box-shadows {
+    @include popMedia($shadow) {
+      box-shadow: $shadow-val;
+    }
+  }
+}
+
+.c-drop-shadow {
+  @each $shadow, $shadow-val in $box-shadows {
+    @include popMedia($shadow) {
+      filter: drop-shadow($shadow-val);
+    }
+  }
 }

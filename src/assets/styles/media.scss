@@ -5,7 +5,23 @@ $breakpoints: (
 );
 
 @mixin media($size) {
-  @media screen and (min-width: map-get($breakpoints)) {
+  @media screen and (min-width: map-get($breakpoints, $size)) {
     @content
   }
-}
+};
+
+@mixin popMedia($property) {
+  &-#{$property} {
+    @content;
+  }
+
+  @each $breakpoint, $breakpoint-val in $breakpoints {
+    &-#{$breakpoint} {
+      &-#{$property} {
+        @include media($breakpoint) {
+          @content;
+        }
+      }
+    }
+  }
+};

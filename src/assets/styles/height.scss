@@ -1,0 +1,19 @@
+$heights: (
+  0: 0,
+  auto: 'auto',
+  1: 1rem,
+  2: 2rem,
+  3: 4rem,
+  4: 6rem,
+  5: 10rem,
+  6: 18rem,
+  7: 20rem
+);
+
+.c-h {
+  @each $height, $height-val in $heights {
+    @include popMedia($height) {
+      height: $height-val;
+    }
+  }
+}
