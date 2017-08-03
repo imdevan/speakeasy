@@ -1,11 +1,14 @@
 $shadows: (
-  text-sm: rgba(41, 36, 32, 0.25) 7px 7px 14px
+  text-sm: rgba($dark-gray, 0.25) 0px 4px 12px,
+  sm:  0px 4px 12px rgba($dark-gray, 0.25),
+  md: 0px 8px 24px rgba($dark-blue, 0.25),
+  lg: 0px 16px 48px rgba($dark-blue, 0.25)
 );
 
 $box-shadows: (
-  sm:  7px 7px 14px rgba(41, 36, 32, 0.25),
-  md: 0px 8px 24px rgba(40, 44, 52, 0.25),
-  lg: 0px 16px 48px rgba(40, 44, 52, 0.25)
+  sm:  0px 4px 12px rgba($dark-gray, 0.25),
+  md: 0px 8px 24px rgba($dark-blue, 0.25),
+  lg: 0px 16px 48px rgba($dark-blue, 0.25)
 );
 
 @function shadow($shadow) {
@@ -27,3 +30,31 @@ $box-shadows: (
     }
   }
 }
+
+// Future state
+// $shadows: (
+//   text-sm: 0px 4px 12px,
+//   sm:  0px 4px 12px ,
+//   md: 0px 8px 24px,
+//   lg: 0px 16px 48px
+// );
+//
+// @function shadow($size: md, $color: $dark-blue, $opacity: 0.25) {
+//   @return map-get($shadows, $size) rgba($color, $opacity);
+// }
+//
+// .c-shadow {
+//   @each $shadow-size, $shadow-val in $box-shadows {
+//     @include popMedia($shadow-size) {
+//       box-shadow: shadow($shadow-size);
+//     }
+//   }
+// }
+//
+// .c-drop-shadow {
+//   @each $shadow-size, $shadow-val in $box-shadows {
+//     @include popMedia($shadow-size) {
+//       filter: drop-shadow(shadow($shadow-size));
+//     }
+//   }
+// }

@@ -1,70 +1,92 @@
 import React from 'react';
-import AppBar from 'material-ui/AppBar';
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
 import { Link } from 'react-router-dom';
-
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import darkTheme from '../config/darkTheme.js';
+import { Grid, Row, Col } from 'react-bootstrap';
+import Svg from './Svg';
+import menuIcon from '../assets/images/menu.svg'
+import closeIcon from '../assets/images/close.svg'
 
 export default class TopNav extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {open: false};
   }
 
-  handleToggle = () => {
-    this.setState({open: !this.state.open});
-  }
-  handleClose = () => this.setState({open: false});
+  onClose = () => this.setState({open: false});
+  onOpen = () => this.setState({open: true});
 
   render() {
-    return (
-      <MuiThemeProvider muiTheme={getMuiTheme(darkTheme)} >
-        <div>
-        <AppBar
-          iconClassNameRight="muidocs-icon-navigation-expand-more"
-          onLeftIconButtonTouchTap={this.handleToggle}
-        />
-        <Drawer
-          docked={false}
-          width={200}
-          open={this.state.open}
-          onRequestChange={(open) => this.setState({open})}
+  const {className} = this.props;
+  const {open} = this.state;
+  const links = [
+    {
+      to: '/',
+      label: 'Home'
+    },{
+      to: '/blog',
+      label: 'Blog'
+    },{
+      to: '/about',
+      label: 'About'
+    },{
+      to: '/referals',
+      label: 'Referals'
+    },{
+      to: '/webinars',
+      label: 'Webinars'
+    },{
+      to: '/Community',
+      label: 'Community'
+    }
+  ];
 
-        >
-          <div className='py-5 my-5'>
+  const Icon = open ? (
+    <div
+      onClick={this.onClose}
+      className='c-top-nav-menu-icon p-3'>
+      <Svg
+        src={closeIcon}
+        size={24} />
+    </div>
+    ) : (
+      <div
+        onClick={this.onOpen}
+        className='c-top-nav-menu-icon p-3'>
+        <Svg
+          src={menuIcon}
+          size={24} />
+    </div>
+    );
 
-          <Link to={'/'} className='my-5 c-no-underline'>
-            <MenuItem onTouchTap={this.handleClose}
-              className='flex align-center'>
-              <span>
-                Home
-              </span>
-            </MenuItem>
-          </Link>
-          <Link to={'/blog'} className='my-5 c-no-underline'>
-            <MenuItem onTouchTap={this.handleClose}
-              className='flex align-center'>
-              <span>
-                Blog
-              </span>
-            </MenuItem>
-          </Link>
-          <Link to={'/about'} className='my-5 c-no-underline'>
-            <MenuItem onTouchTap={this.handleClose}
-              className='flex align-center'>
-              <span>
-                About
-              </span>
-            </MenuItem>
-          </Link>
-        </div>
-        </Drawer>
+  return (
+    <div className='c-top-nav-container'>
+      <div className='py-4' />
+      <div className='w-100 fixed-top'>
+        <Grid>
+          <Row className='pt-4'>
+            <Col sm={12}>
+                {Icon}
+            </Col>
+          </Row>
+        </Grid>
       </div>
-    </MuiThemeProvider>
+      {this.state.open && (
+        <div className='c-top-nav-drawer py-5'>
+          <div className='c-top-nav-menu py-5 my-5'
+            data-open={this.state.open}>
+            {links.map((link, i) => <Link
+              key={i} to={link.to}
+              onClick={this.onClose}
+              className='c-top-nav-menu-item'>
+              <h1>
+                {link.label}
+              </h1>
+            </Link>
+          )}
+        </div>
+      </div>
+      )}
+    </div>
+
     );
   }
 }

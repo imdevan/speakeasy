@@ -24,15 +24,11 @@ class AboutPage extends React.Component{
       <div>
         <TopNav />
         <Grid>
-          <Row className='my-5'>
+          <Row className='py-5'>
             <Col sm={12}>
-              <ReactMarkdown source={aboutContent} />
-            </Col>
-          </Row>
-          <Row className='my-5'>
-            <Col sm={12}>
-              <MailingList
-                body={"Helpful, awesome, spam-less articles teaching business, code and design right to your inbox, every Wednesday - Just for subscribers."}/>
+              <ReactMarkdown
+                className='c-markdown-page'
+                source={aboutContent} />
             </Col>
           </Row>
         </Grid>

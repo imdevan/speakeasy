@@ -65,7 +65,9 @@ class PostPage extends React.Component{
   }
 
     displayTitle(post){
-    return <h1>{post.title.rendered}</h1>
+    return <h1
+      dangerouslySetInnerHTML={{__html: post.title.rendered}} />
+
   }
   // <div className="postSpinner">
   //   <h1 className="hiddenHeaderPlaceHolder">Loading Title</h1>
@@ -149,11 +151,13 @@ class PostPage extends React.Component{
   }
 
   displayLengthTag(post){
-    return <div>
+    const readingTime = this.calculateReadingTime(post.content.rendered);
+
+    return readingTime > 5 ? <div>
       <span className="tag">
-        <i className="fa fa-clock-o"></i> {this.calculateReadingTime(post.content.rendered)} Min
+        <i className="fa fa-clock-o"></i> {readingTime} Min
       </span>
-    </div>
+    </div> : null;
   }
 
   createMarkup(string) {
@@ -402,7 +406,7 @@ class PostPage extends React.Component{
         <div>
           <TopNav />
           <Grid className='py-5'>
-            <Row className='mb-5'>
+            <Row className='my-5'>
               <Col sm={12}>
                 {this.displayTitle(post)}
               </Col>

@@ -15,7 +15,7 @@ const PostCard = ({post}) => {
   }
 
   return (
-    <div className='w-100 h-100 c-shadow-lg'>
+    <div className='c-post-card c-bg-white'>
         {post.better_featured_image && <Row>
           <Col sm={12}>
             {renderImage(post.better_featured_image)}

@@ -1,14 +1,21 @@
 // @import '~bootstrap/scss/bootstrap.scss';
 @import '~font-awesome/css/font-awesome.css';
 
+// Common
 @import './media';
 @import './colors';
 @import './shadows';
 @import './fonts';
 @import './links';
-@import './text';
 @import './height';
 @import './backgrounds';
+@import './transitions';
+@import './text';
+@import './markdown';
+
+// components
+@import './post-card';
+@import './top-nav';
 
 html {
   height: 100%;

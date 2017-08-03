@@ -1,0 +1,36 @@
+@import './shadows';
+
+.c-top-nav {
+  &-drawer {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background: $dark-blue;
+    color: $white;
+    z-index: 10;
+  }
+
+  &-menu-icon {
+    background-color: $white;
+    border-radius: .3rem;
+    display: table;
+    box-shadow: shadow(sm);
+    cursor: pointer;
+  }
+
+  &-menu {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    text-align: center;
+  }
+
+  &-menu-item {
+  }
+}

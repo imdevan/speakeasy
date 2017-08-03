@@ -13,7 +13,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import RaisedButton from 'material-ui/RaisedButton';
 import {blue600, darkBlack, fullWhite} from 'material-ui/styles/colors';
-
+import { Link } from 'react-router-dom';
 import MailingList from '../../components/MailingList';
 import TopNav from '../../components/TopNav';
 import BackLink from '../../components/BackLink';
@@ -48,11 +48,18 @@ class Home extends React.Component {
   }
   renderFeaturedArticles(category) {
     const featuredArticles = this.filterPostsCategory(category);
+    const path = category === 210 ? 'projects' :
+                category === 211 ? 'blog' :
+                category === 212 ? '' : '';
 
-    return <Row className='w-100'>
+    debugger
+    return <Row >
       {featuredArticles.map((p, i) => (
-        <Col sm={12} md={4} key={i}>
-          <PostCard post={p} />
+        <Col sm={12} md={4} key={i}
+          className='mb-5 mb-md-0'>
+          <Link to={`/${path}/${p.slug}`}>
+            <PostCard post={p} />
+          </Link>
         </Col>
       ))}
     </Row>
@@ -64,6 +71,8 @@ class Home extends React.Component {
     return(
       <MuiThemeProvider muiTheme={getMuiTheme(defaultTheme)}>
         <div>
+          <TopNav className='fixed-top'/>
+
           {/* <AppBar title="My AppBar" className='mb-5'/> */}
           <div>
             <Grid>

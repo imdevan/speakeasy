@@ -1,14 +1,15 @@
 $blue: rgb(80, 192, 225);
 $green: #55CE81;
-
+$dark-blue: #282C34;
 $purple: #BD0FE1;
 $red: #FF001F;
 
 $gray: gray;
+$dark-gray: #292420;
 $light-gray: rgb(242, 245, 248);
 
 
 $white: #FFFFFF;
 
-$dark-font: #29292C;
-$dark-background: #29292C;
+$dark-font: $dark-blue;
+$dark-background: $dark-blue;

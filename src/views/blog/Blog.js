@@ -40,17 +40,16 @@ class BlogPage extends React.Component{
 
   setActiveCategory(category){
     if(this.state.activeCategories.includes(category)){
-      // TAKE IT OUT
       this.setState({...this.state,
         activeCategories: this.state.activeCategories.filter((_category) => _category !== category)
       })
-    }else{
-      // PUSH IT ON
-      var newCategories = this.state.activeCategories.slice();
+    } else {
+      const newCategories = this.state.activeCategories.slice();
       newCategories.push(category);
       this.setState({activeCategories:newCategories})
     }
   }
+
   renderCategories(categories){
     if(categories){
       return(
@@ -175,7 +174,7 @@ class BlogPage extends React.Component{
       <MuiThemeProvider muiTheme={getMuiTheme(lightTheme)} >
         <div>
           <TopNav />
-          <Grid>
+          <Grid className='py-5'>
             <Row className='my-5'>
               <Col sm={12}>
                 <h1>
@@ -186,7 +185,7 @@ class BlogPage extends React.Component{
                 </p>
               </Col>
             </Row>
-            <Row className='my-5'>
+            <Row className=''>
               <Col sm={12} md={8}>
                   <Posts posts={
                     this.renderPosts(
