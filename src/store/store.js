@@ -34,6 +34,7 @@ store.subscribe(throttle(()=> {
   saveState({
     ui: store.getState().ui,
     posts: store.getState().posts,
+    pages: store.getState().pages,
     categories: store.getState().categories,
     post: store.getState().post
   });

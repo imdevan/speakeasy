@@ -29,8 +29,8 @@ export default class TopNav extends React.Component {
       to: '/about',
       label: 'About'
     },{
-      to: '/referals',
-      label: 'Referals'
+      to: '/referrals',
+      label: 'Referrals'
     },{
       to: '/webinars',
       label: 'Webinars'

@@ -4,9 +4,9 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as uiActions from '../../actions/uiActions';
 import * as postActions from '../../actions/postActions';
+import * as pageActions from '../../actions/pageActions';
 
 
-import injectTapEventPlugin from 'react-tap-event-plugin';
 import { Grid, Row, Col } from 'react-bootstrap';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -24,7 +24,6 @@ import defaultTheme from '../../config/theme';
 import project from '../../config/project';
 import headerImage from '../../assets/images/logos/bison.svg';
 
-injectTapEventPlugin();
 
 class Home extends React.Component {
   constructor(props, context){
@@ -33,8 +32,9 @@ class Home extends React.Component {
     this.filterPostsCategory = this.filterPostsCategory.bind(this);
   }
   componentWillMount(){
-    const {post_actions} = this.props;
+    const {post_actions, page_actions} = this.props;
     post_actions.requestAllPosts();
+    page_actions.requestAllPages();
   }
   filterPostsCategory(category, count = 3) {
     const {posts} = this.props;
@@ -181,14 +181,16 @@ class Home extends React.Component {
 function mapStateToProps(state, ownProps){
   return {
     ui: state.ui,
-    posts: state.posts
+    posts: state.posts,
+    pages: state.pages
   };
 }
 
 function mapDispatchToProps(dispatch){
   return{
     ui_actions: bindActionCreators(uiActions, dispatch),
-    post_actions: bindActionCreators(postActions, dispatch)
+    post_actions: bindActionCreators(postActions, dispatch),
+    page_actions: bindActionCreators(pageActions, dispatch)
   };
 }
 
