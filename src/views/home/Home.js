@@ -52,12 +52,12 @@ class Home extends React.Component {
                 category === 211 ? 'blog' :
                 category === 212 ? '' : '';
 
-    debugger
     return <Row >
       {featuredArticles.map((p, i) => (
         <Col sm={12} md={4} key={i}
           className='mb-5 mb-md-0'>
-          <Link to={`/${path}/${p.slug}`}>
+          <Link to={`/${path}/${p.slug}`}
+            className='c-link-no-style h-100 w-100'>
             <PostCard post={p} />
           </Link>
         </Col>
@@ -78,9 +78,13 @@ class Home extends React.Component {
             <Grid>
               <Row>
                 <Col sm={12} className='text-center my-5 pt-5 '>
-                  <Svg src={headerImage}
-                    className='c-drop-shadow-sm'/>
-                  <h1 className='display-1'>
+                  <Row className='justify-content-center'>
+                    <Col className='col-8 col-md-6'>
+                      <Svg src={headerImage}
+                        className='c-drop-shadow-sm w-100'/>
+                    </Col>
+                  </Row>
+                  <h1 className='display-3 display-md-1'>
                     {project.title}
                   </h1>
                 </Col>

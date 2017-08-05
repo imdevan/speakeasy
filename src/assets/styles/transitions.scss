@@ -1,1 +1,15 @@
-$fast: 0.3s ease-in-out;
+$speeds: (
+  slow: .5s,
+  md: .3s,
+  fast: .15s
+);
+
+$cubic: cubic-bezier(0.4, 0.0, 0.2, 1);
+
+@function speed($speed: md) {
+  @return map-get($speeds, $speed);
+}
+
+@mixin trans($prop: all, $speed: md, $ease: $cubic) {
+  transition: $prop map-get($speeds, $speed) $ease;
+}

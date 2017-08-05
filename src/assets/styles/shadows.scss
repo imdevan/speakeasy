@@ -5,31 +5,29 @@ $shadows: (
   lg: 0px 16px 48px rgba($dark-blue, 0.25)
 );
 
-$box-shadows: (
-  sm:  0px 4px 12px rgba($dark-gray, 0.25),
-  md: 0px 8px 24px rgba($dark-blue, 0.25),
-  lg: 0px 16px 48px rgba($dark-blue, 0.25)
+$shadow-sizes: (
+  sm:  0px 4px 12px,
+  md: 0px 8px 24px,
+  lg: 0px 16px 48px
 );
 
 @function shadow($shadow) {
   @return map-get($shadows, $shadow);
 }
 
-.c-shadow {
-  @each $shadow, $shadow-val in $box-shadows {
-    @include popMedia($shadow) {
-      box-shadow: $shadow-val;
-    }
-  }
+@mixin filter-drop-shadow($size: md, $color: rgba($dark-blue, 0.25)) {
+  $shadow-size: map-get($shadow-sizes, $size);
+  filter: drop-shadow($shadow-size $color);
 }
 
-.c-drop-shadow {
-  @each $shadow, $shadow-val in $box-shadows {
-    @include popMedia($shadow) {
-      filter: drop-shadow($shadow-val);
-    }
-  }
-}
+
+// .c-drop-shadow {
+//   @each $shadow, $shadow-val in $shadow-sizes {
+//     @include popMedia($shadow) {
+//       @include filter-drop-shadow($shadow);
+//     }
+//   }
+// }
 
 // Future state
 // $shadows: (

@@ -1,0 +1,8 @@
+@keyframes rainbow-animation-shadow {
+    0%{ filter: drop-shadow(0px 8px 24px rgba( $dark-blue, 0.25));   }
+    20%{ filter: drop-shadow(0px 8px 24px rgba($blue, 0.25));        }
+    40%{ filter: drop-shadow(0px 8px 24px rgba($green, 0.25));       }
+    60%{ filter: drop-shadow(0px 8px 24px rgba($purple, 0.25));      }
+    80%{ filter: drop-shadow(0px 8px 24px rgba($red, 0.25));         }
+    100%{ filter: drop-shadow(0px 8px 24px rgba($dark-blue, 0.25));  }    
+}

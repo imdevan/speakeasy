@@ -74,6 +74,7 @@
     "prop-types": "^15.5.10",
     "raw-loader": "^0.5.1",
     "react": "^15.5.4",
+    "react-addons-css-transition-group": "^15.6.0",
     "react-bootstrap": "^0.31.0",
     "react-dom": "^15.5.4",
     "react-markdown": "^2.5.0",

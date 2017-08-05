@@ -11,7 +11,7 @@ const PostCard = ({post}) => {
       backgroundPosition: 'center'
     }
 
-    return <div className='c-h-4 c-h-md-7 d-block' style={imageStyle} />
+    return <div className='c-h-5 c-h-md-7 d-block' style={imageStyle} />
   }
 
   return (
@@ -21,18 +21,21 @@ const PostCard = ({post}) => {
             {renderImage(post.better_featured_image)}
           </Col>
         </Row>}
-      <Row >
-        <Col sm={12}>
-          <div className='p-4'>
-            {post.title &&
-            <h3 className='mb-4'
-              dangerouslySetInnerHTML={{__html: post.title.rendered}} />}
-            {/* Wordpress wraps excert in p tag by default */}
-            {post.excerpt && <small
-              dangerouslySetInnerHTML={{__html: post.excerpt.rendered}} />}
-          </div>
-        </Col>
-      </Row>
+        {(post.title || post.excerpt) &&
+          <Row>
+            <Col sm={12}>
+              <div className='p-4 c-post-card-body'>
+                {post.title &&
+                <h3 className='mb-3 mb-md-4'>
+                  <strong dangerouslySetInnerHTML={{__html: post.title.rendered}} /></h3>}
+                {/* Wordpress wraps excert in p tag by default */}
+                {post.excerpt && <small
+                  className='c-m-0-children'
+                  dangerouslySetInnerHTML={{__html: post.excerpt.rendered}} />}
+              </div>
+            </Col>
+          </Row>
+        }
     </div>
   );
 }

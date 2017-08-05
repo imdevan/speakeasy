@@ -4,6 +4,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import Svg from './Svg';
 import menuIcon from '../assets/images/menu.svg'
 import closeIcon from '../assets/images/close.svg'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 
 export default class TopNav extends React.Component {
   constructor(props) {
@@ -69,24 +70,30 @@ export default class TopNav extends React.Component {
           </Row>
         </Grid>
       </div>
-      {this.state.open && (
-        <div className='c-top-nav-drawer py-5'>
-          <div className='c-top-nav-menu py-5 my-5'
-            data-open={this.state.open}>
-            {links.map((link, i) => <Link
-              key={i} to={link.to}
-              onClick={this.onClose}
-              className='c-top-nav-menu-item'>
-              <h1>
-                {link.label}
-              </h1>
-            </Link>
-          )}
-        </div>
-      </div>
-      )}
-    </div>
-
-    );
+        <ReactCSSTransitionGroup
+          transitionName="c-top-nav-drawer"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}>
+           {this.state.open && (
+            <div className='c-top-nav-drawer py-5'>
+              <div className='c-top-nav-menu py-5 my-5'
+                data-open={this.state.open}>
+                {links.map((link, i) => (
+                  <h1
+                    key={i}
+                    className='c-top-nav-menu-item'>
+                    <Link
+                      to={link.to}
+                      onClick={this.onClose}
+                      className='text-white c-link-border-hover'>
+                      {link.label}
+                    </Link>
+                  </h1>
+                ))}
+            </div>
+          </div>
+         )}
+      </ReactCSSTransitionGroup>
+    </div>);
   }
 }

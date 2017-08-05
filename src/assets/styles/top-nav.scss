@@ -1,5 +1,4 @@
 @import './shadows';
-
 .c-top-nav {
   &-drawer {
     width: 100%;
@@ -10,9 +9,27 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    background: $dark-blue;
+    background: linear-gradient(to top right, rgba($blue, .96), rgba($purple, .95));
     color: $white;
     z-index: 10;
+
+    &-enter {
+      opacity: 0;
+    }
+
+    &-enter.c-top-nav-drawer-enter-active {
+      opacity: 1;
+      transition: opacity 500ms $cubic;
+    }
+
+    &-leave {
+      opacity: 1;
+    }
+
+    &-leave.c-top-nav-drawer-leave-active {
+      opacity: 0;
+      transition: opacity 300ms $cubic;
+    }
   }
 
   &-menu-icon {
@@ -32,5 +49,22 @@
   }
 
   &-menu-item {
+    &-appear {
+      opacity: 0;
+    }
+
+    &-appear.c-top-nav-menu-itemr-appear-active {
+      opacity: 1;
+      transition: opacity 300ms $cubic 200ms;
+    }
+
+    &-leave {
+      opacity: 1;
+    }
+
+    &-leave.c-top-nav-menu-item-leave-active {
+      opacity: 0;
+      transition: opacity 300ms $cubic;
+    }
   }
 }

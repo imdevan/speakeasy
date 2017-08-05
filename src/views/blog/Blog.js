@@ -80,36 +80,6 @@ class BlogPage extends React.Component{
     }
   }
 
-  renderSocialShare(){
-    return(
-      <div>
-        <Row className=' flex justify-content-around'>
-          <Col sm={4}>
-            <a href={social.twitter} target="_blank" className='d-block w-100'>
-              <h3 className='my-0'>
-                <i className="fa fa-twitter"></i>
-              </h3>
-            </a>
-          </Col>
-          <Col sm={4}>
-            <a href={social.facebook} target="_blank" className='d-block w-100'>
-              <h3 className='my-0'>
-                <i className="fa fa-facebook"></i>
-              </h3>
-            </a>
-          </Col>
-          <Col sm={4}>
-            <a href={social.email} target="_blank" className='d-block w-100'>
-              <h3 className='my-0'>
-                <i className="fa fa-envelope-o"></i>
-              </h3>
-            </a>
-          </Col>
-        </Row>
-      </div>
-    )
-  }
-
   filterCategoriesByCount(categories){
     if(categories){
       return categories.filter((_category) => _category.count > 0)
@@ -159,7 +129,7 @@ class BlogPage extends React.Component{
     return(
       this.filterPostsByActiveCategory(
         this.filterPostsByFuseSearch(
-          posts,
+          posts.filter(p => p.categories.includes(211)),
           search),
         activeCategories
       )
@@ -206,18 +176,6 @@ class BlogPage extends React.Component{
                   <h4>Categories</h4>
                   {this.renderCategories(this.props.categories.allCategories)}
                 </div>
-                <div>
-                  <h4>Say Hello</h4>
-                  <Card className='py-3 px-3 w-100'>
-                    {this.renderSocialShare()}
-                  </Card>
-                </div>
-              </Col>
-            </Row>
-            <Row className='my-5'>
-              <Col sm={12} lg={8} lgOffset={2}>
-                <MailingList
-                  header={'Awesome, spam-less, articles right to your inbox.'}/>
               </Col>
             </Row>
           </Grid>

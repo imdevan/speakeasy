@@ -1,14 +1,47 @@
 .c-post-card {
+  @include trans();
   position: relative;
-  filter: drop-shadow(0px 16px 48px rgba($dark-blue, 0.25));
   transform: translateY(0);
-  transition: $fast;
   height: 100%;
   width: 100%;
   cursor: pointer;
+  z-index: 3;
+  border: 1px solid #f2f5f8;
+
+  &-body {
+    border-top: 1px solid #f2f5f8;
+  }
+
+  &::before, &::after {
+    @include trans();
+    display: block;
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: -2;
+    left: 0;
+    filter: drop-shadow(0px 16px 48px rgba($dark-blue, 0.25));
+    transform: translateY(0);
+  }
+
+  &::before {
+    opacity: 1;
+    box-shadow: 0px 16px 48px rgba($dark-blue, 0.25);
+  }
+  &:after {
+    opacity: 0;
+    box-shadow: 0px 16px 48px rgba($dark-gray, 0.25);
+  }
 
   &:hover {
-    transform: translateY(-15px);
-    filter: drop-shadow(0px 16px 48px rgba($purple, 0.25));
+    &::before {
+      opacity: 0;
+    }
+    &::after {
+      opacity: 1;
+    }
+    transform: translateY(-12px);
   }
 }
