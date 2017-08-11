@@ -18,7 +18,7 @@ import HorizontalSocialButtons from '../../components/HorizontalSocialButtons';
 import MailingList from '../../components/MailingList';
 import Posts from '../../components/Posts';
 import social from '../../config/social';
-import TopNav from '../../components/TopNav';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class BlogPage extends React.Component{
   constructor(props, context){
@@ -143,11 +143,16 @@ class BlogPage extends React.Component{
     return(
       <MuiThemeProvider muiTheme={getMuiTheme(lightTheme)} >
         <div>
-          <TopNav />
+    <ReactCSSTransitionGroup
+      transitionName='fade-in-from-right'
+      transitionAppear={true}
+      transitionAppearTimeout={1000}
+      transitionLeaveTimeout={300}
+      transitionEnter={false}>
           <Grid className='py-5'>
             <Row className='my-5'>
               <Col sm={12}>
-                <h1>
+                <h1 className='display-3'>
                   Blog
                 </h1>
                 <p>
@@ -164,7 +169,7 @@ class BlogPage extends React.Component{
                       this.state.activeCategories)
                   }/>
               </Col>
-              <Col sm={12} md={4}>
+              {/* <Col sm={12} md={4}>
                 <TextField
                   type='text'
                   value={this.state.search}
@@ -176,9 +181,10 @@ class BlogPage extends React.Component{
                   <h4>Categories</h4>
                   {this.renderCategories(this.props.categories.allCategories)}
                 </div>
-              </Col>
+              </Col> */}
             </Row>
           </Grid>
+          </ReactCSSTransitionGroup>
         </div>
       </MuiThemeProvider>
     );

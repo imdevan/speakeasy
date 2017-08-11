@@ -19,10 +19,12 @@ import TopNav from '../../components/TopNav';
 import BackLink from '../../components/BackLink';
 import PostCard from '../../components/PostCard';
 import Svg from '../../components/Svg';
+import CTA from '../../components/CTA';
 
 import defaultTheme from '../../config/theme';
 import project from '../../config/project';
 import headerImage from '../../assets/images/logos/bison.svg';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 
 class Home extends React.Component {
@@ -48,7 +50,7 @@ class Home extends React.Component {
   }
   renderFeaturedArticles(category) {
     const featuredArticles = this.filterPostsCategory(category);
-    const path = category === 210 ? 'projects' :
+    const path = category === 210 ? '🚀' :
                 category === 211 ? 'blog' :
                 category === 212 ? '' : '';
 
@@ -67,112 +69,118 @@ class Home extends React.Component {
   render(){
     const projects = [];
     const {posts} = this.props;
-
+    console.log(ReactCSSTransitionGroup);
     return(
       <MuiThemeProvider muiTheme={getMuiTheme(defaultTheme)}>
-        <div>
-          <TopNav className='fixed-top'/>
-
-          {/* <AppBar title="My AppBar" className='mb-5'/> */}
           <div>
-            <Grid>
-              <Row>
-                <Col sm={12} className='text-center my-5 pt-5 '>
-                  <Row className='justify-content-center'>
-                    <Col className='col-8 col-md-6'>
-                      <Svg src={headerImage}
-                        className='c-drop-shadow-sm w-100'/>
-                    </Col>
-                  </Row>
-                  <h1 className='display-3 display-md-1'>
-                    {project.title}
-                  </h1>
-                </Col>
-              </Row>
-              <Row>
-                <Col sm={12} className='my-5'>
-                  <p>
-                    <BackLink to='imdevan.com'>A design, code, and consulting
-                    studio</BackLink> that specializes in
-                    creating procuts that live on the web.
-                    Bison Studio is&nbsp;<BackLink to='imdevan.com'>owned and
-                    operated by
-                    Devan Huapaya</BackLink>. And usually operates with
-                    partartner freelancers and agencies.
-                    &nbsp;<BackLink to='imdevan.com'>The end results are products
-                    </BackLink> built on partnerships with the
-                    users in mind.
-                  </p>
-                </Col>
-              </Row>
-            </Grid>
-            <div className='w-100 c-bg-light-gray py-5 my-5'>
+        <ReactCSSTransitionGroup
+          transitionName='fade-in-from-right'
+          transitionAppear={true}
+          transitionAppearTimeout={1000}
+          transitionLeaveTimeout={300}
+          transitionEnter={false}>
+            {/* <AppBar title='My AppBar' className='mb-5'/> */}
+            <div>
               <Grid>
-                <Row className='py-5'>
-                    <Col sm={12} className='my-5'>
-                    <h2 className='mb-5'>
-                      Projects 2017 to Now
-                     </h2>
-                     {this.renderFeaturedArticles(210)}
+                <Row>
+                  <Col sm={12} className='text-center my-5 pt-5 '>
+                    <Row className='justify-content-center'>
+                      <Col className='col-8 col-md-6'>
+                        <Svg src={headerImage}
+                          className='c-drop-shadow-sm w-100'/>
+                      </Col>
+                    </Row>
+                    <h1 className='display-3 display-md-1'>
+                      {project.title}
+                    </h1>
                   </Col>
                 </Row>
-              </Grid>
-            </div>
-          <Grid>
-            <Row className='py-5'>
-                <Col sm={12} className='my-5'>
-                  <h2 className='mb-5'>
-                    What We're Up To
-                   </h2>
-                   {this.renderFeaturedArticles(211)}
-                </Col>
-              </Row>
-                <Row className='py-5'>
-                    <Col sm={12} className='my-5'>
-                  <h2 className='mb-5'>
-                    Bison Studio in The Community
-                  </h2>
-                  {this.renderFeaturedArticles(212)}
-                 </Col>
-              </Row>
+                <Row>
+                  <Col sm={12} className='my-5'>
+                    <p>
+                      <BackLink to='imdevan.com'>A design, code, and consulting
+                      studio</BackLink> that specializes in
+                      creating procuts that live on the web.
+                      Bison Studio is&nbsp;<BackLink to='imdevan.com'>owned and
+                      operated by
+                      Devan Huapaya</BackLink>. And usually operates with
+                      partartner freelancers and agencies.
+                      &nbsp;<BackLink to='imdevan.com'>The end results are products
+                      </BackLink> built on partnerships with the
+                      users in mind.
+                    </p>
+                  </Col>
+                </Row>
               </Grid>
               <div className='w-100 c-bg-light-gray py-5 my-5'>
                 <Grid>
                   <Row className='py-5'>
                       <Col sm={12} className='my-5'>
-                    <h2>
-                      Before you go,
-                    </h2>
+                      <h2 className='mb-5'>
+                        Projects 2017 to Now
+                      </h2>
+                      {this.renderFeaturedArticles(210)}
+                    </Col>
+                  </Row>
+                </Grid>
+              </div>
+            <Grid>
+              <Row className='py-5'>
+                  <Col sm={12} className='my-5'>
                     <h2 className='mb-5'>
-                      A gift for you!
+                      What We're Up To
                     </h2>
-                    <p>
-                      That's Right! Because you're awesome and made it this far.
-                    </p>
-                    <p>
-                      I'm giving you a free pass to Bison Studio's first procut webinar.
-                    </p>
-                    <p>
-                      <BackLink to=''>Get your freeticket</BackLink>
-                    </p>
+                    {this.renderFeaturedArticles(211)}
+                  </Col>
+                </Row>
+                  <Row className='py-5'>
+                      <Col sm={12} className='my-5'>
+                    <h2 className='mb-5'>
+                      Bison Studio in The Community
+                    </h2>
+                    {this.renderFeaturedArticles(212)}
                   </Col>
                 </Row>
                 </Grid>
-              </div>
-              <Grid>
-                <Row className='py-5'>
-                    <Col sm={12} className='my-5 text-center'>
-                  <h2>
-                    Cheers,
-                  </h2>
-                  <h2 className='mb-5'>
-                    👋
-                  </h2>
-                </Col>
-              </Row>
-            </Grid>
+                <div className='w-100 c-bg-light-gray py-5 my-5'>
+                  <Grid>
+                    <Row className='py-5'>
+                        <Col sm={12} className='my-5'>
+                      <h2>
+                        Before you go,
+                      </h2>
+                      <h2 className='mb-5'>
+                        A gift for you!
+                      </h2>
+                      <p>
+                        That's Right! Because you're awesome and made it this far.
+                      </p>
+                      <p>
+                        I'm giving you a free pass to Bison Studio's first procut webinar.
+                      </p>
+                      <p className='text-center mt-5'>
+                        <CTA to='' 
+                          label='Get your FREE ticket' />
+                      </p>
+                    </Col>
+                  </Row>
+                  </Grid>
+                </div>
+                <Grid>
+                  <Row className='py-5'>
+                      <Col sm={12} className='my-5 text-center'>
+                    <h2>
+                      Cheers,
+                    </h2>
+                    <h2 className='mb-5'>
+                      👋
+                    </h2>
+                  </Col>
+                </Row>
+              </Grid>
+            </div>
+            </ReactCSSTransitionGroup>
           </div>
-        </div>
       </MuiThemeProvider>
     );
   }

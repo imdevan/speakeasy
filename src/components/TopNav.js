@@ -4,7 +4,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import Svg from './Svg';
 import menuIcon from '../assets/images/menu.svg'
 import closeIcon from '../assets/images/close.svg'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default class TopNav extends React.Component {
   constructor(props) {
@@ -31,13 +31,14 @@ export default class TopNav extends React.Component {
     },{
       to: '/referrals',
       label: 'Referrals'
-    },{
-      to: '/webinars',
-      label: 'Webinars'
-    },{
-      to: '/Community',
-      label: 'Community'
     }
+    // ,{
+    //   to: '/webinars',
+    //   label: 'Webinars'
+    // },{
+    //   to: '/Community',
+    //   label: 'Community'
+    // }
   ];
 
   const Icon = open ? (
@@ -71,7 +72,7 @@ export default class TopNav extends React.Component {
         </Grid>
       </div>
         <ReactCSSTransitionGroup
-          transitionName="c-top-nav-drawer"
+          transitionName="fade-in"
           transitionEnterTimeout={500}
           transitionLeaveTimeout={300}>
            {this.state.open && (

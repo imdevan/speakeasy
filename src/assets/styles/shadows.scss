@@ -11,7 +11,7 @@ $shadow-sizes: (
   lg: 0px 16px 48px
 );
 
-@function shadow($shadow) {
+@function shadow($shadow: md) {
   @return map-get($shadows, $shadow);
 }
 

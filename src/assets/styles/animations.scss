@@ -1,8 +1,45 @@
-@keyframes rainbow-animation-shadow {
-    0%{ filter: drop-shadow(0px 8px 24px rgba( $dark-blue, 0.25));   }
-    20%{ filter: drop-shadow(0px 8px 24px rgba($blue, 0.25));        }
-    40%{ filter: drop-shadow(0px 8px 24px rgba($green, 0.25));       }
-    60%{ filter: drop-shadow(0px 8px 24px rgba($purple, 0.25));      }
-    80%{ filter: drop-shadow(0px 8px 24px rgba($red, 0.25));         }
-    100%{ filter: drop-shadow(0px 8px 24px rgba($dark-blue, 0.25));  }    
+.fade-in {
+    &-enter {
+      opacity: 0;
+    }
+
+    &-enter.fade-in-enter-active {
+      opacity: 1;
+      transition: opacity 500ms $cubic;
+    }
+
+    &-leave {
+      opacity: 1;
+    }
+
+    &-leave.fade-in-leave-active {
+      opacity: 0;
+      transition: opacity 300ms $cubic;
+    }
+}
+
+.fade-in-from-right {
+    position: relative;
+    
+    &-appear {
+      opacity: 0;
+      transform: translateX(2rem);
+    }
+
+    &-appear.fade-in-from-right-appear-active {
+      opacity: 1;
+      transform: translateX(0rem);
+      transition: all 1s $cubic;
+    }
+
+    &-leave {
+      transform: translateX(0rem);
+      opacity: 1;
+    }
+
+    &-leave.fade-in-from-right-leave-active {
+      transform: translateX(-2rem);
+      opacity: 0;
+      transition: opacity transform 300ms $cubic;
+    }
 }

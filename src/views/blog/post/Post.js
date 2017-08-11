@@ -22,7 +22,8 @@ import MailingList from '../../../components/MailingList';
 import VerticalShareButtons from '../../../components/VerticalShareButtons';
 import HorizontalShareButtons from '../../../components/HorizontalShareButtons';
 import SkeletonBox from '../../../components/SkeletonBox';
-import TopNav from '../../../components/TopNav';
+import Disqus from '../../../components/Disqus';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 
 class PostPage extends React.Component{
@@ -399,12 +400,17 @@ class PostPage extends React.Component{
   // {this.displaySelectionShare(this.state.selection)}
 
   render(){
-    const {post} = this.props;
+    const {post, location} = this.props;
 
     return(
       <MuiThemeProvider muiTheme={getMuiTheme(lightTheme)} >
         <div>
-          <TopNav />
+        <ReactCSSTransitionGroup
+          transitionName='fade-in-from-right'
+          transitionAppear={true}
+          transitionAppearTimeout={1000}
+          transitionLeaveTimeout={300}
+          transitionEnter={false}>
           <Grid className='py-5'>
             <Row className='my-5'>
               <Col sm={12}>
@@ -421,7 +427,14 @@ class PostPage extends React.Component{
                 {this.displayBody(post)}
               </Col>
             </Row>
-            <Row className='mb-5'>
+            <Row className='my-5'>
+              <Col sm={12}  className='py-5'>
+                <Disqus 
+                  title={post.title.rendered}
+                  url={location.pathname}/>
+              </Col>
+            </Row>
+            {/* <Row className='mb-5'>
               <Col sm={12}>
                 {this.displayTags(post)}
               </Col>
@@ -441,8 +454,9 @@ class PostPage extends React.Component{
                 <MailingList
                   header={'Helpful content right to your inbox, every Wednesday.'}/>
               </Col>
-            </Row>
+            </Row> */}
           </Grid>
+        </ReactCSSTransitionGroup>
         </div>
       </MuiThemeProvider>
     );

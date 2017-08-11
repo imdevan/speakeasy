@@ -7,7 +7,7 @@ const PostCard = ({post}) => {
   const renderImage = image => {
     const imageStyle = {
       backgroundImage: `url(${post.better_featured_image.source_url})`,
-      backgroudSize: 'fill',
+      backgroundSize: 'cover',
       backgroundPosition: 'center'
     }
 

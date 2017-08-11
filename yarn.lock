@@ -994,7 +994,7 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
-bootstrap@^4.0.0-alpha.6:
+bootstrap@4.0.0-alpha.6:
   version "4.0.0-alpha.6"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0-alpha.6.tgz#4f54dd33ac0deac3b28407bc2df7ec608869c9c8"
   dependencies:
@@ -4732,6 +4732,10 @@ react-dev-utils@^0.4.2:
     opn "4.0.2"
     sockjs-client "1.0.3"
     strip-ansi "3.0.1"
+
+react-disqus-thread@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/react-disqus-thread/-/react-disqus-thread-0.4.0.tgz#7fd63786ea5034fb5df25facd7f4c49d1204ad03"
 
 react-dom@^15.5.4:
   version "15.6.1"

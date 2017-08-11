@@ -1,0 +1,29 @@
+$cta-color: $white;
+
+.c-cta {
+    @extend .p-4;
+    @extend .h1;
+    @include trans();
+    position: relative;
+    background: linear-gradient(to top right, $blue, $purple);
+    box-shadow: shadow(); 
+    color: $cta-color;
+    transform: translateY(0rem);
+    text-shadow: none; 
+    
+    &:hover {
+        transform: translateY(-1rem);
+        color: $cta-color;
+        text-shadow: shadow(sm); 
+    }  
+    &:active {
+        transform: translateY(0rem);
+        @include trans(null, fast);
+    }
+    &:visited {
+        color: $cta-color;
+    }
+    &::after, &::before {
+        content: none;
+    }
+}

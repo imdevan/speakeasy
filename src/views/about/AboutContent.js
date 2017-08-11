@@ -1,6 +1,6 @@
-const content = `# About
-
-
+const page = {
+    title: 'About',
+    content: `
 This project is a React Template that is generanic enough to kick off any react
 projct.
 
@@ -16,5 +16,6 @@ Headlines to linclude
 - How to get started
 - Who made it
 - Something else you would think is really useful`
+}
 
-export default content
+export default page

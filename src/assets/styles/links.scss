@@ -140,7 +140,7 @@ a {
 .c-no-underline {
   text-decoration: none !important;
 
-  &:hover {
+  &:hover, &:focus, &:active {
     text-decoration: none !important;
   }
 }
