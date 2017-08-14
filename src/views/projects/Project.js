@@ -21,6 +21,10 @@ class Project extends React.Component{
     this.displayMetaInfo = this.displayMetaInfo.bind(this);
   }
 
+  componentDidMount() {
+    window.scrollTo(0, 0)
+  }
+  
   componentWillMount(){
     if(!this.props.post){
       this.props.postActions.requestPost(4803);

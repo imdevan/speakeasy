@@ -26,12 +26,12 @@ const PostCard = ({post}) => {
             <Col sm={12}>
               <div className='p-4 c-post-card-body'>
                 {post.title &&
-                <h3 className='mb-3 mb-md-4'>
+                <h3 className='mb-0'>
                   <strong dangerouslySetInnerHTML={{__html: post.title.rendered}} /></h3>}
                 {/* Wordpress wraps excert in p tag by default */}
-                {post.excerpt && <small
-                  className='c-m-0-children'
-                  dangerouslySetInnerHTML={{__html: post.excerpt.rendered}} />}
+                {post.acf.description && post.acf.description.length > 0 && <small
+                  className='c-m-0-children d-block pt-3 pt-md-4'
+                  dangerouslySetInnerHTML={{__html: post.acf.description}} />}
               </div>
             </Col>
           </Row>

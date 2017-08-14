@@ -33,6 +33,10 @@ class BlogPage extends React.Component{
     this.props.categoryActions.requestAllCategories();
   }
 
+  componentDidMount() {
+    window.scrollTo(0, 0)
+  }
+  
   setActiveCategory(category){
     if(this.state.activeCategories.includes(category)){
       this.setState({...this.state,

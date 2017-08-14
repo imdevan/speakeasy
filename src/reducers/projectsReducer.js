@@ -1,4 +1,4 @@
-import {SET_PROJECT, SET_PROJECTS, REMOVE_PROJECT} from '../actions/pageActions.js';
+import {SET_PROJECT, SET_PROJECTS, REMOVE_PROJECT} from '../actions/actionTypes.js';
 
 export default function pages(state = [], action){
   switch(action.type){

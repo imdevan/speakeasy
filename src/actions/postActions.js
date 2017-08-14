@@ -50,16 +50,16 @@ export function requestAllPosts(){
     // let requestUrl = '/posts'
     return Axios.get(requestUrl).then(
       response => {
-        debugger
+        // debugger
         dispatch(successRequestingPosts(response))
       }
     ).then(
       response => {
-        debugger
+        // debugger
         dispatch(ui.loadingChanged(false))
       }
     ).catch(e => {
-        debugger
+        // debugger
         dispatch(ui.displayError(e.response.data.response.detail))
         dispatch(ui.loadingChanged(false))
       }

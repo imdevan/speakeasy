@@ -27,7 +27,7 @@ export default class App extends Component {
           <title>{project.title}</title>
         </Helmet>
         <TopNav className='fixed-top'/>
-
+        
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/referrals" component={Referrals} />

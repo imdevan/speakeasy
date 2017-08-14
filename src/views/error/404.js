@@ -3,6 +3,10 @@ import {connect} from 'react-redux';
 import { Grid, Row, Col } from 'react-bootstrap';
 
 class Error404Page extends React.Component{
+  componentDidMount() {
+    window.scrollTo(0, 0)
+  }
+
   render(){
     return(
       <Grid>

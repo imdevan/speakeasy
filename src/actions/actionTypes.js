@@ -16,6 +16,16 @@ export const ADD_POST = 'ADD_POST';
 export const REMOVE_POST = 'REMOVE_POST';
 export const ADD_COMMENT = 'ADD_COMMENT';
 
+// PAGES
+export const SET_PAGES = 'SET_PAGES';
+export const SET_PAGE = 'SET_PAGE';
+export const REMOVE_PAGE = 'REMOVE_PAGE';
+
+// PROJECTS
+export const SET_PROJECTS = 'SET_PROJECTS'; 
+export const SET_PROJECT = 'SET_PROJECT'; 
+export const REMOVE_PROJECT = 'REMOVE_PROJECT'; 
+
 // CATEGORIES
 export const ADD_CATEGORIES = 'ADD_CATEGORIES';
 

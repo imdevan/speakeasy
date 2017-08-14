@@ -1,29 +1,25 @@
 import * as ui from './uiActions';
 import {apiUrl} from '../config/config';
 import Axios from '../config/axios';
-
-export const SET_PROJECTS = 'SET_PROJECTS';
-export const SET_PROJECT = 'SET_PROJECT';
-export const REMOVE_PROJECT = 'REMOVE_PROJECT';
+import * as constants from './actionTypes';
 
 export function successRequestingProjects(response){
-  return { type: SET_PROJECTS, projects: response.data};
+  return { type: constants.SET_PROJECTS, projects: response.data};
 }
 
 export function successRequestingProject(response){
   if (!response.data) return;
 
-  debugger
   const {length} = response.data;
   
   if(length)
-    return { type: SET_PROJECT, project: response.data[0]};
+    return { type: constants.SET_PROJECT, project: response.data[0]};
   else 
-    return { type: SET_PROJECT, project: response.data};
+    return { type: constants.SET_PROJECT, project: response.data};
 }
 
 export function removeProject(){
-  return {type: REMOVE_PROJECT}
+  return {type: constants.REMOVE_PROJECT}
 }
 
 export function requestAllProjects(){

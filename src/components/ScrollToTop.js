@@ -1,8 +1,7 @@
 // THIS COMPONENT SCROLLS THE WINDOW BACK TO THE TOP
-import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import React from 'react'
 
-class ScrollToTop extends Component {
+class ScrollToTop extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
       window.scrollTo(0, 0)
@@ -10,8 +9,9 @@ class ScrollToTop extends Component {
   }
 
   render() {
-    return this.props.children
+    return null
   }
 }
 
-export default withRouter(ScrollToTop)
+
+export default ScrollToTop;

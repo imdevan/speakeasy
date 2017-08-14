@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import * as uiActions from '../../actions/uiActions';
 import * as postActions from '../../actions/postActions';
 import * as pageActions from '../../actions/pageActions';
+import ScrollToTop from '../../components/ScrollToTop';
 
 
 import { Grid, Row, Col } from 'react-bootstrap';
@@ -33,6 +34,11 @@ class Home extends React.Component {
     post_actions.requestAllPosts();
     page_actions.requestAllPages();
   }
+  
+  componentDidMount() {
+    window.scrollTo(0, 0)
+  }
+
   filterPostsCategory(category, count = 3) {
     const {posts} = this.props;
     if(!posts || !posts.allPosts) return null;
@@ -48,6 +54,8 @@ class Home extends React.Component {
     const path = categories[category];
 
     return <Row >
+      <ScrollToTop/>
+
       {featuredArticles.map((p, i) => {
         const redirect = redirects[p.slug];
         const card = redirect ? 

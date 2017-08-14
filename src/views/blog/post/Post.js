@@ -35,6 +35,10 @@ class PostPage extends React.Component{
     // this.props.postActions.requestPost(this.props.routeParams.postSlug);
   }
 
+  componentDidMount() {
+    window.scrollTo(0, 0)
+  }
+
   componentWillUnmount(){
     this.props.postActions.removePost();
   }
@@ -49,16 +53,6 @@ class PostPage extends React.Component{
             className="w-100"
             onMouseUp={this.onHighlight}
             dangerouslySetInnerHTML={this.createMarkup(post.content.rendered)}/>
-  }
-
-  calculateReadingTime(text){
-    var totalWords = text.trim().split(/\s+/g).length;
-    var wordsPerSecond = 200 / 60;
-    var totalReadingTimeSeconds = totalWords / wordsPerSecond;
-    var readingTimeMinutes = Math.round(totalReadingTimeSeconds / 60);
-    return(
-      readingTimeMinutes
-    )
   }
 
   createMarkup(string) {
@@ -120,11 +114,6 @@ class PostPage extends React.Component{
               <Row className='my-5'>
                 <Col sm={12}>
                   {this.displayTitle(post)}
-                </Col>
-              </Row>
-              <Row className='mb-5'>
-                <Col sm={12}>
-                  {this.displayLengthTag(post)}
                 </Col>
               </Row>
               <Row className='mb-5'>

@@ -16,6 +16,10 @@ import CTA from '../../components/CTA';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class AboutPage extends React.Component{
+  componentDidMount() {
+    window.scrollTo(0, 0)
+  }
+
   render(){
     return <MuiThemeProvider muiTheme={getMuiTheme(lightTheme)} >
       <div>
