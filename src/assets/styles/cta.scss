@@ -10,15 +10,17 @@ $cta-color: $white;
     color: $cta-color;
     transform: translateY(0rem);
     text-shadow: none; 
+    text-decoration: none;
     
     &:hover {
         transform: translateY(-1rem);
         color: $cta-color;
         text-shadow: shadow(sm); 
     }  
-    &:active {
+    &:active, &:focus {
         transform: translateY(0rem);
         @include trans(null, fast);
+        text-decoration: none;
     }
     &:visited {
         color: $cta-color;

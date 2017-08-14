@@ -8,7 +8,6 @@ import TopNav from './components/TopNav';
 
 import Home from './views/home/Home'
 import Blog from './views/blog/Blog'
-import Page from './views/page/Page'
 import Post from './views/blog/post/Post'
 import Project from './views/projects/Project'
 import About from './views/about/About'

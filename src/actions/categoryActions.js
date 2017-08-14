@@ -18,7 +18,8 @@ export function requestAllCategories(){
       }
     ).then(response => dispatch(ui.loadingChanged(false))
     ).catch(e => {
-        dispatch(ui.displayError(e.response.data)), dispatch(ui.loadingChanged(false))
+        dispatch(ui.displayError(e.response.data))
+        dispatch(ui.loadingChanged(false))
       }
     )
   }

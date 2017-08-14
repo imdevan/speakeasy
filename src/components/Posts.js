@@ -4,17 +4,14 @@ import { Link } from 'react-router-dom';
 import {bindActionCreators} from 'redux';
 import * as postActions from '../actions/postActions';
 
-import sanitizeHtml from 'sanitize-html'; //https://www.npmjs.com/package/sanitize-html
-// import Spinner from '../../common/ReactSpinner';
+import sanitizeHtml from 'sanitize-html'; 
 import SkeletonBox from './SkeletonBox';
-import {Grid, Row, Col} from 'react-bootstrap';
+import {Row, Col} from 'react-bootstrap';
 
 class Posts extends React.Component{
   constructor(props, context){
     super(props, context);
-    this.state = {
-      // posts: {}
-    };
+    this.state = {};
     this.displayPosts = this.displayPosts.bind(this);
   }
 

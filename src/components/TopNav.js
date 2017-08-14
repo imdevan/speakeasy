@@ -16,7 +16,6 @@ export default class TopNav extends React.Component {
   onOpen = () => this.setState({open: true});
 
   render() {
-  const {className} = this.props;
   const {open} = this.state;
   const links = [
     {

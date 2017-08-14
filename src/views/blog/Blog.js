@@ -8,16 +8,11 @@ import * as categoryActions from '../../actions/categoryActions';
 import {Grid, Row, Col} from 'react-bootstrap';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import TextField from 'material-ui/TextField';
-import Card from 'material-ui/Card';
 import lightTheme from '../../config/lightTheme';
 
 import Fuse from 'fuse.js'; // PROVIDES FUZZY SEARCH
 import SkeletonBox from '../../components/SkeletonBox';
-import HorizontalSocialButtons from '../../components/HorizontalSocialButtons';
-import MailingList from '../../components/MailingList';
 import Posts from '../../components/Posts';
-import social from '../../config/social';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class BlogPage extends React.Component{
@@ -88,7 +83,7 @@ class BlogPage extends React.Component{
 
   filterPostsByActiveCategory(posts, activeCategories){
     if(posts && activeCategories){
-      let activeCategoriesIDArray = activeCategories.map(category => {return category.id})
+      // let activeCategoriesIDArray = activeCategories.map(category => {return category.id})
       // let filteredPosts = posts.map(post => {
       //   if(post._embedded && post._embedded['wp:term']){
       //     let postCategories = post._embedded['wp:term'][0];

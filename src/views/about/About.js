@@ -11,10 +11,7 @@ import lightTheme from '../../config/lightTheme';
 
 import ReactMarkdown from 'react-markdown';
 
-import MailingList from '../../components/MailingList';
-import HorizontalSocialButtons from '../../components/HorizontalSocialButtons';
 import aboutContent from './AboutContent';
-// var aboutContent = '# test';
 import CTA from '../../components/CTA';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 

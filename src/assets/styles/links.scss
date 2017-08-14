@@ -19,7 +19,9 @@ a {
     transform: scaleY($underlineHeight) translateX(5px);
     left: 0;
     bottom: 0;
-    background-color: rgba($purple, 0.2);
+    // background-color: rgba($purple, 0.2);
+    background: linear-gradient(to top right,  rgba($blue, .3), rgba($purple, .3));
+    
     transition: all ease 0.3s;
   }
 
@@ -43,6 +45,9 @@ a {
     color: black;
 
     
+    &:active, &:focus {
+      text-decoration: none !important;
+    }
 
     &::after, &::before {
       @include trans(transform);
@@ -85,6 +90,7 @@ a {
       display: inline-block;
       color: black;
       $border: $border-width solid transparent;
+
       &::after, &::before {
         border-image: linear-gradient(to top right,  rgba($blue, .96), rgba($purple, .95)) 1 1 1 1;
         @include trans(transform);
@@ -124,14 +130,14 @@ a {
       content: none;
     }
 
-    &:hover{
+    &:hover {
       text-decoration: inherit !important;
       &::before, &::after {
         content: none;
       }
     }
 
-    &:visited{
+    &:visited {
       text-decoration: inherit !important;
     }
   }

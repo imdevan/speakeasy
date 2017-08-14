@@ -1,5 +1,5 @@
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import {blue600, darkBlack, fullWhite} from 'material-ui/styles/colors';
+import {blue600} from 'material-ui/styles/colors';
 
 
 export default {

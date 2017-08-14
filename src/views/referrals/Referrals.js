@@ -11,10 +11,7 @@ import lightTheme from '../../config/lightTheme';
 
 import ReactMarkdown from 'react-markdown';
 
-import MailingList from '../../components/MailingList';
-import HorizontalSocialButtons from '../../components/HorizontalSocialButtons';
 import referralContent from './ReferralsContent';
-import CTA from '../../components/CTA';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 
@@ -43,8 +40,11 @@ class AboutPage extends React.Component{
           </Row>
           <Row className='py-5'>
             <Col sm={12} className='text-center'>
-              <CTA to='' 
-                label='Get started' />
+               <a className="typeform-share c-cta" 
+                href="https://bisonstudio.typeform.com/to/VktkVF" 
+                data-mode="popup" 
+                data-hide-headers={true}
+                target="_blank">Get started</a>  
             </Col>
           </Row> 
           {/* <Row className='py-5'>

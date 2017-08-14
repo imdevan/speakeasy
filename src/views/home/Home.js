@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as uiActions from '../../actions/uiActions';
@@ -8,21 +7,17 @@ import * as pageActions from '../../actions/pageActions';
 
 
 import { Grid, Row, Col } from 'react-bootstrap';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import RaisedButton from 'material-ui/RaisedButton';
-import {blue600, darkBlack, fullWhite} from 'material-ui/styles/colors';
 import { Link } from 'react-router-dom';
-import MailingList from '../../components/MailingList';
-import TopNav from '../../components/TopNav';
 import BackLink from '../../components/BackLink';
 import PostCard from '../../components/PostCard';
 import Svg from '../../components/Svg';
-import CTA from '../../components/CTA';
 
 import defaultTheme from '../../config/theme';
 import project from '../../config/project';
+import categories from '../../config/categories';
+import redirects from '../../config/redirects';
 import headerImage from '../../assets/images/logos/bison.svg';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
@@ -50,26 +45,27 @@ class Home extends React.Component {
   }
   renderFeaturedArticles(category) {
     const featuredArticles = this.filterPostsCategory(category);
-    const path = category === 210 ? '🚀' :
-                category === 211 ? 'blog' :
-                category === 212 ? '' : '';
+    const path = categories[category];
 
     return <Row >
-      {featuredArticles.map((p, i) => (
-        <Col sm={12} md={4} key={i}
-          className='mb-5 mb-md-0'>
+      {featuredArticles.map((p, i) => {
+        const redirect = redirects[p.slug];
+        const card = redirect ? 
+          <a href={redirect} target='_blank'
+            className='c-link-no-style h-100 w-100'><PostCard post={p} /></a> :
           <Link to={`/${path}/${p.slug}`}
             className='c-link-no-style h-100 w-100'>
             <PostCard post={p} />
-          </Link>
+          </Link>;
+
+        return <Col sm={12} md={4} key={i}
+          className='mb-5 mb-md-0'>
+          {card}
         </Col>
-      ))}
+      })}
     </Row>
   }
   render(){
-    const projects = [];
-    const {posts} = this.props;
-    console.log(ReactCSSTransitionGroup);
     return(
       <MuiThemeProvider muiTheme={getMuiTheme(defaultTheme)}>
           <div>
@@ -159,8 +155,12 @@ class Home extends React.Component {
                         I'm giving you a free pass to Bison Studio's first procut webinar.
                       </p>
                       <p className='text-center mt-5'>
-                        <CTA to='' 
-                          label='Get your FREE ticket' />
+                        {/* <CTA to=''  */}
+                          {/* label='Get your FREE ticket' /> */}
+                           <a className="typeform-share c-cta" 
+                            href="https://bisonstudio.typeform.com/to/HjPCvy" 
+                            data-mode="popup" 
+                            target="_blank">Get your FREE ticket</a>  
                       </p>
                     </Col>
                   </Row>
