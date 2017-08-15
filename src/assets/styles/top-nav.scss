@@ -20,6 +20,14 @@
     display: table;
     box-shadow: shadow(sm);
     cursor: pointer;
+
+    &-container {
+      @include trans(null, slow);
+     &.hide {
+        opacity: 0;
+        transform: translateY(-100%);
+      }
+    }
   }
 
   &-menu {

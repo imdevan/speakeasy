@@ -9,59 +9,82 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 export default class TopNav extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {open: false};
+    this.state = {open: false, hidden: false};
+
+    this.hideButton = this.hideButton.bind(this)
+  }
+
+  hideButton(){
+    let {hide} = this.state
+
+    if(window.scrollY > this.prev) 
+    this.setState({hide:true})
+    else
+    this.setState({hide:false})
+
+    this.prev = window.scrollY;
+  }
+  
+  componentDidMount(){
+    window.addEventListener('scroll',this.hideButton);
+  }
+
+  componentWillUnmount(){
+    window.removeEventListener('scroll',this.hideButton);
   }
 
   onClose = () => this.setState({open: false});
   onOpen = () => this.setState({open: true});
 
   render() {
-  const {open} = this.state;
-  const links = [
-    {
-      to: '/',
-      label: 'Home'
-    },{
-      to: '/blog',
-      label: 'Blog'
-    },{
-      to: '/about',
-      label: 'About'
-    },{
-      to: '/referrals',
-      label: 'Referrals'
-    }
-    // ,{
-    //   to: '/webinars',
-    //   label: 'Webinars'
-    // },{
-    //   to: '/Community',
-    //   label: 'Community'
-    // }
-  ];
+    const {open, hide} = this.state;
+    const classHide = hide ? 'hide' : '';
+    
+    const links = [
+      {
+        to: '/',
+        label: 'Home'
+      },{
+        to: '/blog',
+        label: 'Blog'
+      },{
+        to: '/about',
+        label: 'About'
+      },{
+        to: '/referrals',
+        label: 'Referrals'
+      }
+      // ,{
+      //   to: '/webinars',
+      //   label: 'Webinars'
+      // },{
+      //   to: '/Community',
+      //   label: 'Community'
+      // }
+    ];
 
-  const Icon = open ? (
-    <div
-      onClick={this.onClose}
-      className='c-top-nav-menu-icon p-3'>
-      <Svg
-        src={closeIcon}
-        size={24} />
-    </div>
-    ) : (
+    const Icon = open ? (
       <div
-        onClick={this.onOpen}
+        onClick={this.onClose}
         className='c-top-nav-menu-icon p-3'>
         <Svg
-          src={menuIcon}
+          src={closeIcon}
           size={24} />
-    </div>
+      </div>
+      ) : (
+        <div
+          onClick={this.onOpen}
+          className='c-top-nav-menu-icon p-3'>
+          <Svg
+            src={menuIcon}
+            size={24} />
+      </div>
     );
 
   return (
     <div className='c-top-nav-container'>
       <div className='py-4' />
-      <div className='w-100 fixed-top'>
+      <div className={`c-top-nav-menu-icon-container w-100 fixed-top ${classHide}`}>
         <Grid>
           <Row className='pt-4'>
             <Col sm={12}>

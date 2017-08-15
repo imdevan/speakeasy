@@ -53,6 +53,8 @@ class Home extends React.Component {
     const featuredArticles = this.filterPostsCategory(category);
     const path = categories[category];
 
+    if(!featuredArticles) return null;
+    
     return <Row >
       <ScrollToTop/>
 
