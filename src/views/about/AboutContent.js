@@ -6,7 +6,7 @@ Bison Studio is owned and operated by [Devan Huapaya](http://imdevan.com).
 And usually operates with partner freelancers and agencies. 
 The end results are engaging products built on partnerships with the users in mind.<br/><br/>
 Bison Studio specializes in building lean MVPs. That means we focus on the most important part of your users' experience and 
-optimize around that. Everything else is fat that is cut out (of the first iteration) or whpped into shape.  <br/><br/>
+optimize around that. Everything else is fat that is cut out (of the first iteration) or whipped into shape.  <br/><br/>
 We believe that web apps are the best apps. They work in the browser, which can already support your desktop and phone.
 Modern technology is at a point where web apps can be built to be published to the app store and Google Play. 
 <br/><br/>
@@ -35,13 +35,13 @@ Web apps are apps that run on the web. Like Google docs, amazon, or your email, 
 
 **Isn't that just a website**
 
-Kind of, there is defintely overlap. Web apps are basically websites with a lot of moving parts.
+Kind of, there is definitely overlap. Web apps are basically websites with a lot of moving parts.
 <br/><br/>
 
 **Do you build websites?**
 
 Yes! I made [this one](http://bisonstudio.co), [this one](http://designandcode.club), [this one](http://freelanceafternoon.com),
-and a [few others](http://imdevan.com). Some on wordpress, some with react. 
+and [this one](http://imdevan.com). Some on wordpress, some with react. 
 The one you're currently viewing was made with React.
 <br/><br/>
 

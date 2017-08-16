@@ -44,12 +44,13 @@ class PostPage extends React.Component{
 
   displayTitle(post){
     return <h1
+      className='display-1'
       dangerouslySetInnerHTML={this.createMarkup(post.title.rendered)} />
   }
 
   displayBody(post){
     return <div
-            className="w-100"
+            className="w-100 c-article-body"
             onMouseUp={this.onHighlight}
             dangerouslySetInnerHTML={this.createMarkup(post.content.rendered)}/>
   }

@@ -17,10 +17,10 @@ export default class TopNav extends React.Component {
   hideButton(){
     let {hide} = this.state
 
-    if(window.scrollY > this.prev) 
-    this.setState({hide:true})
-    else
-    this.setState({hide:false})
+    if(window.scrollY > this.prev && !hide) 
+      this.setState({hide:true})
+    else if(hide)
+      this.setState({hide:false})
 
     this.prev = window.scrollY;
   }

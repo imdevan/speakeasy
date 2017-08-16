@@ -107,12 +107,11 @@ class Home extends React.Component {
                     <p>
                       <Link to='about'>A design, code, and consulting
                       studio</Link> that specializes in
-                      creating procuts that live on the web.
-                      Bison Studio is&nbsp;<BackLink to='imdevan.com'>owned and
-                      operated by
-                      Devan Huapaya</BackLink>. And usually operates with
-                      partner freelancers and agencies.
-                      &nbsp;The end results are engaging products built on partnerships with the
+                      creating products that live on the web.
+                      Bison Studio is owned and
+                      operated by <BackLink to='imdevan.com'> Devan Huapaya</BackLink>. 
+                      And usually operates with partner freelancers and agencies. 
+                      The end results are engaging products built on trust with the
                       users in mind.
                     </p>
                   </Col>
@@ -170,7 +169,7 @@ class Home extends React.Component {
                            <a className="typeform-share c-cta" 
                             href="https://bisonstudio.typeform.com/to/HjPCvy" 
                             data-mode="popup" 
-                            target="_blank">Get your FREE ticket</a>  
+                            target="_blank">Get your FREE ticket</a>
                       </p>
                     </Col>
                   </Row>

@@ -12,7 +12,6 @@ import lightTheme from '../../config/lightTheme';
 import ReactMarkdown from 'react-markdown';
 
 import aboutContent from './AboutContent';
-import CTA from '../../components/CTA';
 import Footer from '../../components/Footer';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 

@@ -7,16 +7,16 @@ const Footer = () => {
     <Grid>
       <Row>
       {footerContent.sections.map((section, i) => (
-        <Col sm={12} md={4} key={i}>
+        <Col sm={12} md={4} key={i} className={`${i < footerContent.sections.length-1 ? 'mb-3 mb-md-0': ''}`}>
           <h3>
             {section.title}
           </h3>
 
           {section.links.map((l, k) => (
             <small  key={k} className='d-block'>
-            <a href={`${l.link}`} target={l.blank ? '_blank' : ''}>
-              {l.label}
-            </a>
+              <a href={`${l.link}`} target={l.blank ? '_blank' : ''}>
+                {l.label}
+              </a>
             </small>
           ))}
         </Col>
