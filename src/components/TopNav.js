@@ -11,34 +11,34 @@ export default class TopNav extends React.Component {
     super(props);
     this.state = {open: false, hidden: false};
 
-    this.hideButton = this.hideButton.bind(this)
+    // this.hideButton = this.hideButton.bind(this)
   }
 
-  hideButton(){
-    let {hide} = this.state
+  // hideButton(){
+  //   let {hide} = this.state
 
-    if(window.scrollY > this.prev && !hide) 
-      this.setState({hide:true})
-    else if(hide)
-      this.setState({hide:false})
+  //   if(window.scrollY > this.prev && !hide) 
+  //     this.setState({hide:true})
+  //   else if(hide)
+  //     this.setState({hide:false})
 
-    this.prev = window.scrollY;
-  }
+  //   this.prev = window.scrollY;
+  // }
   
-  componentDidMount(){
-    window.addEventListener('scroll',this.hideButton);
-  }
+  // componentDidMount(){
+  //   window.addEventListener('scroll',this.hideButton);
+  // }
 
-  componentWillUnmount(){
-    window.removeEventListener('scroll',this.hideButton);
-  }
+  // componentWillUnmount(){
+  //   window.removeEventListener('scroll',this.hideButton);
+  // }
 
   onClose = () => this.setState({open: false});
   onOpen = () => this.setState({open: true});
 
   render() {
-    const {open, hide} = this.state;
-    const classHide = hide ? 'hide' : '';
+    const {open} = this.state;
+    // const classHide = hide ? 'hide' : '';
     
     const links = [
       {
@@ -84,7 +84,7 @@ export default class TopNav extends React.Component {
   return (
     <div className='c-top-nav-container'>
       <div className='py-4' />
-      <div className={`c-top-nav-menu-icon-container w-100 fixed-top ${classHide}`}>
+      <div className={`c-top-nav-menu-icon-container w-100 fixed-top`}>
         <Grid>
           <Row className='pt-4'>
             <Col sm={12}>
