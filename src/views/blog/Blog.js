@@ -13,6 +13,7 @@ import lightTheme from '../../config/lightTheme';
 import Fuse from 'fuse.js'; // PROVIDES FUZZY SEARCH
 import SkeletonBox from '../../components/SkeletonBox';
 import Posts from '../../components/Posts';
+import Footer from '../../components/Footer';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class BlogPage extends React.Component{
@@ -183,6 +184,7 @@ class BlogPage extends React.Component{
               </Col> */}
             </Row>
           </Grid>
+          <Footer />
           </ReactCSSTransitionGroup>
         </div>
       </MuiThemeProvider>

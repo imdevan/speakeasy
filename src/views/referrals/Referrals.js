@@ -13,10 +13,10 @@ import ReactMarkdown from 'react-markdown';
 
 import referralContent from './ReferralsContent';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import Footer from '../../components/Footer';
 
 
-
-class AboutPage extends React.Component{
+class ReferralPage extends React.Component{
   componentDidMount() {
     window.scrollTo(0, 0)
   }
@@ -58,6 +58,7 @@ class AboutPage extends React.Component{
             </Col>
           </Row> */}
         </Grid>
+        <Footer />
         </ReactCSSTransitionGroup>
       </div>
     </MuiThemeProvider>
@@ -76,4 +77,4 @@ function mapDispatchToProps(dispatch){
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AboutPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ReferralPage);

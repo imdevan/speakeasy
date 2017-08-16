@@ -15,8 +15,7 @@ import ReactDisqusThread from 'react-disqus-thread';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightTheme from '../../../config/lightTheme.js';
-
-
+import Footer from '../../../components/Footer';
 
 class PostPage extends React.Component{
   constructor(props, context){
@@ -131,6 +130,7 @@ class PostPage extends React.Component{
                 </Col>
               </Row>
             </Grid>
+            <Footer />
           </ReactCSSTransitionGroup>
         </div>
       </MuiThemeProvider>

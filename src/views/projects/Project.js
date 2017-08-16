@@ -4,15 +4,18 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import sanitizeHtml from 'sanitize-html'; //https://www.npmjs.com/package/sanitize-html
 import {Helmet} from "react-helmet";
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 // Custom modules
 import renderMarkup from '../../utils/renderMarkup';
+import Footer from '../../components/Footer';
 
 // ACTIONS
 import * as postActions from '../../actions/postActions';
 
 // VENDOR UI COMPONENTS
 import {Grid, Row, Col} from 'react-bootstrap';
+
 
 
 class Project extends React.Component{
@@ -79,22 +82,31 @@ class Project extends React.Component{
   render(){
     const {post} = this.props;
 
-    return <Grid>
-      <Row className='py-5 my-5'>
-        <Col sm={12}>
-          <h1 
-            className='display-1'
-            dangerouslySetInnerHTML={renderMarkup(post.title.rendered)}/>
-        </Col>
-      </Row>
-      <Row>
-        <Col sm={12}>
-          <div 
-            dangerouslySetInnerHTML={renderMarkup(post.content.rendered)}/>
-        </Col>
-      </Row>
-    </Grid>
-  }
+    return (
+      <ReactCSSTransitionGroup
+        transitionName='fade-in-from-right'
+        transitionAppear={true}
+        transitionAppearTimeout={1000}
+        transitionLeaveTimeout={300}
+        transitionEnter={false}>
+        <Grid>
+        <Row className='py-5 my-5'>
+          <Col sm={12}>
+            <h1 
+              className='display-1'
+              dangerouslySetInnerHTML={renderMarkup(post.title.rendered)}/>
+          </Col>
+        </Row>
+        <Row>
+          <Col sm={12}>
+            <div 
+              dangerouslySetInnerHTML={renderMarkup(post.content.rendered)}/>
+          </Col>
+        </Row>
+      </Grid>
+      <Footer />
+    </ReactCSSTransitionGroup>
+  )}
 }
 
 // http://twitter.com/share?text=text goes here&url=http://url goes here&hashtags=hashtag1,hashtag2,hashtag3

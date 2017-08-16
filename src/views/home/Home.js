@@ -13,6 +13,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { Link } from 'react-router-dom';
 import BackLink from '../../components/BackLink';
 import PostCard from '../../components/PostCard';
+import Footer from '../../components/Footer';
 import Svg from '../../components/Svg';
 
 import defaultTheme from '../../config/theme';
@@ -104,15 +105,14 @@ class Home extends React.Component {
                 <Row>
                   <Col sm={12} className='my-5'>
                     <p>
-                      <BackLink to='imdevan.com'>A design, code, and consulting
-                      studio</BackLink> that specializes in
+                      <Link to='about'>A design, code, and consulting
+                      studio</Link> that specializes in
                       creating procuts that live on the web.
                       Bison Studio is&nbsp;<BackLink to='imdevan.com'>owned and
                       operated by
                       Devan Huapaya</BackLink>. And usually operates with
-                      partartner freelancers and agencies.
-                      &nbsp;<BackLink to='imdevan.com'>The end results are products
-                      </BackLink> built on partnerships with the
+                      partner freelancers and agencies.
+                      &nbsp;The end results are engaging products built on partnerships with the
                       users in mind.
                     </p>
                   </Col>
@@ -155,14 +155,14 @@ class Home extends React.Component {
                       <h2>
                         Before you go,
                       </h2>
-                      <h2 className='mb-5'>
+                      <h2 className='mb-5 c-text-blue'>
                         A gift for you!
                       </h2>
                       <p>
                         That's Right! Because you're awesome and made it this far.
                       </p>
                       <p>
-                        I'm giving you a free pass to Bison Studio's first procut webinar.
+                        I'm giving you a free ticket to Bison Studio's first product webinar.
                       </p>
                       <p className='text-center mt-5'>
                         {/* <CTA to=''  */}
@@ -182,13 +182,14 @@ class Home extends React.Component {
                     <h2>
                       Cheers,
                     </h2>
-                    <h2 className='mb-5'>
+                    <h2>
                       👋
                     </h2>
                   </Col>
                 </Row>
               </Grid>
             </div>
+            <Footer />
             </ReactCSSTransitionGroup>
           </div>
       </MuiThemeProvider>

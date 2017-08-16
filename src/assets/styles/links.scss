@@ -5,9 +5,13 @@ a {
   position: relative;
   text-decoration: none;
   display: inline-block;
-  color: black;
+  color: $dark-gray;
   padding: 0 1px;
   @include trans(color);
+  
+  &:active, &:focus {
+    text-decoration: none !important;
+  }
 
   &::after {
     content: '';
@@ -42,9 +46,8 @@ a {
     position: relative;
     text-decoration: none;
     display: inline-block;
-    color: black;
+    color: $dark-gray;
 
-    
     &:active, &:focus {
       text-decoration: none !important;
     }
@@ -76,6 +79,7 @@ a {
     }
     &:hover {
       text-decoration: none;
+      color: $dark-gray;
 
       &::before, &::after {
         transform: scale(1.25);

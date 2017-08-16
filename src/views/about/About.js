@@ -13,6 +13,7 @@ import ReactMarkdown from 'react-markdown';
 
 import aboutContent from './AboutContent';
 import CTA from '../../components/CTA';
+import Footer from '../../components/Footer';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class AboutPage extends React.Component{
@@ -43,11 +44,14 @@ class AboutPage extends React.Component{
           </Row>
           <Row className='py-5'>
             <Col sm={12} className='text-center'>
-              <CTA to='' 
-                label='Get started' />
+              <a className="typeform-share c-cta" 
+                href="https://bisonstudio.typeform.com/to/xirpXA" 
+                data-mode="popup" 
+                target="_blank">Get in touch</a>
             </Col>
           </Row>
         </Grid>
+        <Footer />
         </ReactCSSTransitionGroup>
       </div>
     </MuiThemeProvider>
