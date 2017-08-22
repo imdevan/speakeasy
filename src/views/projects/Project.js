@@ -27,13 +27,10 @@ class Project extends React.Component{
   componentDidMount() {
     window.scrollTo(0, 0)
   }
-  
+
   componentWillMount(){
-    if(!this.props.post){
-      this.props.postActions.requestPost(4803);
+    this.props.postActions.requestPostBySlug(this.props.match.params.projectSlug);
       // this.props.postActions.requestAllPosts();
-    }
-    // this.props.postActions.requestPost(this.props.routeParams.projectSlug);
   }
 
   componentWillUnmount(){
@@ -82,6 +79,7 @@ class Project extends React.Component{
   render(){
     const {post} = this.props;
 
+    if(!post) return null
     return (
       <ReactCSSTransitionGroup
         transitionName='fade-in-from-right'
@@ -92,14 +90,14 @@ class Project extends React.Component{
         <Grid>
         <Row className='py-5 my-5'>
           <Col sm={12}>
-            <h1 
+            <h1
               className='display-1'
               dangerouslySetInnerHTML={renderMarkup(post.title.rendered)}/>
           </Col>
         </Row>
         <Row>
           <Col sm={12}>
-            <div 
+            <div
               dangerouslySetInnerHTML={renderMarkup(post.content.rendered)}/>
           </Col>
         </Row>

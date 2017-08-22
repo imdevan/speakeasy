@@ -11,14 +11,11 @@ export function successPostingComment(response){
   return {type: constants.ADD_COMMENT, comment: response.data.response}
 }
 
-export function successRequestingPost(response){
-  if(response.data.response.length !== undefined){
-    return { type: constants.ADD_POST, post: response.data.response[0]};
-  }else if(response.data.response.length === undefined){
-    return { type: constants.ADD_POST, post: response.data.response};
-  }else{
+function successRequestingPost(response){
+  if(response.data.length > 0)
+    return { type: constants.ADD_POST, post: response.data[0]};
+  else
     return {type: constants.ERROR_REDIRECT_404}
-  }
 }
 
 export function removePost(){
@@ -78,6 +75,19 @@ export function requestPost(slug){
       response => dispatch(ui.loadingChanged(false))
     ).catch(
       error => dispatch(ui.displayError(error.response.data.response.detail)), dispatch(ui.loadingChanged(false))
+    )
+  }
+}
+
+export function requestPostBySlug(slug){
+  return function(dispatch){
+    dispatch(ui.loadingChanged(true));
+    // let requestUrl = '/posts/' + slug;
+    let requestUrl = `${apiUrl}/posts?slug=${slug}`;
+    return Axios.get(requestUrl).then(
+      response => dispatch(successRequestingPost(response))
+    ).catch(
+      error => console.error('ERROR: ', error)
     )
   }
 }

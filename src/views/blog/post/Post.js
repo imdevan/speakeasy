@@ -101,6 +101,7 @@ class PostPage extends React.Component{
     console.log(post)
     console.log(window.location)
     // debugger
+    if(!post) return null
     return(
       <MuiThemeProvider muiTheme={getMuiTheme(lightTheme)} >
         <div>
