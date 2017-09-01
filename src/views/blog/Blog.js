@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import scrollToTop from '../../utils/scrollToTop';
 // import { Link } from 'react-router';
 import {bindActionCreators} from 'redux';
 import * as postActions from '../../actions/postActions';
@@ -31,7 +32,7 @@ class BlogPage extends React.Component{
   }
 
   componentDidMount() {
-    window.scrollTo(0, 0)
+    scrollToTop();
   }
   
   // filterPostsByFuseSearch(posts, search){

@@ -1,10 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import { Grid, Row, Col } from 'react-bootstrap';
+import scrollToTop from '../../utils/scrollToTop';
 
 class Error404Page extends React.Component{
   componentDidMount() {
-    window.scrollTo(0, 0)
+    scrollToTop();
   }
 
   render(){

@@ -5,10 +5,11 @@ import React from 'react';
 import {Grid, Row, Col} from 'react-bootstrap';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Footer from '../../components/Footer';
+import scrollToTop from '../../utils/scrollToTop';
 
 
 const errorPage = () => {
-  window.scrollTo(0, 0);
+  scrollToTop();
 
   return (
     <ReactCSSTransitionGroup

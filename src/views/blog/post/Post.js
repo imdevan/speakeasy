@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import sanitizeHtml from 'sanitize-html'; //https://www.npmjs.com/package/sanitize-html
 import {Helmet} from "react-helmet";
+import scrollToTop from '../../../utils/scrollToTop';
 
 // ACTIONS
 import * as postActions from '../../../actions/postActions';
@@ -35,7 +36,7 @@ class PostPage extends React.Component{
   }
 
   componentDidMount() {
-    window.scrollTo(0, 0)
+    scrollToTop();
   }
 
   componentWillUnmount(){

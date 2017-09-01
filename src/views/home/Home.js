@@ -22,6 +22,7 @@ import categories from '../../config/categories';
 import redirects from '../../config/redirects';
 import headerImage from '../../assets/images/logos/bison.svg';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import scrollToTop from '../../utils/scrollToTop';
 
 
 class Home extends React.Component {
@@ -37,7 +38,7 @@ class Home extends React.Component {
   }
   
   componentDidMount() {
-    window.scrollTo(0, 0)
+    scrollToTop();
   }
 
   filterPostsCategory(category, count = 3) {

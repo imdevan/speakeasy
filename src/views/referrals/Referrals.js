@@ -14,11 +14,12 @@ import ReactMarkdown from 'react-markdown';
 import referralContent from './ReferralsContent';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Footer from '../../components/Footer';
+import scrollToTop from '../../utils/scrollToTop';
 
 
 class ReferralPage extends React.Component{
   componentDidMount() {
-    window.scrollTo(0, 0)
+    scrollToTop();
   }
 
   render(){

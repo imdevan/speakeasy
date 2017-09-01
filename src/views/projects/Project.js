@@ -5,6 +5,7 @@ import {bindActionCreators} from 'redux';
 import sanitizeHtml from 'sanitize-html'; //https://www.npmjs.com/package/sanitize-html
 import {Helmet} from "react-helmet";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import scrollToTop from '../../utils/scrollToTop';
 
 // Custom modules
 import renderMarkup from '../../utils/renderMarkup';
@@ -25,7 +26,7 @@ class Project extends React.Component{
   }
 
   componentDidMount() {
-    window.scrollTo(0, 0)
+    scrollToTop();
   }
 
   componentWillMount(){

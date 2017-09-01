@@ -14,10 +14,11 @@ import ReactMarkdown from 'react-markdown';
 import aboutContent from './AboutContent';
 import Footer from '../../components/Footer';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import scrollToTop from '../../utils/scrollToTop';
 
 class AboutPage extends React.Component{
   componentDidMount() {
-    window.scrollTo(0, 0)
+    scrollToTop();
   }
 
   render(){
