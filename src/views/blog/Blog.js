@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import scrollToTop from '../../utils/scrollToTop';
-// import { Link } from 'react-router';
+import PropTypes from 'prop-types';
+
 import {bindActionCreators} from 'redux';
 import * as postActions from '../../actions/postActions';
 import * as categoryActions from '../../actions/categoryActions';
@@ -11,13 +11,20 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightTheme from '../../config/lightTheme';
 
-// import Fuse from 'fuse.js'; // PROVIDES FUZZY SEARCH
-// import SkeletonBox from '../../components/SkeletonBox';
 import Posts from '../../components/Posts';
 import Footer from '../../components/Footer';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import scrollToTop from '../../utils/scrollToTop';
 
-class BlogPage extends React.Component{
+class BlogPage extends React.Component {
+  static propTypes = {
+    posts: PropTypes.array,
+  };
+
+  static defaultProps = {
+    posts: [],
+  };
+
   constructor(props, context){
     super(props, context);
     
