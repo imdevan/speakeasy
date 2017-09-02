@@ -47,16 +47,13 @@ export function requestAllPosts(){
     // let requestUrl = '/posts'
     return Axios.get(requestUrl).then(
       response => {
-        // debugger
         dispatch(successRequestingPosts(response))
       }
     ).then(
       response => {
-        // debugger
         dispatch(ui.loadingChanged(false))
       }
     ).catch(e => {
-        // debugger
         dispatch(ui.displayError(e.response.data.response.detail))
         dispatch(ui.loadingChanged(false))
       }
@@ -68,7 +65,7 @@ export function requestPost(slug){
   return function(dispatch){
     dispatch(ui.loadingChanged(true));
     // let requestUrl = '/posts/' + slug;
-    let requestUrl = `${apiUrl}/posts/${slug}`;
+    let requestUrl = `${apiUrl}/posts?slug=${slug}`;
     return Axios.get(requestUrl).then(
       response => dispatch(successRequestingPost(response))
     ).then(

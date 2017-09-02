@@ -16,7 +16,8 @@ import ReactDisqusThread from 'react-disqus-thread';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightTheme from '../../../config/lightTheme.js';
-import Footer from '../../../components/Footer';
+import Footer from '../../../components/Footer';  
+import project from '../../../config/project';
 
 class PostPage extends React.Component{
   constructor(props, context){
@@ -31,7 +32,6 @@ class PostPage extends React.Component{
       this.props.postActions.requestPost(this.props.match.params.postSlug);
       // this.props.postActions.requestAllPosts();
     }
-    // debugger
     // this.props.postActions.requestPost(this.props.routeParams.postSlug);
   }
 
@@ -98,10 +98,8 @@ class PostPage extends React.Component{
   }
   render(){
     const {post, location} = this.props;
-    console.log(location)
-    console.log(post)
-    console.log(window.location)
-    // debugger
+    const windowLocation = typeof window === 'undefined' ? project.url : window.location;
+
     if(!post) return null
     return(
       <MuiThemeProvider muiTheme={getMuiTheme(lightTheme)} >
@@ -129,7 +127,7 @@ class PostPage extends React.Component{
                   shortname={'bison-studio'}
                   title={post.slug}
                   identifier={`${post.slug}-${post.id}`}
-                  url={window.location.href}/>
+                  url={windowLocation.href}/>
                 </Col>
               </Row>
             </Grid>
