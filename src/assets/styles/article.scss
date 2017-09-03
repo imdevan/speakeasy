@@ -13,6 +13,12 @@
     }
     figure {
       max-width: 100%;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      img {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
     }
     figcaption {
       margin: auto;
@@ -22,6 +28,8 @@
       margin-top: .5rem;  
     }
     img {
+      margin-top: 3rem;
+      margin-bottom: 3rem;
       max-width: 100%;  
       height: auto;
       box-shadow: shadow(lg);
