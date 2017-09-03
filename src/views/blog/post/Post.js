@@ -97,7 +97,7 @@ class PostPage extends React.Component{
     }
   }
   render(){
-    const {post, location} = this.props;
+    const {post} = this.props;
     const windowLocation = typeof window === 'undefined' ? project.url : window.location;
 
     if(!post) return null

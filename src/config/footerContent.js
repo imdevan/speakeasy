@@ -2,13 +2,13 @@ const footerContent = {
     sections: [{
         title: 'Info',
         links: [{
-            link: 'about',
+            link: '/about',
             label: 'About'
         },{
-            link: 'referrals',
+            link: '/referrals',
             label: 'Referrals'
         },{
-            link: 'blog',
+            link: '/blog',
             label: 'Blog'
         }]
     },{
