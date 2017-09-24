@@ -62,7 +62,7 @@ class PostPage extends React.Component{
 
   displayMetaInfo(){
     if(this.props.post){
-      let thisUrl = 'https://www.wesvane.com' + this.props.location.pathname
+      let thisUrl = 'https://www.bisonstudio.co/' + this.props.location.pathname
       let embedUrl = ''
       if(this.props.post._embedded){
         if(this.props.post._embedded['wp:featuredmedia']){
@@ -75,7 +75,7 @@ class PostPage extends React.Component{
           <title>{this.props.post.title.rendered}</title>
           <meta name="description" content={this.props.post.title.render} />
 
-          <link rel="canonical" href="http://bisonstudio.co/" />
+          <link rel="canonical" href="https://www.bisonstudio.co/" />
 
           <meta property="og:title" content={this.props.post.title.rendered} />
           <meta property="og:type" content="article" />

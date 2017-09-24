@@ -3,7 +3,8 @@ import rootReducer from '../reducers';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger'
 const dev = process.env.NODE_ENV !== 'production';
-const reduxDevTools = dev && window.devToolsExtension;
+
+const reduxDevTools = dev && typeof window !== 'undefined' && window.devToolsExtension;
 
 const middleware = process.env.NODE_ENV !== 'production' ?
   [thunk, logger] :
