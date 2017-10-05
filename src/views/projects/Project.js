@@ -98,7 +98,7 @@ class Project extends React.Component{
         </Row>
         <Row>
           <Col sm={12}>
-            <div
+            <div className='c-article-body'
               dangerouslySetInnerHTML={renderMarkup(post.content.rendered)}/>
           </Col>
         </Row>

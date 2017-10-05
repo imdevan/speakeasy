@@ -1,7 +1,7 @@
 const page = {
-    title: 'About',
+    title: 'Bison Studio is',
     content: `
-Bison Studio is a design, code, and consulting studio that specializes in creating products that live on the web.
+a design, code, and consulting studio that specializes in creating products that live on the web.
 Bison Studio is owned and operated by [Devan Huapaya](http://imdevan.com).
 And usually operates with partner freelancers and agencies. 
 The end results are engaging products built on partnerships with the users in mind.<br/><br/>
