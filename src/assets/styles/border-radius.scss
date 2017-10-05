@@ -1,3 +1,14 @@
+.br-2 {
+  border-radius: 2rem;
+}
+
 .br-31 {
   border-radius: 3.1rem;
+}
+
+
+.br-md-31 {
+  @include media(md){
+    border-radius: 3.1rem;
+  }
 }
