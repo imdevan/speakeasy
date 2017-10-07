@@ -41,6 +41,13 @@ $shadow-sizes: (
 //   @return map-get($shadows, $size) rgba($color, $opacity);
 // }
 //
+.c-shadow {
+  @each $shadow-size, $shadow-val in $shadow-sizes {
+    &-#{$shadow-size} {
+     box-shadow: shadow($shadow-size);
+    }
+  }
+}
 // .c-shadow {
 //   @each $shadow-size, $shadow-val in $box-shadows {
 //     @include popMedia($shadow-size) {

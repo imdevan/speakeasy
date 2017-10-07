@@ -15,12 +15,13 @@ import BackLink from '../../components/BackLink';
 import PostCard from '../../components/PostCard';
 import Footer from '../../components/Footer';
 import Svg from '../../components/Svg';
+import homeContent from './homeContent';
 
 import defaultTheme from '../../config/theme';
 import project from '../../config/project';
 import categories from '../../config/categories';
 import redirects from '../../config/redirects';
-import headerImage from '../../assets/images/logos/bison.svg';
+import headerImage from '../../assets/images/logos/studio-microphone.png';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import scrollToTop from '../../utils/scrollToTop';
 
@@ -28,8 +29,9 @@ import scrollToTop from '../../utils/scrollToTop';
 class Home extends React.Component {
   constructor(props, context){
     super(props, context);
-    this.renderFeaturedArticles = this.renderFeaturedArticles.bind(this);
-    this.filterPostsCategory = this.filterPostsCategory.bind(this);
+
+    this.renderFeatures = this.renderFeatures.bind(this);
+    this.renderIntegrations = this.renderIntegrations.bind(this);
   }
   componentWillMount(){
     const {post_actions, page_actions} = this.props;
@@ -40,43 +42,51 @@ class Home extends React.Component {
   componentDidMount() {
     scrollToTop();
   }
+  
+  renderFeatures() {
+    if(!homeContent) return null
+    return homeContent.features.map((feature, i) => {
+        const odd = (i+1) % 2;
+        const rowClass = `flex-column align-items-center 
+          flex-md-row${!odd ? '-reverse' : ''}
+          ${i === 0 ? 'pb-5 mb-5' : 
+            (i+1) === homeContent.features.length ? 'pt-5 mt-5' : 
+            'py-5 my-5'}`;
 
-  filterPostsCategory(category, count = 3) {
-    const {posts} = this.props;
-    if(!posts || !posts.allPosts) return null;
-
-    if(!category)
-      return posts.allPosts.slice(0, count)
-
-    return posts.allPosts
-      .filter(p => p.categories.includes(category)).slice(0, count)
+            return (
+          <Row className={rowClass} key={i}>
+            <Col sm={12} md={8} lg={6} className='h-100 mb-3 mb-md-0'>
+              <img className='c-shadow-lg w-100' src={feature.image} />
+            </Col>
+            <Col sm={12} md={8} lg={6} className='h-100'>
+              <div className='p-4'>
+                <h3 className='font-title'>
+                  {feature.title}
+                </h3>
+                <p>
+                  {feature.description}
+                </p>
+              </div>
+            </Col>
+          </Row>
+        )
+      }
+    )
   }
-  renderFeaturedArticles(category) {
-    const featuredArticles = this.filterPostsCategory(category);
-    const path = categories[category];
+  renderIntegrations() {
+    if(!homeContent) return null
 
-    if(!featuredArticles) return null;
-    
-    return <Row >
-      <ScrollToTop/>
-
-      {featuredArticles.map((p, i) => {
-        const redirect = redirects[p.slug];
-        const card = redirect ? 
-          <a href={redirect} target='_blank'
-            className='c-link-no-style h-100 w-100'><PostCard post={p} /></a> :
-          <Link to={`/${path}/${p.slug}`}
-            className='c-link-no-style h-100 w-100'>
-            <PostCard post={p} />
-          </Link>;
-
-        return <Col sm={12} md={4} key={i}
-          className='mb-5 mb-md-0'>
-          {card}
-        </Col>
-      })}
-    </Row>
+    return (
+      <Row className='align-items-end'>
+        {homeContent.integrations.map((integration, i) => (
+          <Col key={i} sm={4} md={4} lg={4} className='h-100 mb-3 mb-md-0 text-center'>
+            <img src={integration.image} style={{width: 100}} />
+          </Col>
+         ))}
+      </Row>
+    )
   }
+  
   render(){
     return(
       <MuiThemeProvider muiTheme={getMuiTheme(defaultTheme)}>
@@ -89,105 +99,100 @@ class Home extends React.Component {
           transitionEnter={false}>
             {/* <AppBar title='My AppBar' className='mb-5'/> */}
             <div>
-              <Grid>
-                <Row>
-                  <Col sm={12} className='text-center my-5 pt-5 '>
-                    <Row className='justify-content-center'>
-                      <Col className='col-8 col-md-6'>
-                        <Svg src={headerImage}
-                          className='c-drop-shadow-sm w-100'/>
-                      </Col>
-                    </Row>
-                    <h1 className='display-3 display-md-1'>
-                      {project.title}
-                    </h1>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col sm={12} className='my-5'>
-                    <p>
-                      <Link to='about'>A design, code, and consulting
-                      studio</Link> that specializes in
-                      creating products that live on the web.
-                      Bison Studio is owned and
-                      operated by <BackLink to='imdevan.com'> Devan Huapaya</BackLink>. 
-                      And usually operates with partner freelancers and agencies. 
-                      The end results are engaging products built on trust with the
-                      users in mind.
-                    </p>
-                  </Col>
-                </Row>
-              </Grid>
-              <div className='w-100 c-bg-light-gray py-5 my-5'>
-                <Grid>
-                  <Row className='py-5'>
-                      <Col sm={12} className='my-5'>
-                      <h2 className='mb-5'>
-                        Projects 2017 to Now
-                      </h2>
-                      {this.renderFeaturedArticles(210)}
+              <div className='w-100 my-5 py-5'>
+                <Grid className='my-5 py-5'>
+                  <Row>
+                    <Col sm={12} className='text-center'>
+                      <Row className='justify-content-center'>
+                        <Col className='col-8 col-md-6'>
+                          <img src={headerImage}
+                            className='c-drop-shadow-sm'/>
+                        </Col>
+                      </Row>
+                      <h1 className='display-4 display-md-1 mb-4 font-title'>
+                        {homeContent.title}
+                      </h1>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col sm={12} className='text-center font-sub-title'>
+                      <h3 
+                      dangerouslySetInnerHTML={{__html: homeContent.subtitle}}/>
                     </Col>
                   </Row>
                 </Grid>
               </div>
-            <Grid>
-              <Row className='py-5'>
-                  <Col sm={12} className='my-5'>
-                    <h2 className='mb-5'>
-                      What We're Up To
-                    </h2>
-                    {this.renderFeaturedArticles(211)}
-                  </Col>
-                </Row>
-                  <Row className='py-5'>
-                      <Col sm={12} className='my-5'>
-                    <h2 className='mb-5'>
-                      Bison Studio in The Community
-                    </h2>
-                    {this.renderFeaturedArticles(212)}
-                  </Col>
-                </Row>
+              <div className='w-100 c-bg-light-gray py-5 my-5'>
+                <Grid className='my-5 py-5'>
+                  <Row>
+                    <Col sm={12} className=''>
+                      {this.renderFeatures()}
+                    </Col>
+                  </Row>
                 </Grid>
-                <div className='w-100 c-bg-light-gray py-5 my-5'>
-                  <Grid>
-                    <Row className='py-5'>
-                        <Col sm={12} className='my-5'>
-                      <h2>
-                        Before you go,
-                      </h2>
-                      <h2 className='mb-5 c-text-blue'>
-                        A gift for you!
+              </div>
+              <div className='w-100 my-5 py-5'>
+                <Grid className='my-5 py-5'>
+                  <Row className='mb-5'>
+                    <Col sm={12} md={8} className='text-center offset-md-2'>
+                      <h3 className='font-title'>
+                        {homeContent.valueProp.title}
+                      </h3>
+                      <p dangerouslySetInnerHTML={{
+                        __html: homeContent.valueProp.description
+                        }}  
+                      />
+                    </Col>
+                  </Row>
+                  <Row className='justify-content-center'>
+                    <Col sm={12} md={6}>
+                      {this.renderIntegrations()}
+                    </Col>
+                  </Row>
+                </Grid>
+              </div>
+              <div className='w-100 c-bg-light-gray py-5 my-5'>
+                <Grid className='my-5 py-5'>
+                  <Row>
+                    <Col sm={12} className='text-center'>
+                      <h2 className='font-title'>
+                        {homeContent.finalSell.title}
                       </h2>
                       <p>
-                        That's Right! Because you're awesome and made it this far.
-                      </p>
-                      <p>
-                        I'm giving you a free ticket to Bison Studio's first product webinar.
+                        {homeContent.finalSell.description}
                       </p>
                       <p className='text-center mt-5'>
                         {/* <CTA to=''  */}
                           {/* label='Get your FREE ticket' /> */}
-                           <a className="typeform-share c-cta" 
+                          <a className="typeform-share c-cta font-title" 
                             href="https://bisonstudio.typeform.com/to/HjPCvy" 
                             data-mode="popup" 
-                            target="_blank">Get your FREE ticket</a>
+                            target="_blank">{homeContent.finalSell.cta}</a>
                       </p>
                     </Col>
                   </Row>
-                  </Grid>
-                </div>
-                <Grid>
-                  <Row className='py-5'>
-                      <Col sm={12} className='my-5 text-center'>
-                    <h2>
-                      Cheers,
-                    </h2>
-                    <h2>
-                      👋
-                    </h2>
-                  </Col>
-                </Row>
-              </Grid>
+                </Grid>
+              </div>
+              <div className='w-100 my-5 py-5'>
+                <Grid className='my-5 py-5'>
+                  <Row className='justify-content-center'>
+                    <Col sm={8} className='text-center'>
+                      <h2 className='font-title'>
+                        {homeContent.upsell[0].title}
+                      </h2>
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: homeContent.upsell[0].description
+                        }}
+                      />
+                      <Svg 
+                        src={homeContent.upsell[0].image} 
+                        className='m-auto'
+                        width={100}/>
+                    </Col>
+                  </Row>
+                </Grid>
+              </div>
             </div>
             <Footer />
             </ReactCSSTransitionGroup>

@@ -1,13 +1,22 @@
-@import url('https://fonts.googleapis.com/css?family=Lora');
+@import url('https://fonts.googleapis.com/css?family=Baloo+Chettan|Cherry+Swash|Cinzel|Diplomata|Diplomata+SC|Limelight|Vidaloka|Rubik');
 
 body {
   --x-height-multiplier: 0.35;
   --baseline-multiplier: 0.179;
-  font-family: 'Lora', serif;
+  font-family: 'Rubik', sans-serif;
   letter-spacing: .01rem;
   font-weight: 400;
   font-style: normal;
   font-size: 21px;
   line-height: 1.58;
   letter-spacing: -.003em;
+}
+
+.font-title {
+  font-family: 'Cherry Swash', sans-serif;
+}
+
+.font-sub-title {
+  font-weight: 200;
+  font-family: 'Cherry Swash', sans-serif;
 }
