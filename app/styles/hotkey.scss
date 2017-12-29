@@ -1,0 +1,47 @@
+$switch-border:  1px solid $gray-2;
+$switch-width:  50px;
+$switch-height:  26px;
+$st-border:  1px solid $gray-2;
+$st-shadow:  1px 1px 1px #ccc;
+$st-width:  25px;
+$st-height:  25px;
+
+.c-hotkey {
+  box-sizing: border-box;
+  border: $switch-border;
+  width: $switch-width;
+  height: $switch-height;
+  border-radius: $switch-height / 2;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: background $medium-speed;
+  background: $gray-1;
+
+  
+  &.on {
+    background: $green;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+
+  &__toggle {
+    box-sizing: border-box;
+    border: $st-border;
+    width: $st-width;
+    height: $st-height;
+    left: 0;
+    top: -1px;
+    border-radius: $st-height / 2;
+    background: white;
+    position: relative;
+    transition: all $medium-speed;
+
+    &.on{
+      left: $switch-width - $st-width - 2;
+    }
+  }
+}
