@@ -1,0 +1,50 @@
+<svg width="100%" viewBox="0 0 144 144" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Mic</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="matrix(0.979592 0 0 0.979592 -8339.27 -361.469)">
+<g id="Mic">
+<g id="outer-ring" opacity="0.1">
+<use xlink:href="#path0_fill" transform="translate(8513 369)" fill="#DBE0F1"/>
+</g>
+<g id="middle-ring" opacity="0.3">
+<use xlink:href="#path1_fill" transform="translate(8529 385)" fill="#DBE0F1"/>
+</g>
+<g id="inner-ring" opacity="0.5" filter="url(#filter0_i)">
+<use xlink:href="#path2_fill" transform="translate(8548 404)" fill="#DBE0F1"/>
+</g>
+<g id="mic">
+<g id="Shape">
+<use xlink:href="#path3_stroke" transform="translate(8579.57 418)" fill="#373737"/>
+</g>
+<g id="Shape">
+<use xlink:href="#path4_stroke" transform="translate(8571 437.174)" fill="#373737"/>
+</g>
+<g id="Shape">
+<use xlink:href="#path5_stroke" transform="translate(8586 456.348)" fill="#373737"/>
+</g>
+<g id="Shape">
+<use xlink:href="#path6_stroke" transform="translate(8577.43 464.87)" fill="#373737"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_i" filterUnits="userSpaceOnUse" x="8548" y="404" width="76" height="77" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 255 0" result="hardAlpha"/>
+<feOffset dx="0" dy="1"/>
+<feGaussianBlur stdDeviation="1.5"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.148805 0"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow"/>
+</filter>
+<path id="path0_fill" fill-rule="evenodd" d="M 73.5 147C 114.093 147 147 114.093 147 73.5C 147 32.9071 114.093 0 73.5 0C 32.9071 0 0 32.9071 0 73.5C 0 114.093 32.9071 147 73.5 147Z"/>
+<path id="path1_fill" fill-rule="evenodd" d="M 57 114C 88.4802 114 114 88.4802 114 57C 114 25.5198 88.4802 0 57 0C 25.5198 0 0 25.5198 0 57C 0 88.4802 25.5198 114 57 114Z"/>
+<path id="path2_fill" fill-rule="evenodd" d="M 38 76C 58.9868 76 76 58.9868 76 38C 76 17.0132 58.9868 0 38 0C 17.0132 0 0 17.0132 0 38C 0 58.9868 17.0132 76 38 76Z"/>
+<path id="path3_stroke" d="M 6.42857 4.73052e-16L 6.42857 2.14286L 6.42857 4.73052e-16ZM 6.42857 -2.14286C 1.70646 -2.14286 -2.14286 1.66629 -2.14286 6.3913L 2.14286 6.3913C 2.14286 4.05668 4.04987 2.14286 6.42857 2.14286L 6.42857 -2.14286ZM -2.14286 6.3913L -2.14286 23.4348L 2.14286 23.4348L 2.14286 6.3913L -2.14286 6.3913ZM -2.14286 23.4348C -2.14286 28.1598 1.70647 31.9689 6.42857 31.9689L 6.42857 27.6832C 4.04987 27.6832 2.14286 25.7694 2.14286 23.4348L -2.14286 23.4348ZM 6.42857 31.9689C 11.1507 31.9689 15 28.1598 15 23.4348L 10.7143 23.4348C 10.7143 25.7694 8.80727 27.6832 6.42857 27.6832L 6.42857 31.9689ZM 15 23.4348L 15 6.3913L 10.7143 6.3913L 10.7143 23.4348L 15 23.4348ZM 15 6.3913C 15 1.66629 11.1507 -2.14286 6.42857 -2.14286L 6.42857 2.14286C 8.80727 2.14286 10.7143 4.05668 10.7143 6.3913L 15 6.3913Z"/>
+<path id="path4_stroke" d="M 32.1429 0C 32.1429 -1.18347 31.1835 -2.14286 30 -2.14286C 28.8165 -2.14286 27.8571 -1.18347 27.8571 0L 32.1429 0ZM 30 4.26087L 32.1429 4.26087L 30 4.26087ZM 0 4.26087L -2.14286 4.26087L 0 4.26087ZM 2.14286 0C 2.14286 -1.18347 1.18347 -2.14286 0 -2.14286C -1.18347 -2.14286 -2.14286 -1.18347 -2.14286 0L 2.14286 0ZM 27.8571 0L 27.8571 4.26087L 32.1429 4.26087L 32.1429 0L 27.8571 0ZM 27.8571 4.26087C 27.8571 11.3019 22.1126 17.0311 15 17.0311L 15 21.3168C 24.456 21.3168 32.1429 13.6923 32.1429 4.26087L 27.8571 4.26087ZM 15 17.0311C 7.88743 17.0311 2.14286 11.3019 2.14286 4.26087L -2.14286 4.26087C -2.14286 13.6923 5.54402 21.3168 15 21.3168L 15 17.0311ZM 2.14286 4.26087L 2.14286 0L -2.14286 0L -2.14286 4.26087L 2.14286 4.26087Z"/>
+<path id="path5_stroke" d="M 2.14286 0C 2.14286 -1.18347 1.18347 -2.14286 0 -2.14286C -1.18347 -2.14286 -2.14286 -1.18347 -2.14286 0L 2.14286 0ZM -2.14286 8.52174C -2.14286 9.70521 -1.18347 10.6646 0 10.6646C 1.18347 10.6646 2.14286 9.70521 2.14286 8.52174L -2.14286 8.52174ZM -2.14286 0L -2.14286 8.52174L 2.14286 8.52174L 2.14286 0L -2.14286 0Z"/>
+<path id="path6_stroke" d="M 0 -2.14286C -1.18347 -2.14286 -2.14286 -1.18347 -2.14286 0C -2.14286 1.18347 -1.18347 2.14286 0 2.14286L 0 -2.14286ZM 17.1429 2.14286C 18.3263 2.14286 19.2857 1.18347 19.2857 0C 19.2857 -1.18347 18.3263 -2.14286 17.1429 -2.14286L 17.1429 2.14286ZM 0 2.14286L 17.1429 2.14286L 17.1429 -2.14286L 0 -2.14286L 0 2.14286Z"/>
+</defs>
+</svg>

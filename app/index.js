@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-import Root from './containers/Root';
+import Root from './views/Root';
 import { configureStore, history } from './store/configureStore';
 import './styles/index.global.scss';
 
@@ -15,8 +15,8 @@ render(
 );
 
 if (module.hot) {
-  module.hot.accept('./containers/Root', () => {
-    const NextRoot = require('./containers/Root'); // eslint-disable-line global-require
+  module.hot.accept('./views/Root', () => {
+    const NextRoot = require('./views/Root'); // eslint-disable-line global-require
     render(
       <AppContainer>
         <NextRoot store={store} history={history} />

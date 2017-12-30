@@ -11,7 +11,7 @@
  * @flow
  */
 import { app, BrowserWindow } from 'electron';
-import MenuBuilder from './menu';
+// import MenuBuilder from './menu';
 
 let mainWindow = null;
 
@@ -45,9 +45,9 @@ const installExtensions = async () => {
  * Add event listeners...
  */
 
-app.on('window-all-closed', () => {
-  // Respect the OSX convention of having the application in memory even
-  // after all windows have been closed
+  app.on('window-all-closed', () => {
+    // Respect the OSX convention of having the application in memory even
+  // after all windows have been cl sed
   if (process.platform !== 'darwin') {
     app.quit();
   }
@@ -60,10 +60,12 @@ app.on('ready', async () => {
   }
 
   mainWindow = new BrowserWindow({
-    show: false,
-    width: 1024,
-    height: 728,
-    // backgroundColor: '#ffffff'
+    show: true,
+    width: 300,
+    height:  450,
+    // frame: false,
+    transparent: true,
+    resizable: true
   });
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);
@@ -82,6 +84,6 @@ app.on('ready', async () => {
     mainWindow = null;
   });
 
-  const menuBuilder = new MenuBuilder(mainWindow);
-  menuBuilder.buildMenu();
+  // const menuBuilder = new MenuBuilder(mainWindow);
+  // menuBuilder.buildMenu();
 });

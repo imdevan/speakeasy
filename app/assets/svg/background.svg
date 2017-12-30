@@ -1,0 +1,73 @@
+<svg width="100%" height="100%  " viewBox="0 0 291 334" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Base</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-8872 -362)">
+<g id="Base">
+<g id="Rectangle 5">
+<mask id="mask0_alpha" mask-type="alpha">
+<g id="Mask">
+<use xlink:href="#path0_fill" transform="translate(8866 341)" fill="#FFFFFF"/>
+</g>
+</mask>
+<g id="Object" mask="url(#mask0_alpha)">
+<g id="Group 2">
+<g id="Group" opacity="0.7">
+<g id="Rectangle 6" opacity="0.9">
+<use xlink:href="#path1_fill" transform="matrix(0.707107 -0.707107 0.707107 0.707107 8881 393.213)" fill="#F1F2F8"/>
+</g>
+<g id="Rectangle 6" opacity="0.9">
+<use xlink:href="#path1_fill" transform="matrix(0.707107 -0.707107 0.707107 0.707107 9113 675.213)" fill="#F1F2F8"/>
+</g>
+<g id="Combined Shape" opacity="0.9">
+<use xlink:href="#path2_fill" transform="translate(9115 367)" fill="#F1F2F8"/>
+</g>
+<g id="Combined Shape" opacity="0.9">
+<use xlink:href="#path2_fill" transform="translate(8887 440)" fill="#F1F2F8"/>
+</g>
+<g id="Triangle 2" opacity="0.9">
+<use xlink:href="#path3_fill" transform="translate(9111 443)" fill="#F1F2F8"/>
+</g>
+<g id="Rectangle 6" opacity="0.9">
+<mask id="mask1_outline_ins">
+<use xlink:href="#path1_fill" fill="white" transform="matrix(0.707107 -0.707107 0.707107 0.707107 9120 523.213)"/>
+</mask>
+<g mask="url(#mask1_outline_ins)">
+<use xlink:href="#path4_stroke_2x" transform="matrix(0.707107 -0.707107 0.707107 0.707107 9120 523.213)" fill="#F1F2F8"/>
+</g>
+</g>
+<g id="Rectangle 6" opacity="0.9">
+<mask id="mask2_outline_ins">
+<use xlink:href="#path1_fill" fill="white" transform="matrix(0.707107 -0.707107 0.707107 0.707107 8872 667.213)"/>
+</mask>
+<g mask="url(#mask2_outline_ins)">
+<use xlink:href="#path4_stroke_2x" transform="matrix(0.707107 -0.707107 0.707107 0.707107 8872 667.213)" fill="#F1F2F8"/>
+</g>
+</g>
+<g id="Oval 8" opacity="0.9">
+<use xlink:href="#path5_fill" transform="translate(8901 504)" fill="#F1F2F8"/>
+</g>
+<g id="Oval 8" opacity="0.9">
+<use xlink:href="#path5_fill" transform="translate(9111 560)" fill="#F1F2F8"/>
+</g>
+<g id="Oval 8" opacity="0.9">
+<use xlink:href="#path6_fill" transform="translate(8939 362)" fill="#F1F2F8"/>
+</g>
+<g id="Oval 8" opacity="0.9">
+<use xlink:href="#path6_fill" transform="translate(9043 565)" fill="#F1F2F8"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 0 0L 300 0L 300 355L 0 355L 0 0Z"/>
+<path id="path1_fill" fill-rule="evenodd" d="M 0 5C 0 2.23858 2.23858 0 5 0L 25 0C 27.7614 0 30 2.23858 30 5L 30 25C 30 27.7614 27.7614 30 25 30L 5 30C 2.23858 30 0 27.7614 0 25L 0 5Z"/>
+<path id="path2_fill" fill-rule="evenodd" d="M 8 18C 8 19.1046 8.89551 20 10 20C 11.1045 20 12 19.1046 12 18L 12 12L 18 12C 19.1045 12 20 11.1046 20 10C 20 8.89542 19.1045 8 18 8L 12 8L 12 2C 12 0.895416 11.1045 0 10 0C 8.89551 0 8 0.895416 8 2L 8 8L 2 8C 0.895508 8 0 8.89542 0 10C 0 11.1046 0.895508 12 2 12L 8 12L 8 18Z"/>
+<path id="path3_fill" fill-rule="evenodd" d="M 10.5 0L 21 14L 0 14L 10.5 0Z"/>
+<path id="path4_stroke_2x" d="M 5 6L 25 6L 25 -6L 5 -6L 5 6ZM 24 5L 24 25L 36 25L 36 5L 24 5ZM 25 24L 5 24L 5 36L 25 36L 25 24ZM 6 25L 6 5L -6 5L -6 25L 6 25ZM 5 24C 5.55228 24 6 24.4477 6 25L -6 25C -6 31.0751 -1.07513 36 5 36L 5 24ZM 24 25C 24 24.4477 24.4477 24 25 24L 25 36C 31.0751 36 36 31.0751 36 25L 24 25ZM 25 6C 24.4477 6 24 5.55228 24 5L 36 5C 36 -1.07513 31.0751 -6 25 -6L 25 6ZM 5 -6C -1.07513 -6 -6 -1.07513 -6 5L 6 5C 6 5.55228 5.55228 6 5 6L 5 -6Z"/>
+<path id="path5_fill" fill-rule="evenodd" d="M 10 20C 15.5228 20 20 15.5228 20 10C 20 4.47715 15.5228 0 10 0C 4.47715 0 0 4.47715 0 10C 0 15.5228 4.47715 20 10 20Z"/>
+<path id="path6_fill" fill-rule="evenodd" d="M 5 10C 7.76142 10 10 7.76142 10 5C 10 2.23858 7.76142 0 5 0C 2.23858 0 0 2.23858 0 5C 0 7.76142 2.23858 10 5 10Z"/>
+</defs>
+</svg>

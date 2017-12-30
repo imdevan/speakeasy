@@ -9,11 +9,13 @@
 @import './backgrounds.scss';
 @import './border-radius.scss';
 @import './pointer.scss';
+@import './z-index.scss';
 
 // Components
 @import './toggle.scss';
 @import './hotkey.scss';
 @import './popup.scss';
+@import './svg.scss';
 
 body {
   position: relative;
