@@ -1,0 +1,51 @@
+@import "~font-awesome/css/font-awesome.css";
+@import "~bootstrap/dist/css/bootstrap.css";
+@import url('https://fonts.googleapis.com/css?family=Rubik');
+
+// Utilities
+@import './colors.scss';
+@import './transitions.scss';
+@import './breakpoints.scss';
+@import './backgrounds.scss';
+@import './border-radius.scss';
+@import './pointer.scss';
+@import './z-index.scss';
+
+// Components
+@import './toggle.scss';
+@import './hotkey.scss';
+@import './popup.scss';
+@import './svg.scss';
+@import './tags.scss';
+
+body {
+  position: relative;
+  color: $gray-5;
+  height: 100vh;
+  background-color: $white;
+  font-family: 'Rubik', sans-serif;
+  // font-size: 21px;
+  // line-height: 1.5;
+  overflow-y: hidden;
+  margin: 0; padding: 0;
+  user-select: none;
+}
+
+li {
+  list-style: none;
+}
+ul {
+  padding: 0;
+}
+
+a {
+  color: white;
+  opacity: 0.75;
+  text-decoration: none;
+}
+
+a:hover {
+  opacity: 1;
+  text-decoration: none;
+  cursor: pointer;
+}

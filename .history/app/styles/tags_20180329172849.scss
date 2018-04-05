@@ -1,0 +1,12 @@
+$fast-speed: 0.1s ease;
+$medium-speed: .2s ease-in-out;
+
+.c-tag {
+  padding: .4rem .2rem;
+  border: 2px solid $dark-background-color;
+  @extend .c-br-1;
+
+  &-active {
+    background: $blue;
+  }
+}
