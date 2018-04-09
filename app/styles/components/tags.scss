@@ -1,0 +1,15 @@
+$fast-speed: 0.1s ease;
+$medium-speed: .2s ease-in-out;
+
+.c-tag {
+  padding: .4rem .6rem;
+  @extend .c-br;
+  @extend .c-pointer;
+  @include shadow(md, dark);
+  @include trans;
+
+  &-active {
+    color: $light-font-color;
+    @extend .c-bg-primary;
+  }
+}

@@ -4,8 +4,8 @@ import { createHashHistory } from 'history';
 import { routerMiddleware, routerActions } from 'react-router-redux';
 import { createLogger } from 'redux-logger';
 import rootReducer from '../reducers';
-import * as hotKeyActions from '../actions/hotKey';
-import * as runOnStartupActions from '../actions/runOnStartup';
+import * as hotKeyActions from '../actions/hotKeyActions';
+import * as runOnStartupActions from '../actions/runOnStartupActions';
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
 import firebase from 'firebase'
 const history = createHashHistory();

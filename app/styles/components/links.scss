@@ -1,0 +1,9 @@
+
+.c-link {
+  color: $primary-link-color;
+  @include trans;
+
+  &:hover{
+    color: $primary-link-color;
+  }
+}

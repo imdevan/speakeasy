@@ -5,7 +5,7 @@ import Icon from './Icon';
 
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as micActions from '../actions/microphone';
+import * as micActions from '../actions/microphoneActions';
 
 class MicControl extends Component {
   constructor(props, context){
@@ -26,8 +26,8 @@ class MicControl extends Component {
     const icon = mute ? 'microphone-slash' : 'microphone';
 
     return (
-      <Icon 
-        icon={icon} 
+      <Icon
+        icon={icon}
         onClick={this.onToggle}
         className='display-1 c-pointer'/>
     );
@@ -42,7 +42,7 @@ function mapStateToProps(state, ownProps){
 }
 
 function mapDispatchToProps(dispatch){
-  return { 
+  return {
     mic_actions: bindActionCreators(micActions, dispatch),
   };
 }

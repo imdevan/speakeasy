@@ -1,0 +1,7 @@
+.c-z {
+  @for $i from -5 through 5 {
+    &-#{$i} {
+      z-index: $i;
+    }
+  }
+}

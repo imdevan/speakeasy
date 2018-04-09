@@ -1,6 +1,6 @@
-import { SET_HOTKEY } from '../actions/hotkey';
+import { SET_HOTKEY } from '../actions/hotKeyActions';
 
-export default function hotkey(state = '~', action) {
+export default function (state = '~', action) {
   switch (action.type) {
     case SET_HOTKEY:
       return action.hotkey;

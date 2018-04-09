@@ -1,4 +1,4 @@
-import { SET_ACTIVE_PROFILE } from '../actions/profile';
+import { SET_ACTIVE_PROFILE } from '../actions/profileActions';
 
 export default function microphone(state = {
   activeProfile: 1

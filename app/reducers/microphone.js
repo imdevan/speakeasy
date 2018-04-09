@@ -1,4 +1,4 @@
-import { SET_MUTE } from '../actions/microphone';
+import { SET_MUTE } from '../actions/microphoneActions';
 
 export default function microphone(state = {
   mute: false

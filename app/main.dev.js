@@ -10,8 +10,11 @@
  *
  * @flow
  */
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, globalShortcut } from 'electron';
+// import robotjs from 'robotjs'
+
 // import MenuBuilder from './menu';
+// import nodeAbi from 'node-abi';
 
 let mainWindow = null;
 
@@ -44,11 +47,20 @@ const installExtensions = async () => {
 /**
  * Add event listeners...
  */
-
+// https://github.com/electron/electron/blob/master/docs/api/global-shortcut.md
+// https://github.com/electron/electron/blob/master/docs/api/accelerator.md
+// https://robotjs.io/docs/syntax
   app.on('window-all-closed', () => {
     // Respect the OSX convention of having the application in memory even
   // after all windows have been cl sed
   if (process.platform !== 'darwin') {
+
+    // // Unregister a shortcut.
+    // globalShortcut.unregister('CommandOrControl+X')
+
+    // // Unregister all shortcuts.
+    // globalShortcut.unregisterAll()
+
     app.quit();
   }
 });
@@ -58,6 +70,21 @@ app.on('ready', async () => {
   if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
     await installExtensions();
   }
+
+  // console.log('NODE ABI', nodeAbi.getAbi(process.version, 'node'));
+
+
+  // const ret = globalShortcut.register('CommandOrControl+X', () => {
+  //   console.log('CommandOrControl+X is pressed')
+  //   robot.keyTap("X", "control");
+  // })
+
+  // if (!ret) {
+  //   console.log('registration failed')
+  // }
+
+  // Check whether a shortcut is registered.
+  console.log(globalShortcut.isRegistered('CommandOrControl+X'))
 
   mainWindow = new BrowserWindow({
     show: true,

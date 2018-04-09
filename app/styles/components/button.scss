@@ -1,0 +1,9 @@
+.c-btn {
+  @extend .c-br;
+  @include trans;
+  border-style: solid;
+  color: $light-font-color;
+  background-color: $gray-3;
+  border: none;
+  cursor: pointer;
+}

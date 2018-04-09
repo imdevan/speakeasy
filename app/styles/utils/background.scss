@@ -1,0 +1,26 @@
+$background-colors: (
+  primary:$primary-background-color,
+  dark: $dark-background-color,
+  light: $light-bg-color,
+  purple: $purple,
+  green: $green,
+  blue: $blue,
+  red: $red,
+  orange: $orange,
+  white:$white,
+  light-baby-blue:$light-baby-blue,
+  black:$black,
+  gray-1: $gray-1,
+  gray-2: $gray-2,
+  gray-3: $gray-3,
+  gray-4: $gray-4,
+  gray-5: $gray-5,
+);
+
+.c-bg {
+  @each $bg, $bg-val in $background-colors {
+    &-#{$bg} {
+      background: $bg-val;
+    }
+  }
+}

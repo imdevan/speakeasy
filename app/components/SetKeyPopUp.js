@@ -16,7 +16,7 @@ class SetKeyPopUp extends Component {
     onChange: PropTypes.func,
     value: PropTypes.string,
   };
-  
+
   static defaultProps = {
     onChange: () => {},
     value: ''
@@ -44,7 +44,7 @@ class SetKeyPopUp extends Component {
           <h3 className='mb-3'>
             Press any key
           </h3>
-          <div className='c-bg-gray-1 c-br-1 p-3 text-center'>
+          <div className='c-bg-gray-1 c-br p-3 text-center'>
             <h1 className='m-0 p-0'>
               {value}
             </h1>

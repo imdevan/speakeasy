@@ -1,0 +1,22 @@
+$colors: (
+  primary: $primary-border-color,
+  dark: $dark-border-color
+);
+
+$widths: (
+  primary: 2px
+);
+
+.c-border {
+  border: map-get($widths, primary) solid $primary-border-color;
+
+  &-none {
+    border: none;
+  }
+
+  @each $color, $color-val in $colors {
+    &-#{$color} {
+      border: map-get($widths, primary) solid $color-val;
+    }
+  }
+}

@@ -1,49 +1,55 @@
 // @flow
-import React, { Component } from 'react';
-import type { Children } from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators, compose } from 'redux';
-import * as currentUserActions from '../actions/currentUser';
+import React, { Component } from 'react'
+import type { Children } from 'react'
+import {connect} from 'react-redux'
+import {bindActionCreators, compose } from 'redux'
+import * as currentUserActions from '../actions/currentUserActions'
 import { firebaseConnect , isLoaded, isEmpty, withFirebase } from 'react-redux-firebase'
+import Nav from '../components/app/Nav'
+import { withRouter } from 'react-router-dom';
 
 class App extends Component {
   props: {
     children: Children
-  };
+  }
 
   componentWillMount(){
-    const {firebase, current_user_actions,auth,
-      profile, userProfile} = this.props;
-      console.log('PROPS',this.props);
+    const {firebase, current_user_actions,location, history} = this.props
+
     firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        // User is signed in.
-        current_user_actions.userSignedIn(user);
-      } else {
+      if (!user) {
         // User is signed out.
-        current_user_actions.userSignedOut();
+        current_user_actions.logout()
+
+        if(location && location.pathname !== '/login'){
+          history.push('/login')
+        }
       }
-    });
+    })
   }
 
   componentWillReceiveProps(nextProps){
-    let {todos} = nextProps
+    const {history, firebase, location, profile, current_user_actions, currentUser} = nextProps;
+    const authLoggedIn = firebase.auth().currentUser;
+
+    if(!authLoggedIn && location && location.pathname !== '/login') {
+      history.push('/login')
+    }
+
+    if(isLoaded(profile) && !isEmpty(profile) && !profile.hotKeyProfiles) {
+      debugger
+      current_user_actions.fill();
+    }
   }
+
   render() {
-    const {todos} = this.props;
+    const {firebase} = this.props
 
-    const todosList = !isLoaded(todos)
-      ? 'Loading'
-      : isEmpty(todos)
-        ? 'Todo list is empty'
-        : todos;
-
-    console.log('APP TODOS: \n', todosList);
     return (
       <div>
         {this.props.children}
       </div>
-    );
+    )
   }
 }
 
@@ -55,14 +61,13 @@ const mapStateToProps = (state, ownProps)=> ({
   runOnStartup: state.runOnStartup,
   auth: state.firebase.auth,
   profile: state.firebase.profile,
-  userProfile: state.firebase.userProfile,
-  todos: state.firebase.data.todos
+  currentUser: state.currentUser
 })
 
 
 export default compose(
-  firebaseConnect (() => [
-    'todos' // { path: '/todos' } // object notation
+  firebaseConnect(() => [
+    'profile'
   ]),
   connect(mapStateToProps, mapDispatchToProps)
-)(withFirebase(App))
+)(withRouter(App));

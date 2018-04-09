@@ -1,4 +1,4 @@
-import { SET_ROS } from '../actions/runOnStartup';
+import { SET_ROS } from '../actions/runOnStartupActions';
 
 export default function runOnStartup(state = true, action) {
   switch (action.type) {

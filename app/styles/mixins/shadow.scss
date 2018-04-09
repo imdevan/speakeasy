@@ -1,0 +1,93 @@
+
+$shadow-sizes: (
+  sm: 0px 2px 8px 0px,
+  md: 0px 4px 16px 0px,
+  lg: 0px 8px 32px 0px
+);
+
+$drop-shadow-sizes: (
+  sm: 0px 4px 10px,
+  md: 0px 4px 16px,
+  lg: 0px 10px 20px
+);
+
+$text-shadow-sizes: (
+  sm: 0px 0px 8px,
+  md: 0px 4px 12px,
+  lg: 0px 8px 24px
+);
+
+$shadow-colors: (
+  default-color: rgba($gray-3, .05),
+  dark: rgba($gray-5, .15),
+  extra-dark: rgba($black, .25)
+);
+
+$text-shadow-colors: (
+  default-color: rgba($dark-font-color, 0.35),
+  dark: $gray-1
+);
+
+@mixin shadow($size: md, $color: default-color) {
+  box-shadow: map-get($shadow-sizes, $size) map-get($shadow-colors, $color);
+}
+
+@mixin drop-shadow($size: md, $color: default-color) {
+  filter: drop-shadow(map-get($drop-shadow-sizes, $size) map-get($shadow-colors, $color));
+}
+
+@mixin text-shadow($size: md, $color: default-color) {
+  text-shadow: map-get($text-shadow-sizes, $size) map-get($text-shadow-colors, $color);
+}
+
+@mixin get-shadow($type: shadow, $size: md, $color: default-color) {
+  @if $type == drop-shadow {
+    @include drop-shadow($size, $color);
+  }
+  @else if $type == text-shadow {
+    @include text-shadow($size, $color);
+  }
+  @else {
+    @include shadow($size, $color);
+  }
+}
+
+@mixin apply-all-shadows($type: shadow, $sizes: $shadow-sizes, $colors: $shadow-colors) {
+  @include get-shadow;
+
+  @include hover {
+    @include get-shadow;
+  }
+
+  @each $size, $size-val in $sizes {
+    &-#{$size} {
+      @include get-shadow($type, $size);
+
+      @include hover {
+        @include get-shadow($type, $size);
+      }
+
+      @each $color, $color-val in $colors {
+        &-#{$color} {
+          @include get-shadow($type, $size, $color);
+
+          @include hover {
+            @include get-shadow($type, $size, $color);
+          }
+        }
+      }
+    }
+  }
+}
+
+.c-shadow {
+  @include apply-all-shadows;
+}
+
+.c-drop-shadow {
+  @include apply-all-shadows(drop-shadow, $drop-shadow-sizes);
+}
+
+.c-text-shadow {
+  @include apply-all-shadows(text-shadow, $text-shadow-sizes, $text-shadow-colors);
+}

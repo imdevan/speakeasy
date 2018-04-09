@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SingleColContainer from '../components/SingleColContainer';
-import Form from '../components/common/form/Form';
+import Form from '../components/form/Form';
 import {connect} from 'react-redux';
-import { firebaseConnect, isLoaded, isEmpty, withFirebase } from 'react-redux-firebase'
+import {bindActionCreators, compose } from 'redux'
+import { firebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 import {browserHistory,withRouter} from "react-router-dom"
+import * as currentUserActions from '../actions/currentUserActions'
 
 class Login extends Component {
   constructor(props, context){
@@ -13,34 +15,26 @@ class Login extends Component {
     this.submitCreateUserOrSignIn = this.submitCreateUserOrSignIn.bind(this);
   }
   componentWillReceiveProps(nextProps){
-    const {profile, history} = nextProps;
+    const {firebase, history} = nextProps;
+    const {currentUser} = firebase.auth();
 
-    debugger
-    if(profile || !profile.isEmpty) {
+    if(currentUser) {
       history.push('/')
     }
   }
+
   submitCreateUserOrSignIn(e){
     // create user or sign in
-    const {form, firebase} = this.props;
+    const {form, firebase, history, current_user_actions} = this.props;
     const {email, password} = form.values;
 
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then(({...pargs}) => {
-      console.log('RETURNED FROM FIREBASE', pargs);
-
-      history.push('/')
-    }).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // ...
-    });
+    current_user_actions.loginOrCreate({email, password});
   }
+
   render() {
     return (
       <SingleColContainer className='vh-100' rowProps={{className:'vh-100'}}>
-        <div className="w-100 h-100 d-flex justify-content-center align-items-center text-center">
+        <div className="w-100 h-100 d-flex justify-content-center align-items-center text-center pt-5">
           <div>
             <h3 className='mb-3'>
               Welcome to MajorKey
@@ -54,16 +48,16 @@ class Login extends Component {
               name='signupform'
               sections={[{
                 fields: [{
-                  placeholder: 'rockstar@keymapper.com',
-                  label: 'Email Address',
+                  placeholder: 'Email Address',
                   name: 'email',
                   type: 'email'
                 },{
-                  placeholder: 'passord',
+                  placeholder: 'Passord',
                   name: 'password',
                   type: 'password'
                 }]
               }]}
+              submitButtonClassName='c-btn py-2 px-3 w-100'
               submitLabel='Sign in / Create Account' />
           </div>
         </div>
@@ -72,14 +66,19 @@ class Login extends Component {
   }
 }
 
-function mapStateToProps(state, ownProps){
-  return {
-    currentUser: state.currentUser,
-    runOnStartup: state.runOnStartup,
-    auth: state.firebase.auth,
-    form: state.form['signupform'],
-    profile: state.firebase.profile
-  };
-}
+const mapStateToProps = (state, ownProps) => ({
+  currentUser: state.currentUser,
+  runOnStartup: state.runOnStartup,
+  auth: state.firebase.auth,
+  form: state.form['signupform'],
+  profile: state.firebase.profile
+})
 
-export default connect(mapStateToProps)(withFirebase(withRouter(Login)));
+const mapDispatchToProps = (dispatch) => ({
+  current_user_actions: bindActionCreators(currentUserActions, dispatch),
+})
+
+export default compose(
+  firebaseConnect(),
+  connect(mapStateToProps, mapDispatchToProps)
+)(withRouter(Login));

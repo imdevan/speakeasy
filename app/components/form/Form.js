@@ -27,8 +27,9 @@ class Form extends  React.Component {
       placeholder = null,
       rows,
       label,
-      className = 'w-100',
-      subLabel
+      className = 'w-100 mb-3',
+      subLabel,
+      selectOnFocus = true
     } = field;
 
   return (
@@ -47,7 +48,7 @@ class Form extends  React.Component {
             className,
             placeholder,
             rows
-          }}/>
+          }} onFocus={e => selectOnFocus && e.target.select()}/>
       </div>
     )
   }
@@ -69,7 +70,6 @@ class Form extends  React.Component {
 
   render() {
     const { sections, submitLabel, submitButtonClassName, showSubmitButton, className, pristine, submitting, handleSubmit } = this.props;
-    console.log('initialValues', this.props.initialValues);
 
     return (
       <form onSubmit={handleSubmit} className={className}>

@@ -1,0 +1,11 @@
+input {
+  @extend .c-br;
+  @extend .c-border;
+  @include trans;
+  padding: 0.5rem 0.8rem;
+
+  &:focus {
+    @include shadow(md, dark);
+    outline: none;
+  }
+}

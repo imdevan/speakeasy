@@ -1,0 +1,11 @@
+$trans-speeds: (
+  default: .15s,
+);
+
+$trans-effects: (
+  default: ease-in-out,
+);
+
+@mixin trans($prop: all, $speed: default, $effect: default) {
+  transition: $prop map-get($trans-effects, $effect) map-get($trans-speeds, $speed )
+}
