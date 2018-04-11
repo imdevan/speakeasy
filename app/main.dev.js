@@ -11,11 +11,12 @@
  * @flow
  */
 import { app, BrowserWindow, globalShortcut } from 'electron';
-// import robotjs from 'robotjs'
+import robotjs from 'robotjs'
+import storage from 'electron-json-storage'
+import fs from 'fs'
 
 // import MenuBuilder from './menu';
 // import nodeAbi from 'node-abi';
-
 let mainWindow = null;
 
 if (process.env.NODE_ENV === 'production') {
@@ -55,11 +56,11 @@ const installExtensions = async () => {
   // after all windows have been cl sed
   if (process.platform !== 'darwin') {
 
-    // // Unregister a shortcut.
+    // // // Unregister a shortcut.
     // globalShortcut.unregister('CommandOrControl+X')
 
     // // Unregister all shortcuts.
-    // globalShortcut.unregisterAll()
+    globalShortcut.unregisterAll()
 
     app.quit();
   }
@@ -70,13 +71,22 @@ app.on('ready', async () => {
   if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
     await installExtensions();
   }
+  const dataPath = storage.getDataPath();
+  console.log(dataPath);
 
-  // console.log('NODE ABI', nodeAbi.getAbi(process.version, 'node'));
+  fs.watchFile(`${dataPath}/majorKey.json`, (curr, prev) => {
+    storage.getAll(function(error, data) {
+      if (error) throw error;
 
-
+      console.log(data);
+    });
+    console.log(`the current mtime is: ${curr.mtime}`);
+    console.log(`the previous mtime was: ${prev.mtime}`);
+  });
+  // initialize storage listener
   // const ret = globalShortcut.register('CommandOrControl+X', () => {
   //   console.log('CommandOrControl+X is pressed')
-  //   robot.keyTap("X", "control");
+  //   robotjs.keyTap("X", "control");
   // })
 
   // if (!ret) {
@@ -84,7 +94,7 @@ app.on('ready', async () => {
   // }
 
   // Check whether a shortcut is registered.
-  console.log(globalShortcut.isRegistered('CommandOrControl+X'))
+  // console.log(globalShortcut.isRegistered('CommandOrControl+X'))
 
   mainWindow = new BrowserWindow({
     show: true,

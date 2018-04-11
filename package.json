@@ -4,7 +4,7 @@
   "version": "0.12.0",
   "description": "Electron application boilerplate based on React, React Router, Webpack, React Hot Loader for rapid application development",
   "scripts": {
-    "abirebuild": "npm rebuild robotjs --runtime=electron --target=1.7.10 --disturl=https://atom.io/download/atom-shell --abi=57",
+    "abirebuild": "npm rebuild robotjs --runtime=electron --target=1.7.10 --disturl=https://atom.io/download/atom-shell --abi=51",
     "build": "concurrently \"npm run build-main\" \"npm run build-renderer\"",
     "build-dll": "cross-env NODE_ENV=development node --trace-warnings -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.renderer.dev.dll.js --colors",
     "build-main": "cross-env NODE_ENV=production node --trace-warnings -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.main.prod.js --colors",
@@ -191,6 +191,7 @@
     "bootstrap": "4.0.0-alpha.6",
     "devtron": "^1.4.0",
     "electron-debug": "^1.2.0",
+    "electron-json-storage": "^4.0.3",
     "firebase": "^4.12.1",
     "font-awesome": "^4.7.0",
     "history": "^4.6.3",
@@ -209,6 +210,7 @@
     "redux": "^3.7.1",
     "redux-form": "^7.3.0",
     "redux-thunk": "^2.2.0",
+    "robotjs": "^0.5.1",
     "source-map-support": "^0.4.15"
   },
   "devEngines": {

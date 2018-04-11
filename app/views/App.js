@@ -8,6 +8,8 @@ import { firebaseConnect , isLoaded, isEmpty, withFirebase } from 'react-redux-f
 import Nav from '../components/app/Nav'
 import { withRouter } from 'react-router-dom';
 
+import storage from 'electron-json-storage'
+
 class App extends Component {
   props: {
     children: Children
@@ -39,6 +41,14 @@ class App extends Component {
     if(isLoaded(profile) && !isEmpty(profile) && !profile.hotKeyProfiles) {
       debugger
       current_user_actions.fill();
+    }
+
+    const majorKey = storage.get('majorKey')
+
+    if(isLoaded(profile) && !isEmpty(profile) && !majorKey) {
+      storage.set('majorKey', { profile }, function(error) {
+        if (error) throw error;
+      });
     }
   }
 

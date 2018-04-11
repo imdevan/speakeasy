@@ -19,8 +19,6 @@ import * as currentUserActions from '../actions/currentUserActions';
 import * as runOnStartupActions from '../actions/runOnStartupActions';
 import {reset} from 'redux-form';
 
-// import { withFirebase } from 'react-redux-firebase'
-
 class Home extends Component {
   constructor(props, context){
     super(props, context);
