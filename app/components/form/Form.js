@@ -2,7 +2,9 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import {connect} from 'react-redux';
+import Select from './input/Select';
 
+import 'react-select/dist/react-select.css';
 class Form extends  React.Component {
   static defaultProps = {
     sections: [],
@@ -14,11 +16,11 @@ class Form extends  React.Component {
   constructor(props, context){
     super(props, context);
     this.renderField = this.renderField.bind(this);
+    this.renderFieldInput = this.renderFieldInput.bind(this);
     this.renderSection = this.renderSection.bind(this);
   }
 
-  renderField(field, key) {
-    const {initialValues} = this.props;
+  renderFieldInput(field){
     const {
       name,
       component = 'input',
@@ -26,10 +28,47 @@ class Form extends  React.Component {
       required,
       placeholder = null,
       rows,
-      label,
       className = 'w-100 mb-3',
+      selectOnFocus = true,
+      options
+    } = field;
+
+    if(type === 'select') {
+      return (
+        <Field {...{
+          name,
+          component: Select,
+          type,
+          required,
+          className,
+          placeholder,
+          options,
+          rows
+        }} onFocus={e => selectOnFocus && e.target.select()}/>
+      )
+    }
+
+    else {
+      return (
+        <Field {...{
+          name,
+          component,
+          type,
+          required,
+          className,
+          placeholder,
+          rows
+        }} onFocus={e => selectOnFocus && e.target.select()}/>
+      )
+    }
+  }
+  renderField(field, key) {
+    const {initialValues} = this.props;
+    const {
+      name,
+      label,
       subLabel,
-      selectOnFocus = true
+      className = 'w-100 mb-3',
     } = field;
 
   return (
@@ -40,15 +79,7 @@ class Form extends  React.Component {
             {subLabel && <small htmlFor={name}><br/>{subLabel}</small>}
           </label>
         )}
-        <Field {...{
-            name,
-            component,
-            type,
-            required,
-            className,
-            placeholder,
-            rows
-          }} onFocus={e => selectOnFocus && e.target.select()}/>
+        {this.renderFieldInput(field)}
       </div>
     )
   }

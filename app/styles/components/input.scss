@@ -1,4 +1,4 @@
-input {
+input, select  {
   @extend .c-br;
   @extend .c-border;
   @include trans;
@@ -8,4 +8,8 @@ input {
     @include shadow(md, dark);
     outline: none;
   }
+}
+
+select {
+  height: 100%;
 }

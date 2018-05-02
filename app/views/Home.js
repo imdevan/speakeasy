@@ -2,14 +2,13 @@
 import React, { Component } from 'react';
 import {Grid, Row, Col} from 'react-bootstrap';
 import { Link, withRouter } from 'react-router-dom';
-import Icon from '../components/Icon';
-import Toggle from '../components/Toggle';
+import Icon from '../components/common/Icon';
+import Svg from '../components/common/Svg';
+import SCC from  '../components/layout/SingleColContainer'
 import ProfileSwitcher from '../components/profileSwitcher/ProfileSwitcher';
-import HotKeyTable from '../components/HotKeyTable';
 import background from '../assets/svg/background.svg';
-import Svg from '../components/Svg';
-import Form from '../components/form/Form';
-
+import HotKeyTable from '../components/hotkey/HotKeyTable';
+import AddHotKeyButton from '../components/hotkey/AddHotKeyButton';
 import {connect} from 'react-redux';
 import {bindActionCreators, compose } from 'redux'
 import { firebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase'
@@ -64,40 +63,16 @@ class Home extends Component {
           <Svg src={background}   />
         </div>
         <div className='c-bg-svg'>
-        <Grid>
-          <div className='py-4 text-right'>
-            <Link to='/settings' className='c-link'>
-              Hi, {profile.displayName}
-            </Link>
-          </div>
-          <Row>
-            <Col sm={12}>
-              <ProfileSwitcher className='mb-5'/>
-              <div>
-                <HotKeyTable hotkeyOptions={_activeProfile.hotKeys}/>
-                <Form
-                  onSubmit={this.addHotkey}
-                  form='hotykeyform'
-                  sections={[{
-                    fieldWrapperClassName: 'row mb-3',
-                    fields: [{
-                      className: 'col',
-                      placeholder: 'w',
-                      name: 'hotKey',
-                      type: 'text'
-                    },{
-                      className: 'col',
-                      placeholder: 'action',
-                      name: 'action',
-                      type: 'text'
-                    }]
-                  }]}
-                  submitButtonClassName='c-btn py-2 px-3 w-100'
-                  submitLabel='Add Hotkey' />
-              </div>
-            </Col>
-          </Row>
-        </Grid>
+          <SCC style={{height:'100vh'}}  rowProps={{className:'h-100'}}>
+            <div className='py-4 text-right'>
+              <Link to='/settings' className='c-link'>
+                Hi, {profile.displayName}
+              </Link>
+            </div>
+            <ProfileSwitcher className='mb-5'/>
+            <HotKeyTable hotkeyOptions={_activeProfile.hotKeys}/>
+            <AddHotKeyButton />
+          </SCC>
         </div>
       </div>
     );

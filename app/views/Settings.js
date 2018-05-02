@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import SingleColContainer from '../components/SingleColContainer';
+import SCC from '../components/layout/SingleColContainer';
 import Form from '../components/form/Form';
 import { compose } from 'redux'
 import {connect} from 'react-redux';
@@ -37,7 +37,7 @@ class Settings extends Component {
     };
 
     return (
-      <SingleColContainer>
+      <SCC>
         <div className='py-4 text-right'>
           <Link to='/' className='c-link'>
             Home
@@ -70,7 +70,7 @@ class Settings extends Component {
               Logout
           </Link>
         </div>
-      </SingleColContainer>
+      </SCC>
     );
   }
 }

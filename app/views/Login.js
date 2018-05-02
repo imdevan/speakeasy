@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import SingleColContainer from '../components/SingleColContainer';
+import SCC from '../components/layout/SingleColContainer';
 import Form from '../components/form/Form';
 import {connect} from 'react-redux';
 import {bindActionCreators, compose } from 'redux'
@@ -33,7 +33,7 @@ class Login extends Component {
 
   render() {
     return (
-      <SingleColContainer className='vh-100' rowProps={{className:'vh-100'}}>
+      <SCC className='vh-100' rowProps={{className:'vh-100'}}>
         <div className="w-100 h-100 d-flex justify-content-center align-items-center text-center pt-5">
           <div>
             <h3 className='mb-3'>
@@ -61,7 +61,7 @@ class Login extends Component {
               submitLabel='Sign in / Create Account' />
           </div>
         </div>
-      </SingleColContainer>
+      </SCC>
     );
   }
 }
