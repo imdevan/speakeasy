@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {Row} from 'react-bootstrap';
 import Col from '../layout/Col';
 import HotKey from './HotKeyButton';
+import HotKeyAction from './HotKeyAction';
 
 export default class HotKeyTable extends Component {
   constructor(props, context){
@@ -18,9 +19,7 @@ export default class HotKeyTable extends Component {
           <HotKey value={_hotkey.hotKey} />
         </Col>
         <Col>
-          <div className="c-action">
-          {_hotkey.action || <span>&nbsp;</span>}
-          </div>
+          <HotKeyAction value={_hotkey.action} />
         </Col>
       </Row>
     )

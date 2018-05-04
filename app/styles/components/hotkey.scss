@@ -1,7 +1,8 @@
 .c-hotkey {
   @extend .c-br;
-  @extend .c-bg-gray-1;
   @extend .c-pointer;
   @extend .py-2;
   @extend .px-3;
+  @extend .c-border;
+  @extend .c-bg-white;
 }

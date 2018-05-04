@@ -1,0 +1,28 @@
+$drop-down-bg: $light-bg-color !default;
+$dropdown-offset: .5rem;
+$dropdown-triangle-size: 1rem;
+
+.c-dropdown {
+  @extend .text-nowrap;
+  @extend .c-br;
+  @extend .c-bg-white;
+  @include shadow(md, dark);
+
+  position: absolute;
+  z-index: 2;
+
+  hr{
+    @extend .m-2;
+  }
+
+  &__row {
+    @extend .w-100;
+    @extend .py-2;
+    @extend .px-3;
+    @extend .c-pointer;
+
+    &:hover {
+      background: $gray-2;
+    }
+  }
+}
