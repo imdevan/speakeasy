@@ -23,8 +23,8 @@ const HotKeyButton = ({value = ' ', className}) => {
         {label: 'Switch Profile'},
         {label: 'Disable'},
       ]}>
-      <div>
-        {value || <span>&nbsp;</span>}
+      <div className='text-center'>
+        {value || <span>👌</span>}
       </div>
     </Dropdown>
   )
