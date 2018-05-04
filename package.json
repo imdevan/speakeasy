@@ -201,6 +201,8 @@
     "react-dom": "^15.6.1",
     "react-google-button": "^0.5.1",
     "react-hot-loader": "3.0.0-beta.6",
+    "react-key-handler": "^1.0.1",
+    "react-keydown": "^1.9.7",
     "react-onclickoutside": "^6.5.0",
     "react-redux": "^5.0.5",
     "react-redux-firebase": "^2.1.0",

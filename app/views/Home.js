@@ -2,21 +2,23 @@
 import React, { Component } from 'react';
 import {Grid, Row, Col} from 'react-bootstrap';
 import { Link, withRouter } from 'react-router-dom';
-import Icon from '../components/common/Icon';
-import Svg from '../components/common/Svg';
-import SCC from  '../components/layout/SingleColContainer'
-import ProfileSwitcher from '../components/profileSwitcher/ProfileSwitcher';
-import background from '../assets/svg/background.svg';
-import HotKeyTable from '../components/hotkey/HotKeyTable';
-import AddHotKeyButton from '../components/hotkey/AddHotKeyButton';
 import {connect} from 'react-redux';
 import {bindActionCreators, compose } from 'redux'
 import { firebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase'
+import {reset} from 'redux-form';
 
 import * as hotKeyActions from '../actions/hotKeyActions';
 import * as currentUserActions from '../actions/currentUserActions';
 import * as runOnStartupActions from '../actions/runOnStartupActions';
-import {reset} from 'redux-form';
+
+
+import Icon from '../components/common/Icon';
+import Svg from '../components/common/Svg';
+import SCC from '../components/layout/SingleColContainer'
+import ProfileSwitcher from '../components/profileSwitcher/ProfileSwitcher';
+import background from '../assets/svg/background.svg';
+import HotKeyTable from '../components/hotkey/HotKeyTable';
+import AddHotKeyButton from '../components/hotkey/AddHotKeyButton';
 
 class Home extends Component {
   constructor(props, context){

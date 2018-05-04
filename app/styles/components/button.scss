@@ -17,4 +17,11 @@
     font-size: 1.5rem;
     @include shadow(md, dark);
   }
+
+  &-cta {
+    @extend .w-100;
+    @extend .px-3;
+    @extend .py-2;
+    @extend .h4;
+  }
 }

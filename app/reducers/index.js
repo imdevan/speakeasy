@@ -9,6 +9,7 @@ import currentUser from './currentUser';
 import profile from './profile';
 import microphone from './microphone';
 import runOnStartup from './runOnStartup';
+import popUp from './popUp';
 
 const rootReducer = combineReducers({
   runOnStartup,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   profile,
   microphone,
   router,
+  popUp,
   form:formReducer,
   firebase
 });
