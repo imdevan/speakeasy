@@ -19,7 +19,7 @@ export default class HotKeyTable extends Component {
         </Col>
         <Col>
           <div className="c-action">
-          {_hotkey.action}
+          {_hotkey.action || <span>&nbsp;</span>}
           </div>
         </Col>
       </Row>

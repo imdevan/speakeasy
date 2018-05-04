@@ -25,6 +25,7 @@ class SetKeyPopUp extends Component {
   handleKeyDown(e) {
     const {onChange} = this.props;
     onChange(e.key);
+    debugger
   }
 
   componentWillMount(){

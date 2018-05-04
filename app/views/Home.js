@@ -33,21 +33,19 @@ class Home extends Component {
     this.addHotkey = this.addHotkey.bind(this);
   }
 
-  addHotkey(formValues){
+  addHotkey(key){
     const {profile, firebase, form_actions, currentUser, current_user_actions} = this.props;
     let {activeProfile, hotKeyProfiles} = profile;
 
-    if(!formValues.hotKey || !formValues.action)
+    if(!key)
       return null;
 
     if(hotKeyProfiles[activeProfile].hotKeys)
-      hotKeyProfiles[activeProfile].hotKeys.push(formValues);
+      hotKeyProfiles[activeProfile].hotKeys.push({hotKey: key});
     else
-      hotKeyProfiles[activeProfile].hotKeys = [formValues];
+      hotKeyProfiles[activeProfile].hotKeys = [{ hotKey: key }];
 
-    current_user_actions.updateProfile({hotKeyProfiles}).then(() => {
-      form_actions.reset('hotykeyform')
-    });
+    current_user_actions.updateProfile({hotKeyProfiles});
   }
 
   render() {
@@ -73,7 +71,7 @@ class Home extends Component {
             </div>
             <ProfileSwitcher className='mb-5'/>
             <HotKeyTable hotkeyOptions={_activeProfile.hotKeys}/>
-            <AddHotKeyButton />
+            <AddHotKeyButton onAddHotKey={this.addHotkey}/>
           </SCC>
         </div>
       </div>

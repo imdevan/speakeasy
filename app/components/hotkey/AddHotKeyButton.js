@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as popUpActions from '../../actions/popUpActions'
 import KeyHandler, { KEYPRESS } from 'react-key-handler';
+import capitalize from '../../utils/capitalize';
 
 class AddHotKeyButton extends Component {
   state = {  };
@@ -22,17 +23,36 @@ class AddHotKeyButton extends Component {
     this.addHotkey = this.addHotkey.bind(this)
   }
 
+  componentWillMount() {
+    document.addEventListener("keydown", this.handleKeyEvent);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleKeyEvent);
+  }
+
   renderHotKey(){
     const {key} = this.state;
-    let _key = '';
-
+    let _key = '&nbsp;';
   }
 
   handleKeyEvent(e) {
     e.preventDefault();
     const { altKey, ctrlKey, shiftKey, metaKey, key } = e;
+    let _key = '';
 
-    this.setState({ key });
+    if (ctrlKey && key.toLowerCase() !== 'control')
+      _key += 'Control + '
+
+    if (shiftKey && key.toLowerCase() !== 'shift')
+      _key += 'Shift + '
+
+    if (altKey && key.toLowerCase() !== 'alt')
+      _key += 'Alt + '
+
+    _key += capitalize(key)
+
+    this.setState({ key: _key });
   }
 
 
@@ -45,10 +65,12 @@ class AddHotKeyButton extends Component {
   }
 
   addHotkey() {
-    const {popup_actions} = this.props;
+    const {popup_actions, onAddHotKey} = this.props;
+    const {key} = this.state;
 
     // add hotkey to profile
     popup_actions.hide('add-hotkey')
+    onAddHotKey(key)
   }
 
   render() {
@@ -70,7 +92,7 @@ class AddHotKeyButton extends Component {
             Press any key...
           </h3>
           <div className='c-hotkey mb-4 text-center h4'>
-            {key}
+            {key || <span>&nbsp;</span>}
           </div>
           <div className=''>
             <button className='c-btn c-btn-cta' onClick={this.addHotkey}>
