@@ -51,7 +51,7 @@ class HotKeyTable extends Component {
     return (
       <Row key={_hotkey.hotKey + i} className='mb-3'>
         <Col>
-          <HotKey value={_hotkey.hotKey} />
+          <HotKey value={_hotkey.hotKey} index={i} />
         </Col>
         <Col>
           <HotKeyAction value={_hotkey.action} />
