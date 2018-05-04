@@ -9,6 +9,10 @@ import {Row} from 'react-bootstrap';
 import Col from '../layout/Col';
 import Icon from '../common/Icon';
 
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import faKeyboard from '@fortawesome/fontawesome-pro-light/faKeyboard'
+import faUserAstronaut from '@fortawesome/fontawesome-pro-light/faUserAstronaut'
+
 import HotKey from './HotKeyButton';
 import HotKeyAction from './HotKeyAction';
 import { debug } from 'builder-util';
@@ -25,15 +29,17 @@ class HotKeyTable extends Component {
     const {hotkeyOptions} = this.props
 
     return (
-      <Row className='mb-3'>
+      <Row className='align-items-center my-md-5 py-md-5 mx-md-5 px-md-5 mb-md-3'>
         <Col sm={3} className='mb-4 mb-md-0'>
-          <h1>
-            ⌨️
+          <h1 className='display-1 text-center'>
+            <FontAwesomeIcon icon={faUserAstronaut} />
           </h1>
         </Col>
         <Col sm={12} md={9}>
-          Looks like you don't have any hotkeys added,
-          hit the plus button to add one now 👌
+          <h2>
+            Looks like you don't have any hotkeys added,
+            hit the plus button to add one now
+          </h2>
         </Col>
       </Row>
     )

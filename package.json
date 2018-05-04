@@ -188,12 +188,17 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.7",
+    "@fortawesome/fontawesome-free-brands": "^5.0.12",
+    "@fortawesome/fontawesome-pro-light": "^5.0.12",
+    "@fortawesome/fontawesome-pro-regular": "^5.0.12",
+    "@fortawesome/fontawesome-pro-solid": "^5.0.12",
+    "@fortawesome/react-fontawesome": "0.0.19",
     "bootstrap": "^4.1.1",
     "devtron": "^1.4.0",
     "electron-debug": "^1.2.0",
     "electron-json-storage": "^4.1.0",
     "firebase": "^4.13.1",
-    "font-awesome": "^4.7.0",
     "history": "^4.6.3",
     "raw-loader": "^0.5.1",
     "react": "^15.6.1",
