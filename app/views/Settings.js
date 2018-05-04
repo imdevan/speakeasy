@@ -62,7 +62,7 @@ class Settings extends Component {
                   type: 'email'
                 }]
               }]}
-              submitButtonClassName='c-btn py-2 px-3 w-100'
+              submitButtonClassName='c-btn c-btn-cta'
               submitLabel='Update User Settings' />
         </div>
         <div>
