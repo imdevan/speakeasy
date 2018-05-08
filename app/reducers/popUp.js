@@ -6,7 +6,9 @@ export default function popUp(state = {}, action){
       return {
         ...state,
         [action.popUpName]: {
-          show: action.show
+          show: action.show,
+          onShow: action.onShow,
+          onHide: action.onHide,
         }
       };
 
@@ -21,6 +23,7 @@ export default function popUp(state = {}, action){
       return {
         ...state,
         [action.popUpName]: {
+          ...state[action.popUpName],
           show: action.show
         }
       };
@@ -29,6 +32,7 @@ export default function popUp(state = {}, action){
       return {
         ...state,
         [action.popUpName]: {
+          ...state[action.popUpName],
           show: false
         }
       };

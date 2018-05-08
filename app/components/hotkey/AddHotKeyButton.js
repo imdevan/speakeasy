@@ -20,6 +20,7 @@ class AddHotKeyButton extends Component {
 
     this.renderHotKey = this.renderHotKey.bind(this)
     this.handleKeyEvent = this.handleKeyEvent.bind(this)
+    this.clearState = this.clearState.bind(this)
     this.addHotkey = this.addHotkey.bind(this)
   }
 
@@ -55,6 +56,9 @@ class AddHotKeyButton extends Component {
     this.setState({ key: _key });
   }
 
+  clearState(){
+    this.setState({ key: '' })
+  }
 
   renderHotkeyButton() {
     return(
@@ -79,6 +83,7 @@ class AddHotKeyButton extends Component {
     return (
       <PopUpButton
         name='add-hotkey'
+        onShow={this.clearState}
         button={this.renderHotkeyButton()}>
         <input
           className='text-center position-abosolute'

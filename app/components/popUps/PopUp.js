@@ -28,10 +28,10 @@ class PopUp extends Component {
   }
 
   componentWillMount() {
-    const { name, self, popup_actions } = this.props;
+    const { name, self, popup_actions, onShow, onHide } = this.props;
 
     if (!self) {
-      popup_actions.create(name);
+      popup_actions.create(name, onShow, onHide);
     }
   }
 
@@ -70,7 +70,9 @@ PopUp.propTypes = {
 PopUp.defaultProps = {
   popUpBodyClass: 'c-pop-up__body',
   popUpContainerClass: 'c-pop-up__container',
-  overRideClickOutside: false
+  overRideClickOutside: false,
+  onShow: () => {},
+  onHide: () => {},
 };
 
 const mapStateToProps = (state, ownProps) => ({
