@@ -1,5 +1,23 @@
 
-- [ ] Clean up requester ui
+- [ ] Clean up ui
   - [ ] Keep headers visible when table is empty
-  - [ ] Add drop down component
-  - [ ] Register hotkeys on electron backend
+  - [x] Add drop down component
+  - [x] Register hotkeys on electron backend
+    - Works, but not dynamic
+- [ ] Move logic from addHotkeyButton into SetHotkeyPopup
+  - [ ] Addhotkey button shows SetHotKeyPopUp (does not contain logic)
+- [ ] Clicking on hotkey shows SetHotKeyPopUp
+- [ ] On app load & change register hotkeys in main app function
+- [ ] consolodate main.dev and main.prod functions
+- [ ] add login w/ google and facebook
+- [ ] Create a better landing page
+- [ ] Add double dropdown to be able to set more complex commands
+- [ ] Add media commands
+- [ ] Add opening app
+- [ ] Add popup for actions combokey
+  - Maybe this is displayed as basic / advanced settings from utech (cut -> save) / (switch windows -> lock pc)
+- [ ] Add macros -> this one is complicated
+  - [ ] Add ui to input macros
+  - [x] Deferred to version 2
+- [ ] Add dynamic dropdown to detect if it will fit in viewport
+- [ ] Resizable app, min and max
