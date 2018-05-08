@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Icon from '../common/Icon';
-import PopUpButton from '../popUps/PopUpButton';
-
-import { app, BrowserWindow, globalShortcut } from 'electron';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 import * as popUpActions from '../../actions/popUpActions'
-import KeyHandler, { KEYPRESS } from 'react-key-handler';
+
 import capitalize from '../../utils/capitalize';
+
+import Icon from '../common/Icon';
+import PopUpButton from '../popUps/PopUpButton';
 
 class AddHotKeyButton extends Component {
   state = {  };

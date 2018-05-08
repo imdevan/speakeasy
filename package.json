@@ -4,7 +4,7 @@
   "version": "0.12.0",
   "description": "Electron application boilerplate based on React, React Router, Webpack, React Hot Loader for rapid application development",
   "scripts": {
-    "abirebuild": "npm rebuild robotjs --runtime=electron --target=2.0.0 --disturl=https://atom.io/download/atom-shell --abi=57",
+    "abirebuild": "npm rebuild robotjs --runtime=electron --target=2.0.0 --disturl=https://atom.io/download/atom-shell --abi=57 && ./node_modules/.bin/electron-rebuild",
     "build": "concurrently \"npm run build-main\" \"npm run build-renderer\"",
     "build-dll": "cross-env NODE_ENV=development node --trace-warnings -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.renderer.dev.dll.js --colors",
     "build-main": "cross-env NODE_ENV=production node --trace-warnings -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.main.prod.js --colors",
@@ -206,7 +206,6 @@
     "react-dom": "^15.6.1",
     "react-google-button": "^0.5.1",
     "react-hot-loader": "3.0.0-beta.6",
-    "react-key-handler": "^1.0.1",
     "react-keydown": "^1.9.7",
     "react-onclickoutside": "^6.5.0",
     "react-redux": "^5.0.5",

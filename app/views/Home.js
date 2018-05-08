@@ -59,21 +59,23 @@ class Home extends Component {
 
     return (
       <div>
-        <div className='fixed-top c-z--1 w-100 h-100'>
-          <Svg src={background}   />
+        <div className='fixed-top w-100 h-100 c-z--1 c-o-hidden'>
+          <Svg src={background}  />
         </div>
-        <div className='c-bg-svg'>
-          <SCC style={{height:'100vh'}}  rowProps={{className:'h-100'}}>
-            <div className='py-4 text-right'>
-              <Link to='/settings' className='c-link'>
-                Hi, {profile.displayName}
-              </Link>
-            </div>
-            <ProfileSwitcher className='mb-5'/>
-            <HotKeyTable hotkeyOptions={_activeProfile.hotKeys}/>
-            <AddHotKeyButton onAddHotKey={this.addHotkey}/>
-          </SCC>
-        </div>
+
+        <SCC rowProps={{className:'h-100'}}>
+          <div className='py-4 text-right'>
+            <Link to='/settings' className='c-link'>
+              Hi, {profile.displayName}
+            </Link>
+          </div>
+          <ProfileSwitcher className='mb-5'/>
+          <HotKeyTable hotkeyOptions={_activeProfile.hotKeys}/>
+        </SCC>
+
+        <SCC className='fixed-bottom'>
+          <AddHotKeyButton onAddHotKey={this.addHotkey} />
+        </SCC>
       </div>
     );
   }

@@ -15,7 +15,7 @@ import robotjs from 'robotjs'
 import storage from 'electron-json-storage'
 import fs from 'fs'
 
-// import MenuBuilder from './menu';
+import MenuBuilder from './menu';
 // import nodeAbi from 'node-abi';
 let mainWindow = null;
 
@@ -98,9 +98,10 @@ app.on('ready', async () => {
 
   mainWindow = new BrowserWindow({
     show: true,
-    transparent: true,
-    width: 1600,
-    height: 900
+    minWidth: 900,
+    minHeight: 506,
+    // width: 1600,
+    // height: 900
   });
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);
@@ -119,6 +120,6 @@ app.on('ready', async () => {
     mainWindow = null;
   });
 
-  // const menuBuilder = new MenuBuilder(mainWindow);
-  // menuBuilder.buildMenu();
+  const menuBuilder = new MenuBuilder(mainWindow);
+  menuBuilder.buildMenu();
 });
