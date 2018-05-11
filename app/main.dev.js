@@ -10,14 +10,12 @@
  *
  * @flow
  */
-import { app, BrowserWindow, globalShortcut } from 'electron';
-import robotjs from 'robotjs'
-import storage from 'electron-json-storage'
-import fs from 'fs'
+import { app } from 'electron';
+import unhandled from 'electron-unhandled'
+unhandled();
 
-import MenuBuilder from './menu';
-// import nodeAbi from 'node-abi';
-let mainWindow = null;
+import { unRegisterAll as unRegisterAllEvents } from './electron/services/events'
+import window from './electron/window'
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
@@ -31,95 +29,14 @@ if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true')
   require('module').globalPaths.push(p);
 }
 
-const installExtensions = async () => {
-  const installer = require('electron-devtools-installer');
-  const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
-  const extensions = [
-    'REACT_DEVELOPER_TOOLS',
-    'REDUX_DEVTOOLS'
-  ];
-
-  return Promise
-    .all(extensions.map(name => installer.default(installer[name], forceDownload)))
-    .catch(console.log);
-};
-
-
-/**
- * Add event listeners...
- */
-// https://github.com/electron/electron/blob/master/docs/api/global-shortcut.md
-// https://github.com/electron/electron/blob/master/docs/api/accelerator.md
-// https://robotjs.io/docs/syntax
-  app.on('window-all-closed', () => {
-    // Respect the OSX convention of having the application in memory even
-  // after all windows have been cl sed
+app.on('window-all-closed', () => {
+  // Respect the OSX convention of having the application in memory even
+  // after all windows have been closed
   if (process.platform !== 'darwin') {
-
-    // // // Unregister a shortcut.
-    // globalShortcut.unregister('CommandOrControl+X')
-
-    // // Unregister all shortcuts.
-    globalShortcut.unregisterAll()
-
+    // Unregister all shortcuts.
+    unRegisterAllEvents()
     app.quit();
   }
 });
 
-
-app.on('ready', async () => {
-  if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
-    await installExtensions();
-  }
-  const dataPath = storage.getDataPath();
-  console.log(dataPath);
-
-  fs.watchFile(`${dataPath}/majorKey.json`, (curr, prev) => {
-    storage.getAll(function(error, data) {
-      if (error) throw error;
-
-      console.log(data);
-    });
-    console.log(`the current mtime is: ${curr.mtime}`);
-    console.log(`the previous mtime was: ${prev.mtime}`);
-  });
-  // initialize storage listener
-  // const ret = globalShortcut.register('CommandOrControl+X', () => {
-  //   console.log('CommandOrControl+X is pressed')
-  //   robotjs.keyTap("X", "control");
-  // })
-
-  // if (!ret) {
-  //   console.log('registration failed')
-  // }
-
-  // Check whether a shortcut is registered.
-  // console.log(globalShortcut.isRegistered('CommandOrControl+X'))
-
-  mainWindow = new BrowserWindow({
-    show: true,
-    minWidth: 900,
-    minHeight: 506,
-    // width: 1600,
-    // height: 900
-  });
-
-  mainWindow.loadURL(`file://${__dirname}/app.html`);
-
-  // @TODO: Use 'ready-to-show' event
-  //        https://github.com/electron/electron/blob/master/docs/api/browser-window.md#using-ready-to-show-event
-  mainWindow.webContents.on('did-finish-load', () => {
-    if (!mainWindow) {
-      throw new Error('"mainWindow" is not defined');
-    }
-    mainWindow.show();
-    mainWindow.focus();
-  });
-
-  mainWindow.on('closed', () => {
-    mainWindow = null;
-  });
-
-  const menuBuilder = new MenuBuilder(mainWindow);
-  menuBuilder.buildMenu();
-});
+app.on('ready', async () => window.init(`file://${__dirname}/app.html`))

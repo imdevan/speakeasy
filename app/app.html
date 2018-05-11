@@ -17,6 +17,19 @@
   </head>
   <body>
     <div id="root"></div>
+    <script type="text/javascript">
+      window.onload = function () {
+        document.onkeydown = function (e) {
+          if ((e.which || e.keyCode) == 116 || (e.which || e.keyCode) == 115) {
+            debugger
+            console.log('why dont you love me');
+
+            e.preventDefault();
+            return false;
+          }
+        };
+      }
+    </script>
     <script>
       {
         const scripts = [];

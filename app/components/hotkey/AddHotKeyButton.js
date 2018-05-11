@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import faPlus from '@fortawesome/fontawesome-pro-light/faPlus'
+
 import * as popUpActions from '../../actions/popUpActions'
 
 import capitalize from '../../utils/capitalize';
@@ -38,22 +41,38 @@ class AddHotKeyButton extends Component {
   }
 
   handleKeyEvent(e) {
-    e.preventDefault();
-    const { altKey, ctrlKey, shiftKey, metaKey, key } = e;
-    let _key = '';
+    const { self } = this.props;
 
-    if (ctrlKey && key.toLowerCase() !== 'control')
+    if (self && self.show) {
+      const { altKey, ctrlKey, shiftKey, metaKey, key } = e;
+
+      let _key = '';
+
+      if (ctrlKey && key.toLowerCase() !== 'control')
       _key += 'Control + '
 
-    if (shiftKey && key.toLowerCase() !== 'shift')
+      if (shiftKey && key.toLowerCase() !== 'shift')
       _key += 'Shift + '
 
-    if (altKey && key.toLowerCase() !== 'alt')
+      if (altKey && key.toLowerCase() !== 'alt')
       _key += 'Alt + '
 
-    _key += capitalize(key)
+      _key += capitalize(key)
 
-    this.setState({ key: _key });
+      this.setState({ key: _key });
+
+      e.preventDefault();
+
+      if ((e.which || e.keyCode) == 116) {
+        e.preventDefault();
+      }
+      if ((e.which || e.keyCode) == 115) {
+        debugger
+        e.preventDefault();
+      }
+
+      return false
+    }
   }
 
   clearState(){
@@ -63,7 +82,7 @@ class AddHotKeyButton extends Component {
   renderHotkeyButton() {
     return(
       <div className='c-btn c-btn-round c-position-bottom-right'>
-        <Icon icon='plus' />
+        <FontAwesomeIcon icon={faPlus} />
       </div>
     )
   }
@@ -79,6 +98,7 @@ class AddHotKeyButton extends Component {
 
   render() {
     const { key } = this.state;
+    const {self} = this.props;
 
     return (
       <PopUpButton
@@ -111,7 +131,7 @@ class AddHotKeyButton extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  self: state.popUp[ownProps.name],
+  self: state.popUp['add-hotkey'],
 });
 
 const mapDispatchToProps = (dispatch) => ({
