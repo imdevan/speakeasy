@@ -29,7 +29,6 @@ const register = (data) => {
 
 const unRegisterAll = () => {
   console.log('events.unRegisterAll called');
-  console.log(data);
   // globalShortcut.unregisterAll()
 }
 

@@ -202,6 +202,7 @@
     "electron-unhandled": "^1.1.0",
     "firebase": "^4.13.1",
     "history": "^4.6.3",
+    "path": "^0.12.7",
     "raw-loader": "^0.5.1",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.2",
