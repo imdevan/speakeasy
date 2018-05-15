@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Dropdown from '../common/Dropdown';
+import React from 'react'
+import PropTypes from 'prop-types'
+import Dropdown from '../common/Dropdown'
 
-const HotKeyButton = ({value = ' ', className}) => {
+const HotKeyAction = ({value = ' ', className}) => {
   function handleClick(e) {
-    e.preventDefault();
+    e.preventDefault()
 
     onChange(value)
   }
@@ -22,26 +22,32 @@ const HotKeyButton = ({value = ' ', className}) => {
         <hr/>,
         {label: 'Switch Profile'},
         {label: 'Disable'},
+        <hr/>,
+        {
+          label: 'Remove Hotkey',
+          onClick: () => console.log('remove hotkey here')
+        }
       ]}>
+
       <div className='text-center'>
         {value || <span>👌</span>}
       </div>
     </Dropdown>
   )
-};
+}
 
-HotKeyButton.propTypes = {
+HotKeyAction.propTypes = {
   value: PropTypes.string,
   title: PropTypes.string,
   onChange: PropTypes.func,
   className: PropTypes.string
-};
+}
 
-HotKeyButton.defaultProps = {
+HotKeyAction.defaultProps = {
   value: '',
   title: '',
   onChange: () => {},
   className: 'c-action'
-};
+}
 
-export default HotKeyButton;
+export default HotKeyAction

@@ -13,6 +13,7 @@ class Form extends  React.Component {
     className: '',
     showSubmitButton: true
   }
+
   constructor(props, context){
     super(props, context);
     this.renderField = this.renderField.bind(this);
@@ -62,6 +63,7 @@ class Form extends  React.Component {
       )
     }
   }
+
   renderField(field, key) {
     const {initialValues} = this.props;
     const {

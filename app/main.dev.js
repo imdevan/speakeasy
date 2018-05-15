@@ -19,6 +19,7 @@ unhandled()
 // import Tray from './electron/Tray'
 import watchFile from './electron/services/watchFile'
 import events from './electron/services/events'
+import { windowOptions } from './electron/config/project'
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support')
@@ -32,18 +33,9 @@ if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true')
   require('module').globalPaths.push(p)
 }
 
-app.on('window-all-closed', () => {
-  // Respect the OSX convention of having the application in memory even
-  // after all windows have been closed
-  if (process.platform !== 'darwin') {
-    // Unregister all shortcuts.
-    // events.unRegisterAll()
-    // app.quit()
-  }
-})
-
 let _window
 let _tray
+let force_quit = false
 app.on('ready', async () => {
   if (process.platform === 'darwin') {
     app.dock.hide() // hide app from dock on Mac OS
@@ -53,18 +45,32 @@ app.on('ready', async () => {
   watchFile.init(events.register)
 
   // init window
-  _window = new BrowserWindow()
+  _window = new BrowserWindow(windowOptions)
   _window.loadURL(`file://${__dirname}/app.html`)
+
+  // Emitted when the window is closed.
+  _window.on('close', (event) => {
+    if (!force_quit)
+      event.preventDefault()
+
+    _window.hide();
+  })
   Menu.setApplicationMenu(null)
 
   // init tray icon
   _tray = new Tray(path.join(__dirname, 'ok-emoji.png'), _window)
-  _tray.on('click', () => _window.show())
+  _tray.on('click', () => {
+    _window.show()
+    _window.focus()
+  })
   _tray.on('right-click', () => {
     const menuConfig = Menu.buildFromTemplate([
       {
         label: 'Exit',
-        click: () => app.quit(),
+        click: () => {
+          force_quit = true
+          app.quit()
+        }
       },
     ])
 
@@ -76,6 +82,5 @@ app.on('ready', async () => {
 app.on('quit', () => {
   _window = null
   _tray = null
-  console.log('quit called');
-
+  events.unRegisterAll()
 })
