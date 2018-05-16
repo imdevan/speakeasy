@@ -34,8 +34,8 @@ const register = data => {
   // registerKeys(data)
 
   registerKeys([{
-      hotKey: 'F3',
-      action: ['tab', 'command']
+      hotKey: 'CommandOrControl+F3',
+      action: ['printscreen', 'command']
     }, {
       hotKey: 'F4',
       action: ['left', 'alt']
