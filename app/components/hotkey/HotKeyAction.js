@@ -11,7 +11,7 @@ const HotKeyAction = ({value = ' ', className}) => {
 
   return(
     <Dropdown
-      className={className}
+      className={`c-action ${className}`}
       options={[
         {label: 'Macro >'},
         {label: 'Media >'},
@@ -47,7 +47,7 @@ HotKeyAction.defaultProps = {
   value: '',
   title: '',
   onChange: () => {},
-  className: 'c-action'
+  className: ''
 }
 
 export default HotKeyAction

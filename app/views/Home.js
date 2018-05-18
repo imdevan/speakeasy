@@ -19,6 +19,7 @@ import ProfileSwitcher from '../components/profileSwitcher/ProfileSwitcher';
 import background from '../assets/svg/background.svg';
 import HotKeyTable from '../components/hotkey/HotKeyTable';
 import AddHotKeyButton from '../components/hotkey/AddHotKeyButton';
+import DraggableTest from '../components/DraggableTest';
 
 class Home extends Component {
   constructor(props, context){
@@ -71,6 +72,7 @@ class Home extends Component {
           </div>
           <ProfileSwitcher className='mb-5'/>
           <HotKeyTable hotkeyOptions={_activeProfile.hotKeys}/>
+          {/* <DraggableTest /> */}
         </SCC>
 
         <SCC className='fixed-bottom'>

@@ -12,10 +12,8 @@ const HotKeyButton = ({ title, value, index, className, onChange, popup_actions}
     onChange(value)
   }
 
-  className += ` c-hotkey`;
-
   return(
-    <div className={className} onClick={handleClick}>
+    <div className={`c-hotkey ${className}`} onClick={handleClick}>
       {value}
     </div>
   )

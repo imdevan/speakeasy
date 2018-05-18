@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux'
+import ReactDOM from 'react-dom';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import * as popUpActions from '../../actions/popUpActions'
 
@@ -17,17 +19,54 @@ import HotKey from './HotKeyButton';
 import HotKeyAction from './HotKeyAction';
 import { debug } from 'builder-util';
 
+const getItemStyle = (isDragging, draggableStyle, isTop) => ({
+  // some basic styles to make the items look a bit nicer
+  userSelect: 'none',
+  paddingTop: 16,
+  // styles we need to apply on draggables
+  ...draggableStyle,
+});
+
+// a little function to help us with reordering the result
+const reorder = (list, startIndex, endIndex) => {
+  const result = Array.from(list);
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
+
+  return result;
+};
+
 class HotKeyTable extends Component {
   constructor(props, context){
     super(props, context);
 
+    this.state = {
+      items: this.props.hotkeyOptions
+    }
+
+    this.onDragEnd = this.onDragEnd.bind(this);
     this.renderRow = this.renderRow.bind(this);
     this.renderEmptyState = this.renderEmptyState.bind(this);
   }
 
-  renderEmptyState(_hotkey, i){
-    const {hotkeyOptions} = this.props
+  onDragEnd(result) {
+    // dropped outside the list
+    if (!result.destination) {
+      return;
+    }
 
+    const items = reorder(
+      this.state.items,
+      result.source.index,
+      result.destination.index
+    );
+
+    this.setState({
+      items,
+    });
+  }
+
+  renderEmptyState(){
     return (
       <Row className='align-items-center my-md-5 py-md-5 mx-md-5 px-md-5 mb-md-3'>
         <Col sm={3} className='mb-4 mb-md-0'>
@@ -45,23 +84,39 @@ class HotKeyTable extends Component {
     )
   }
 
-  renderRow(_hotkey, i){
+  renderRow(item, i){
     const {hotkeyOptions} = this.props
 
     return (
-      <Row key={_hotkey.hotKey + i} className='mb-3'>
-        <Col>
-          <HotKey value={_hotkey.hotKey} index={i} />
-        </Col>
-        <Col>
-          <HotKeyAction value={_hotkey.action} />
-        </Col>
-      </Row>
+      <Draggable key={item.hotKey + i} draggableId={item.hotKey + i} index={i}>
+        {(dp, ds) => (
+          <div
+            ref={dp.innerRef}
+            {...dp.draggableProps}
+            {...dp.dragHandleProps}
+            style={getItemStyle(
+              ds.isDragging,
+              dp.draggableProps.style,
+              i === 0
+            )}>
+            <Row >
+              <Col>
+                <HotKey value={item.hotKey} index={i} className={`${ds.isDragging ? 'c-drop-shadow' : ''}`} />
+              </Col>
+              <Col>
+                <HotKeyAction value={item.action} className={`${ds.isDragging ? 'c-drop-shadow' : ''}`} />
+              </Col>
+            </Row>
+          </div>
+        )}
+      </Draggable>
     )
   }
 
+  // TODO: split things out into separate components.
   render() {
     const {hotkeyOptions} = this.props
+    const {items} = this.state;
 
     if(!hotkeyOptions)
       return this.renderEmptyState()
@@ -69,14 +124,26 @@ class HotKeyTable extends Component {
     return (
       <div>
         <Row>
-          <Col sm={6} className='col mb-3'>
+          <Col sm={6} className='col'>
             <h5>Key</h5>
           </Col>
-          <Col sm={6} className='col mb-3'>
+          <Col sm={6} className='col'>
             <h5>Action</h5>
           </Col>
         </Row>
-        {hotkeyOptions.map(this.renderRow)}
+
+        <DragDropContext onDragEnd={this.onDragEnd}>
+          <Droppable droppableId="droppable">
+            {(dropP, dropS) => (
+              <div
+                ref={dropP.innerRef}
+                className={`${dropS.isDraggingOver ? '' : ''}`} >
+                {items.map(this.renderRow)}
+                {dropP.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
       </div>
     );
   }
