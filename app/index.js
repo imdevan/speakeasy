@@ -1,11 +1,12 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-import Root from './views/Root';
-import { configureStore, history } from './store/configureStore';
-import './styles/index.global.scss';
 
-const store = configureStore();
+import { store, history } from './store';
+
+import Root from './views/Root';
+
+import './styles/index.global.scss';
 
 render(
   <AppContainer>

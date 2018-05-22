@@ -1,19 +1,34 @@
 
 import storage from 'electron-json-storage'
+import path from 'path'
 import fs from 'fs'
 
 import unhandled from 'electron-unhandled'
 unhandled();
 
+const getData = callBack => {
+  storage.getAll(function (error, data) {
+    if (error) throw error;
+
+    callBack(data)
+  });
+}
+
 const init = (callBack) => {
-  const dataPath = storage.getDataPath();
+  const dataPath = path.join(storage.getDataPath(), 'majorKeyHotkeys.json');
 
-  fs.watchFile(`${dataPath}/majorKey.json`, (curr, prev) => {
-    storage.getAll(function (error, data) {
+  // If file doesn't exist
+  if (!fs.existsSync(dataPath)) {
+    storage.set('majorKeyHotkeys', { value: 'default' }, error => {
       if (error) throw error;
-
-      callBack(data)
     });
+  } else {
+    getData(callBack)
+  }
+
+  // Watch file for changes
+  fs.watchFile(dataPath, (curr, prev) => {
+    getData(callBack)
   });
 }
 

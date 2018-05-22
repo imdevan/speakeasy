@@ -62,15 +62,6 @@ class AddHotKeyButton extends Component {
       this.setState({ key: _key });
 
       e.preventDefault();
-
-      if ((e.which || e.keyCode) == 116) {
-        e.preventDefault();
-      }
-      if ((e.which || e.keyCode) == 115) {
-        debugger
-        e.preventDefault();
-      }
-
       return false
     }
   }

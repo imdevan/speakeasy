@@ -203,6 +203,7 @@
     "electron-unhandled": "^1.1.0",
     "firebase": "^4.13.1",
     "history": "^4.6.3",
+    "lodash": "^4.17.10",
     "path": "^0.12.7",
     "raw-loader": "^0.5.1",
     "react": "^16.3.2",

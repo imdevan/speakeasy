@@ -44,8 +44,6 @@ class Nav extends Component {
   render(){
     const {profile} = this.props;
 
-    debugger
-
     if(!isLoaded(profile) || (isLoaded(profile) && isEmpty(profile)))
       return null
 

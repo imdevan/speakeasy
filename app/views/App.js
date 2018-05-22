@@ -1,14 +1,18 @@
 // @flow
 import React, { Component } from 'react'
 import type { Children } from 'react'
+import { withRouter } from 'react-router-dom';
 import {connect} from 'react-redux'
 import {bindActionCreators, compose } from 'redux'
-import * as currentUserActions from '../actions/currentUserActions'
 import { firebaseConnect , isLoaded, isEmpty, withFirebase } from 'react-redux-firebase'
-import Nav from '../components/app/Nav'
-import { withRouter } from 'react-router-dom';
-
 import storage from 'electron-json-storage'
+
+import * as currentUserActions from '../actions/currentUserActions'
+
+import Nav from '../components/app/Nav'
+import Svg from '../components/common/Svg'
+import background from '../assets/svg/background.svg'
+
 
 class App extends Component {
   props: {
@@ -22,10 +26,6 @@ class App extends Component {
       if (!user) {
         // User is signed out.
         current_user_actions.logout()
-
-        if(location && location.pathname !== '/login'){
-          history.push('/login')
-        }
       }
     })
   }
@@ -39,7 +39,6 @@ class App extends Component {
     }
 
     if(isLoaded(profile) && !isEmpty(profile) && !profile.hotKeyProfiles) {
-      debugger
       current_user_actions.fill();
     }
 
@@ -53,17 +52,18 @@ class App extends Component {
   }
 
   render() {
-    const {firebase} = this.props
-
     return (
       <div>
+        <div className='fixed-top w-100 h-100 c-z--1 c-o-hidden'>
+          <Svg src={background} />
+        </div>
         {this.props.children}
       </div>
     )
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDisToProps = dispatch => ({
   current_user_actions: bindActionCreators(currentUserActions, dispatch),
 })
 
@@ -76,8 +76,6 @@ const mapStateToProps = (state, ownProps)=> ({
 
 
 export default compose(
-  firebaseConnect(() => [
-    'profile'
-  ]),
-  connect(mapStateToProps, mapDispatchToProps)
+  firebaseConnect(() => [ 'profile' ]),
+  connect(mapStateToProps, mapDisToProps)
 )(withRouter(App));

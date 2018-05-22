@@ -13,5 +13,8 @@ export default {
       devTools: process.env.NODE_ENV === 'development',
       scrollBounce: true
     }
+  },
+  localStore: {
+    name: 'majorKeyStore'
   }
 }

@@ -1,4 +1,4 @@
-import { SET_HOTKEY } from '../actions/hotKeyActions';
+import { SET_HOTKEY } from '../actions/hotkeyActions';
 
 export default function (state = '~', action) {
   switch (action.type) {

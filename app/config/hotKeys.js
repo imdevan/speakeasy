@@ -1,28 +1,44 @@
 const DEFAULT_HOTKEY_PROFILES = {
   0: {
     name: 'profile 1',
-    hotKeys: {
+    hotkeys: {
       0: {
-        hotKey: 'w',
-        action: 'w'
+        hotkey: 'F7',
+        action: 'audio_prev'
+      },
+      1: {
+        hotkey: 'F8',
+        action: 'audio_play'
+      },
+      2: {
+        hotkey: 'F9',
+        action: 'audio_next'
+      },
+      3: {
+        hotkey: 'F10',
+        action: 'audio_vol_down'
+      },
+      4: {
+        hotkey: 'F11',
+        action: 'audio_vol_up'
       }
     }
   },
   1: {
     name: 'Profile 2',
-    hotKeys: {}
+    hotkeys: {}
   },
   2: {
     name: 'Profile 3',
-    hotKeys: {}
+    hotkeys: {}
   },
   3: {
     name: 'Profile 4',
-    hotKeys: {}
+    hotkeys: {}
   },
   4: {
     name: 'Profile 5',
-    hotKeys: {}
+    hotkeys: {}
   }
 }
 

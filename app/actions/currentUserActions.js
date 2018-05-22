@@ -1,4 +1,4 @@
-import hotKeys from '../config/hotKeys'
+import hotkeys from '../config/hotkeys'
 
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const UPDATE_CURRENT_USER = 'UPDATE_CURRENT_USER';
@@ -17,13 +17,12 @@ export function fill() {
   return (dispatch, getState, getFirebase) => {
     const firebase = getFirebase();
     const nextProps = {
-      hotKeyProfiles: hotKeys.DEFAULT_HOTKEY_PROFILES,
+      hotKeyProfiles: hotkeys.DEFAULT_HOTKEY_PROFILES,
       activeProfile: 0
     };
 
     firebase.updateProfile(nextProps).then(user => {
       if(user){
-        debugger
         dispatch(updateCurrentUser(nextProps))
       }
     });
@@ -40,13 +39,13 @@ export function loginOrCreate({email, password}) {
             email,
             displayName: email,
             activeProfile: 0,
-            hotKeyProfiles: hotKeys.DEFAULT_HOTKEY_PROFILES
+            hotKeyProfiles: hotkeys.DEFAULT_HOTKEY_PROFILES
           }).then(user => {
             const currentUser = {
               email,
               displayName: user.displayName,
               activeProfile: user.activeProfile,
-              hotKeyProfiles: hotKeys.DEFAULT_HOTKEY_PROFILES
+              hotKeyProfiles: hotkeys.DEFAULT_HOTKEY_PROFILES
             }
 
             dispatch(login(currentUser))

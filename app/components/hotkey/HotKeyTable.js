@@ -16,7 +16,7 @@ import faKeyboard from '@fortawesome/fontawesome-pro-light/faKeyboard'
 import faUserAstronaut from '@fortawesome/fontawesome-pro-light/faUserAstronaut'
 
 import HotKey from './HotKeyButton';
-import HotKeyAction from './HotKeyAction';
+import HotkeyAction from './HotkeyAction';
 import { debug } from 'builder-util';
 
 const getItemStyle = (isDragging, draggableStyle, isTop) => ({
@@ -104,7 +104,7 @@ class HotKeyTable extends Component {
                 <HotKey value={item.hotKey} index={i} className={`${ds.isDragging ? 'c-drop-shadow' : ''}`} />
               </Col>
               <Col>
-                <HotKeyAction value={item.action} className={`${ds.isDragging ? 'c-drop-shadow' : ''}`} />
+                <HotkeyAction hotkey={item} className={`${ds.isDragging ? 'c-drop-shadow' : ''}`} />
               </Col>
             </Row>
           </div>
