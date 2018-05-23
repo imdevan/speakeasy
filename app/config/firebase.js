@@ -8,7 +8,7 @@ export default {
   },
   // react-redux-firebase options
   rrfConig:{
-    userProfile: 'users', // fireb  ase root where user profiles are
+    userProfile: 'users', // firebase root where user profiles are
     enableLogging: true, // enable/disable Firebase's database loggingstored
   }
 }

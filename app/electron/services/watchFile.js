@@ -4,34 +4,32 @@ import path from 'path'
 import fs from 'fs'
 
 import unhandled from 'electron-unhandled'
-unhandled();
+unhandled()
 
-const getData = callBack => {
-  storage.getAll(function (error, data) {
-    if (error) throw error;
+const getData = (name, callBack) => {
+  storage.get(name, (error, data) => {
+    if (error) throw error
 
     callBack(data)
-  });
+  })
 }
 
-const init = (callBack) => {
-  const dataPath = path.join(storage.getDataPath(), 'majorKeyHotkeys.json');
+const watchFile = (name, callBack) => {
+  const dataPath = path.join(storage.getDataPath(), `${name}.json`)
 
   // If file doesn't exist
   if (!fs.existsSync(dataPath)) {
-    storage.set('majorKeyHotkeys', { value: 'default' }, error => {
-      if (error) throw error;
-    });
+    storage.set(name, {}, error => {
+      if (error) throw error
+    })
   } else {
-    getData(callBack)
+    getData(name, callBack)
   }
 
   // Watch file for changes
   fs.watchFile(dataPath, (curr, prev) => {
-    getData(callBack)
-  });
+    getData(name, callBack)
+  })
 }
 
-export default {
-  init
-}
+export default watchFile

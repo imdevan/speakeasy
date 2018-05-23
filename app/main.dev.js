@@ -11,19 +11,23 @@
  * @flow
  */
 import { app, BrowserWindow, Tray, Menu } from 'electron'
+import storage from 'electron-json-storage'
 import path from 'path'
+import fs from 'fs'
 import unhandled from 'electron-unhandled'
 unhandled()
 
 import watchFile from './electron/services/watchFile'
 import events from './electron/services/events'
-import { windowOptions } from './electron/config/project'
+import { windowOptions, LOCAL_STORE } from './electron/config/project'
 
+// Production overhead
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support')
   sourceMapSupport.install()
 }
 
+// Development overhead
 if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
   require('electron-debug')()
   const path = require('path')
@@ -31,10 +35,12 @@ if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true')
   require('module').globalPaths.push(p)
 }
 
+// Local variables
 let _window
 let _tray
 let force_quit = false
 
+// Manage Tray
 const initTray = () => {
   _tray = new Tray(path.join(__dirname, 'ok-emoji.png'), _window)
 
@@ -44,21 +50,20 @@ const initTray = () => {
   })
 
   _tray.on('right-click', () => {
-    const menuConfig = Menu.buildFromTemplate([
-      {
-        label: 'Exit',
-        click: () => {
-          force_quit = true
-          app.quit()
-        }
-      },
-    ])
+    const menuConfig = Menu.buildFromTemplate([{
+      label: 'Exit',
+      click: () => {
+        force_quit = true
+        app.quit()
+      }
+    }])
 
     _tray.popUpContextMenu(menuConfig) // originall Tray method
   })
   _tray.setToolTip('Majorkey 👌') // method in parent class
 }
 
+// Manage Window
 const initWindow = () => {
   // init window
   _window = new BrowserWindow(windowOptions)
@@ -72,6 +77,21 @@ const initWindow = () => {
     _window.hide();
   })
 
+  // First load
+  storage.get(LOCAL_STORE, store => {
+    console.log('LOCAL_STORE', LOCAL_STORE);
+    console.log('store', store);
+
+    if (!store || !store.setUpComplete) {
+      _window.show()
+      _window.focus()
+
+      if (process.env.NODE_ENV === 'development') {
+        _window.webContents.openDevTools()
+      }
+    }
+  })
+
   Menu.setApplicationMenu(null)
 }
 
@@ -80,7 +100,7 @@ app.on('ready', async () => {
     app.dock.hide() // hide app from dock on Mac OS
   }
 
-  watchFile.init(events.register)
+  watchFile(LOCAL_STORE, events.register)
   initWindow()
   initTray()
 })

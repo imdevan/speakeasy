@@ -22,13 +22,15 @@ const registerKeys = keys => {
 }
 
 const register = data => {
-
   /**
    * Add event listeners here
    */
   // https://github.com/electron/electron/blob/master/docs/api/global-shortcut.md
   // https://github.com/electron/electron/blob/master/docs/api/accelerator.md
   // https://robotjs.io/docs/syntax
+  console.log('EVENTS REGISTER DATA');
+  console.log(data);
+  console.log(data);
 
   registerKeys([{
       hotKey: 'CommandOrControl+F3',
