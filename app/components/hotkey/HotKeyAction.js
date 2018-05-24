@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
+import getLabel from '../../utils/hotkeys/getLabel'
+
 import * as hotkeyActions from '../../actions/hotkeyActions'
 
 import Dropdown from '../common/Dropdown'
@@ -34,7 +36,7 @@ class HotkeyAction extends Component {
         ]}>
 
         <div className='text-center'>
-          {action || <span>👌</span>}
+          {getLabel(action)}
         </div>
       </Dropdown>
     )
