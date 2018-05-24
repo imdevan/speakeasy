@@ -41,12 +41,13 @@ class Home extends Component {
     )
   }
   render() {
-    const { profile, firebase, hotkey_actions } = this.props
+    const { profile, firebase, hotkey_actions, hotkeys } = this.props
 
     if(!isLoaded(profile))
       return this.renderLoading()
 
-    const {hotKeyProfiles, activeProfile} = profile
+    const { hotKeyProfiles } = profile
+    const { activeProfile } = hotkeys
     const _activeProfile = hotKeyProfiles && (typeof activeProfile !== 'undefined') ? hotKeyProfiles[activeProfile] : []
 
     return (
@@ -74,6 +75,7 @@ function mapStateToProps(state, ownProps){
   return {
     auth: state.firebase.auth,
     currentUser:  state.currentUser,
+    hotkeys:  state.hotkeys,
     profile: state.firebase.profile
   }
 }
