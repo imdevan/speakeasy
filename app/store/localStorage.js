@@ -1,33 +1,37 @@
-import storage from 'electron-json-storage'
-import { localStore } from '../electron/config/project'
+import electronStorage from 'electron-json-storage'
+import { LOCAL_STORE } from '../electron/config/project'
 
 // Load / Save to browser storage
 export const loadState = () => {
   try {
-    const serializedState = localStorage.getItem(localStore.name);
+    const serializedState = localStorage.getItem(LOCAL_STORE)
+
     if (serializedState === null) {
-      return undefined;
+      return undefined
     }
-    return JSON.parse(serializedState);
+
+    return JSON.parse(serializedState)
   } catch (err) {
-    console.log("ERROR LOADING STATE: ", err);
-    return undefined;
+    console.error('ERROR LOADING STATE:', err)
+    return undefined
   }
 }
 
 export const saveState = state => {
   try {
-    const serializedState = JSON.stringify(state);
-    localStorage.setItem(localStore.name, serializedState);
+    const serializedState = JSON.stringify(state)
+
+    localStorage.setItem(LOCAL_STORE, serializedState)
+    saveForElectron(state)
   } catch (err) {
-    console.log("ERROR SAVING STATE: ", err);
+    console.error('ERROR SAVING STATE:', err)
   }
 }
 
 // Load / Save to electron storage
 export const loadFromElectronState = () => {
   return new Promise((resolve, reject) => {
-    storage.get(localStore.name, (error, data) => {
+    storage.get(LOCAL_STORE, (error, data) => {
       if (error)
         reject(error, data)
       else if (data === null)
@@ -38,10 +42,10 @@ export const loadFromElectronState = () => {
   })
 }
 
-const saveForElectron = state => {
-  localStorage.set(
-    localStore.name,
-    state,
+const saveForElectron = data => {
+  electronStorage.set(
+    LOCAL_STORE,
+    data,
     error => { if (error) throw error }
   )
 }
