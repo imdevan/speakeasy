@@ -4,7 +4,7 @@ import { routerReducer as router } from 'react-router-redux';
 import { firebaseReducer as firebase } from 'react-redux-firebase'
 import { reducer as formReducer } from 'redux-form'
 
-import hotkey from './hotkey';
+import hotkeys from './hotkeys';
 import currentUser from './currentUser';
 import profile from './profile';
 import microphone from './microphone';
@@ -13,7 +13,7 @@ import popUp from './popUp';
 
 const rootReducer = combineReducers({
   runOnStartup,
-  hotkey,
+  hotkeys,
   currentUser,
   profile,
   microphone,

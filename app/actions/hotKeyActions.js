@@ -1,56 +1,93 @@
-import {updateProfile as updateUserProfile} from './currentUserActions';
+import { updateProfile as updateUserProfile } from './currentUserActions'
 
-export const SET_HOTKEY_PROFILES = 'SET_HOTKEY_PROFILES';
-export const ADD_HOTKEY = 'ADD_HOTKEY';
+import hotkeys from '../config/hotkeys'
+import toArray from '../utils/toArray'
 
-const setProfiles = hotkeyProfiles => ({
+export const SET_HOTKEY_PROFILES = 'SET_HOTKEY_PROFILES'
+export const SET_ACTIVE_HOTKEY_PROFILE = 'SET_ACTIVE_HOTKEY_PROFILE'
+export const ADD_HOTKEY = 'ADD_HOTKEY'
+
+/**
+ * Overrides all profiles
+ * @param {*} profiles next profiles
+ */
+export const setProfiles = profiles => ({
   type: SET_HOTKEY_PROFILES,
-  hotkeyProfiles
+  profiles
 })
 
-export const load = () => ((dispatch, getState) => {
-  // Load from raezac
+/**
+ * Sets the active profile
+ * @param {number} activeProfile profile to switch to
+ */
+export const setActive = activeProfile => ({
+  type: SET_ACTIVE_HOTKEY_PROFILE,
+  activeProfile
 })
 
+/**
+ * Adds hotkey to current Profile
+ * @param {*} hotkey Hotkey to add
+ */
 export const add = hotkey => {
   return (dispatch, getState) => {
-    const {
-      profile,
-    } = this.props;
 
     let {
       activeProfile,
-      hotkeyProfiles
-    } = profile;
+      profiles
+    } = profile
 
     if (!hotkey)
-      return null;
+      return null
 
-    if (hotkeyProfiles[activeProfile].hotkeys)
-      hotkeyProfiles[activeProfile].hotkeys.push({ hotkey });
+    if (profiles[activeProfile].hotkeys)
+      profiles[activeProfile].hotkeys.push({ hotkey })
     else
-      hotkeyProfiles[activeProfile].hotkeys = [{ hotkey }];
+      profiles[activeProfile].hotkeys = [{ hotkey }]
 
-    dispatch(setProfiles(hotkeyProfiles))
-    dispatch(updateUserProfile({hotkeyProfiles}))
+    dispatch(setProfiles(profiles))
+    dispatch(updateUserProfile({ profiles }))
   }
 }
 
+/**
+ * Changes single hotkey trigger
+ * @param {*} hotkey Hotkey to edit
+ */
 export const editHotkey = hotkey => {
   return (dispatch, getState) => {
-    const { profile, hotkeyProfiles } = getState();
-    const { activeProfile } = profile;
+    const { profile, profiles } = getState()
+    const { activeProfile } = profile
 
-    if (hotkeyProfiles[activeProfile].hotkeys)
-      hotkeyProfiles[activeProfile].hotkeys.push({ hotkey });
+    if (profiles[activeProfile].hotkeys)
+      profiles[activeProfile].hotkeys.push({ hotkey })
     else
-      hotkeyProfiles[activeProfile].hotkeys = [{ hotkey }];
+      profiles[activeProfile].hotkeys = [{ hotkey }]
 
-    dispatch(updateUserProfile({ hotkeyProfiles }))
+    dispatch(updateUserProfile({ profiles }))
   }
 }
 
+/**
+ * Removes a hotkey from the active profile
+ * @param {*} hotkey Hotkey to remove
+ */
 export const removeHotkey = hotkey => ({
   type: REMOVE_HOTKEY,
   hotkey
+})
+
+/**
+ * Set's default hotkey profiles from config
+ */
+export const setDefaultHotkeys = () => ((dispatch, getState) => {
+  return dispatch(
+    setProfiles(
+      toArray(hotkeys.DEFAULT_HOTKEY_PROFILES)
+        .map(p => ({
+          ...p,
+          hotkeys: toArray(p.hotkeys)
+        }))
+    )
+  )
 })
