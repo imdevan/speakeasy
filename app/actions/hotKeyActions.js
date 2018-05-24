@@ -31,21 +31,18 @@ export const setActive = activeProfile => ({
  */
 export const add = hotkey => {
   return (dispatch, getState) => {
-
-    let {
-      activeProfile,
-      profiles
-    } = profile
+    const { activeProfile, profiles } = getState().hotkeys
 
     if (!hotkey)
       return null
 
+    debugger
     if (profiles[activeProfile].hotkeys)
       profiles[activeProfile].hotkeys.push({ hotkey })
     else
       profiles[activeProfile].hotkeys = [{ hotkey }]
 
-    dispatch(setProfiles(profiles))
+    dispatch(updateProfile(profiles))
     dispatch(updateUserProfile({ profiles }))
   }
 }
