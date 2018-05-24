@@ -88,7 +88,7 @@ class HotKeyTable extends Component {
     const {hotkeyOptions} = this.props
 
     return (
-      <Draggable key={item.hotKey + i} draggableId={item.hotKey + i} index={i}>
+      <Draggable key={item.hotkey + i} draggableId={item.hotkey + i} index={i}>
         {(dp, ds) => (
           <div
             ref={dp.innerRef}
@@ -101,7 +101,7 @@ class HotKeyTable extends Component {
             )}>
             <Row >
               <Col>
-                <HotKey value={item.hotKey} index={i} className={`${ds.isDragging ? 'c-drop-shadow' : ''}`} />
+                <HotKey value={item.hotkey} index={i} className={`${ds.isDragging ? 'c-drop-shadow' : ''}`} />
               </Col>
               <Col>
                 <HotkeyAction hotkey={item} className={`${ds.isDragging ? 'c-drop-shadow' : ''}`} />
