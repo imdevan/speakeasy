@@ -1,68 +1,117 @@
 import { globalShortcut } from 'electron'
 import robot from 'robotjs'
+import cp from 'copy-paste'
 
 import unhandled from 'electron-unhandled'
 unhandled()
 
 const registerKeys = keys => {
   keys.forEach(key => {
-    if (key.action) {
-      const {hotKey, action} = key
+    const {hotkey, action} = key
 
-      globalShortcut.register(hotKey, () => {
-        console.log(`${hotKey} is pressed`, action)
+    globalShortcut.register(hotkey, () => {
+      const {type, value} = action
 
-        if (Array.isArray(action))
-          robot.keyTap(...action)
-        else
-          robot.keyTap(action)
-      })
-    }
+      switch(type){
+        case 'combo':
+          robot.keyTap(...value)
+          break
+        case 'type':
+          robot.typeString(value)
+          break
+        case 'paste':
+          // TODO: issue => paste only returns value (doesn't actually paste)
+          console.log('copied', value);
+
+          cp.copy(value, () => {
+            console.log('copied', value)
+            cp.paste(() => console.log('pasted', value))
+          })
+          break
+        default:
+          robot.keyTap(value)
+          break
+      }
+      return false
+    })
   })
 }
 
+/**
+ * Add event listeners here
+ * https://github.com/electron/electron/blob/master/docs/api/global-shortcut.md
+ * https://github.com/electron/electron/blob/master/docs/api/accelerator.md
+ * https://robotjs.io/docs/syntax
+ * When the accelerator is already taken by other applications, this call will silently fail. This behavior is intended by operating systems, since they don't want applications to fight for global shortcuts.
+ */
 const register = data => {
-  /**
-   * Add event listeners here
-   */
-  // https://github.com/electron/electron/blob/master/docs/api/global-shortcut.md
-  // https://github.com/electron/electron/blob/master/docs/api/accelerator.md
-  // https://robotjs.io/docs/syntax
-  console.log('EVENTS REGISTER DATA');
-  console.log(data);
-  console.log(data);
-
   registerKeys([{
-      hotKey: 'CommandOrControl+F3',
-      action: ['printscreen', 'command']
-    }, {
-      hotKey: 'F4',
-      action: ['left', 'alt']
-    }, {
-      hotKey: 'F5',
-      action: ['right', 'alt']
-    }, {
-      hotKey: 'F6',
-      action: 'audio_mute'
-    }, {
-      hotKey: 'F7',
-      action: 'audio_prev'
-    }, {
-      hotKey: 'F8',
-      action: 'audio_play'
-    }, {
-      hotKey: 'F9',
-      action: 'audio_next'
-    }, {
-      hotKey: 'F10',
-      action: 'audio_vol_down'
-    }, {
-      hotKey: 'F11',
-      action: 'audio_vol_up'
-    }, {
-      hotKey: 'CommandOrControl+F12',
-      action: 'audio_stop'
-    }])
+    hotkey: 'F3',
+    action: {
+      type: 'type',
+      value: 'zerg rush'
+    }
+  },{
+    hotkey: 'CommandOrControl+F3',
+    action: {
+      type: 'combo',
+      value: ['printscreen', 'command']
+    }
+  }, {
+    hotkey: 'F4',
+    action: {
+      type: 'combo',
+      value: ['left', 'alt']
+    }
+  }, {
+    hotkey: 'F5',
+    action: {
+      type: 'combo',
+      value: ['right', 'alt']
+    }
+  }, {
+    hotkey: 'F6',
+    action: {
+      type: 'media',
+      value: 'audio_mute'
+    }
+  }, {
+    hotkey: 'F7',
+    action: {
+      type: 'media',
+      value: 'audio_prev'
+    }
+  }, {
+    hotkey: 'F8',
+    action: {
+      type: 'media',
+      value: 'audio_play'
+    }
+  }, {
+    hotkey: 'F9',
+    action: {
+      type: 'media',
+      value: 'audio_next'
+    }
+  }, {
+    hotkey: 'F10',
+    action: {
+      type: 'media',
+      value: 'audio_vol_down'
+    }
+  }, {
+    hotkey: 'F11',
+    action: {
+      type: 'media',
+      value: 'audio_vol_up'
+    }
+  }, {
+    hotkey: 'CommandOrControl+F12',
+    action: {
+      type: 'media',
+      value: 'audio_stop'
+    }
+  }])
 }
 
 const unRegisterAll = () => {
