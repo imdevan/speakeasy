@@ -31,7 +31,15 @@ class App extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-    const {history, firebase, location, profile, current_user_actions, currentUser} = nextProps;
+    const {
+      current_user_actions,
+      currentUser,
+      hotkeys,
+      history,
+      firebase,
+      location,
+      profile
+    } = nextProps;
     const authLoggedIn = firebase.auth().currentUser;
 
     if(!authLoggedIn && location && location.pathname !== '/login') {
@@ -39,15 +47,19 @@ class App extends Component {
     }
 
     if(isLoaded(profile) && !isEmpty(profile) && !profile.hotKeyProfiles) {
-      current_user_actions.fill();
+      // current_user_actions.fill();
+    }
+
+    if (hotkeys.profiles.length === 0) {
+      // current_user_actions.fill();
     }
 
     const majorKey = storage.get('majorKey')
 
     if(isLoaded(profile) && !isEmpty(profile) && !majorKey) {
-      storage.set('majorKey', { profile }, function(error) {
-        if (error) throw error;
-      });
+      // storage.set('majorKey', { profile }, function(error) {
+      //   if (error) throw error;
+      // });
     }
   }
 
@@ -71,6 +83,7 @@ const mapStateToProps = (state, ownProps)=> ({
   runOnStartup: state.runOnStartup,
   auth: state.firebase.auth,
   profile: state.firebase.profile,
+  hotkeys: state.hotkeys,
   currentUser: state.currentUser
 })
 

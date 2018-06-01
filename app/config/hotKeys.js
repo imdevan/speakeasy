@@ -1,3 +1,5 @@
+import toArray from '../utils/toArray'
+
 const DEFAULT_HOTKEY_PROFILES = {
   0: {
     name: 'profile 1',
@@ -42,4 +44,13 @@ const DEFAULT_HOTKEY_PROFILES = {
   }
 }
 
-export default {DEFAULT_HOTKEY_PROFILES}
+const defaultsAsArray = () => {
+  return toArray(DEFAULT_HOTKEY_PROFILES).map(prof => {
+    return {
+      ...prof,
+      hotkeys: toArray(prof.hotkeys)
+    }
+  })
+}
+
+export default { DEFAULT_HOTKEY_PROFILES, defaultsAsArray }

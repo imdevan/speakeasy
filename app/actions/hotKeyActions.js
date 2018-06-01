@@ -77,14 +77,11 @@ export const removeHotkey = hotkey => ({
 /**
  * Set's default hotkey profiles from config
  */
-export const setDefaultHotkeys = () => ((dispatch, getState) => {
-  return dispatch(
-    setProfiles(
-      toArray(hotkeys.DEFAULT_HOTKEY_PROFILES)
-        .map(p => ({
-          ...p,
-          hotkeys: toArray(p.hotkeys)
-        }))
-    )
-  )
+export const setDefaultHotkeys = () => (
+  (dispatch, getState, getFirebase) => {
+  const firebase = getFirebase()
+
+
+    firebase.updateProfile(hotkeys.DEFAULT_HOTKEY_PROFILES)
+    return dispatch(setProfiles(hotkeys.defaultsAsArray()))
 })
