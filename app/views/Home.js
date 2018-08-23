@@ -41,10 +41,15 @@ class Home extends Component {
     )
   }
   render() {
-    const { profile, firebase, hotkey_actions, hotkeys } = this.props
+    const { firebase, hotkey_actions, hotkeys } = this.props
 
-    if(!isLoaded(profile))
+    let { profile } = this.props;
+
+    if (!isLoaded(profile) && process.env.NODE_ENV === 'production')
       return this.renderLoading()
+
+    if (!profile.displayName)
+      profile.displayName = 'Devan'
 
     const { hotKeyProfiles } = profile
     const { activeProfile } = hotkeys

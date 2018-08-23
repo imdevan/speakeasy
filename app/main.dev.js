@@ -17,9 +17,9 @@ import fs from 'fs'
 import unhandled from 'electron-unhandled'
 unhandled()
 
-import watchFile from './electron/services/watchFile'
-import events from './electron/services/events'
 import { windowOptions, LOCAL_STORE } from './electron/config/project'
+import { config } from 'bluebird-lst';
+import configureStore, { watchStore } from './electron/services/configLocalStore';
 
 // Production overhead
 if (process.env.NODE_ENV === 'production') {
@@ -64,7 +64,7 @@ const initTray = () => {
 }
 
 // Manage Window
-const initWindow = () => {
+const initWindow = async () => {
   // init window
   _window = new BrowserWindow(windowOptions)
   _window.loadURL(`file://${__dirname}/app.html`)
@@ -77,20 +77,16 @@ const initWindow = () => {
     _window.hide();
   })
 
-  // First load
-  storage.get(LOCAL_STORE, store => {
-    console.log('LOCAL_STORE', LOCAL_STORE);
-    console.log('store', store);
+  let store = await configureStore(LOCAL_STORE);
 
-    if (!store || !store.setUpComplete) {
-      _window.show()
-      _window.focus()
+  if (!store || !store.setUpComplete){
+    _window.show()
+    _window.focus()
 
-      if (process.env.NODE_ENV === 'development') {
-        _window.webContents.openDevTools()
-      }
+    if (process.env.NODE_ENV === 'development') {
+      _window.webContents.openDevTools()
     }
-  })
+  }
 
   Menu.setApplicationMenu(null)
 }
@@ -100,8 +96,7 @@ app.on('ready', async () => {
     app.dock.hide() // hide app from dock on Mac OS
   }
 
-  watchFile(LOCAL_STORE, events.register)
-  initWindow()
+  await initWindow()
   initTray()
 })
 

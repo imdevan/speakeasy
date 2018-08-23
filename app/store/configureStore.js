@@ -8,7 +8,6 @@ import firebase from 'firebase'
 
 import rootReducer from '../reducers'
 import * as hotkeyActions from '../actions/hotkeyActions'
-import * as runOnStartupActions from '../actions/runOnStartupActions'
 
 const history = createHashHistory()
 
@@ -23,7 +22,7 @@ const firebaseConfig = {
 }
   // react-redux-firebase options
 const rrfConfig = {
-  userProfile: 'users', // fireb  ase root where user profiles are
+  userProfile: 'users', // firebase root where user profiles are
   enableLogging: true, // enable/disable Firebase's database loggingstored
 }
 

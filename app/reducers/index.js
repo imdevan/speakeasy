@@ -8,11 +8,11 @@ import hotkeys from './hotkeys';
 import currentUser from './currentUser';
 import profile from './profile';
 import microphone from './microphone';
-import runOnStartup from './runOnStartup';
+import setupComplete from './setupComplete';
 import popUp from './popUp';
 
 const rootReducer = combineReducers({
-  runOnStartup,
+  setupComplete,
   hotkeys,
   currentUser,
   profile,

@@ -6,7 +6,10 @@ import unhandled from 'electron-unhandled'
 unhandled()
 
 const registerKeys = keys => {
+  console
   keys.forEach(key => {
+    console.log('events.register key', key);
+
     const {hotkey, action} = key
 
     globalShortcut.register(hotkey, () => {
@@ -45,73 +48,8 @@ const registerKeys = keys => {
  * When the accelerator is already taken by other applications, this call will silently fail. This behavior is intended by operating systems, since they don't want applications to fight for global shortcuts.
  */
 const register = data => {
-  registerKeys([{
-    hotkey: 'F3',
-    action: {
-      type: 'type',
-      value: 'zerg rush'
-    }
-  },{
-    hotkey: 'CommandOrControl+F3',
-    action: {
-      type: 'combo',
-      value: ['printscreen', 'command']
-    }
-  }, {
-    hotkey: 'F4',
-    action: {
-      type: 'combo',
-      value: ['left', 'alt']
-    }
-  }, {
-    hotkey: 'F5',
-    action: {
-      type: 'combo',
-      value: ['right', 'alt']
-    }
-  }, {
-    hotkey: 'F6',
-    action: {
-      type: 'media',
-      value: 'audio_mute'
-    }
-  }, {
-    hotkey: 'F7',
-    action: {
-      type: 'media',
-      value: 'audio_prev'
-    }
-  }, {
-    hotkey: 'F8',
-    action: {
-      type: 'media',
-      value: 'audio_play'
-    }
-  }, {
-    hotkey: 'F9',
-    action: {
-      type: 'media',
-      value: 'audio_next'
-    }
-  }, {
-    hotkey: 'F10',
-    action: {
-      type: 'media',
-      value: 'audio_vol_down'
-    }
-  }, {
-    hotkey: 'F11',
-    action: {
-      type: 'media',
-      value: 'audio_vol_up'
-    }
-  }, {
-    hotkey: 'CommandOrControl+F12',
-    action: {
-      type: 'media',
-      value: 'audio_stop'
-    }
-  }])
+  console.log('events.register data', data);
+  registerKeys(data)
 }
 
 const unRegisterAll = () => {

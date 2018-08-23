@@ -76,8 +76,10 @@ class HotKeyTable extends Component {
         </Col>
         <Col sm={12} md={9}>
           <h2>
-            Looks like you don't have any hotkeys added,
-            hit the plus button to add one now
+            Welcome, to the future.
+{/*             
+            One small step for you, 
+            one giant leap for your keyboard. */}
           </h2>
         </Col>
       </Row>
@@ -128,7 +130,7 @@ class HotKeyTable extends Component {
             <h5>Key</h5>
           </Col>
           <Col sm={6} className='col'>
-            <h5>Action</h5>
+            <h5>Action</h5>s
           </Col>
         </Row>
 
