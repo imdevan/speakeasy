@@ -4,7 +4,8 @@ import { LOCAL_STORE } from '../electron/config/project'
 // Load / Save to browser storage
 export const loadState = () => {
   try {
-    const serializedState = localStorage.getItem(LOCAL_STORE)
+// This is wrong
+    // const serializedState = electronStorage.getItem(LOCAL_STORE)
 
     if (serializedState === null) {
       return undefined
@@ -20,8 +21,8 @@ export const loadState = () => {
 export const saveState = state => {
   try {
     const serializedState = JSON.stringify(state)
-
-    localStorage.setItem(LOCAL_STORE, serializedState)
+// This is wrong
+    // electronStorage.setItem(LOCAL_STORE, serializedState)
     saveForElectron(state)
   } catch (err) {
     console.error('ERROR SAVING STATE:', err)
@@ -31,11 +32,11 @@ export const saveState = state => {
 // Load / Save to electron storage
 export const loadFromElectronState = () => {
   return new Promise((resolve, reject) => {
-    storage.get(LOCAL_STORE, (error, data) => {
+    electronStorage.get(LOCAL_STORE, (error, data) => {
       if (error)
         reject(error, data)
       else if (data === null)
-        resolve(undefined)
+        resolve()
       else
         resolve(data)
     })

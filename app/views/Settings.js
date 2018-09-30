@@ -6,6 +6,7 @@ import { compose } from 'redux'
 import {connect} from 'react-redux';
 import { firebaseConnect, isLoaded, isEmpty, withFirebase } from 'react-redux-firebase'
 import {browserHistory,withRouter, Link} from "react-router-dom"
+import { loadFromElectronState } from '../store/localStorage';
 
 class Settings extends Component {
   constructor(props, context){
@@ -15,14 +16,23 @@ class Settings extends Component {
     this.logOut = this.logOut.bind(this);
   }
 
-  updateUserSettings(formValues){
+  updateUserSettings = (formValues) => {
     const {form, firebase, currentUser} = this.props;
     firebase.updateProfile(formValues);
   }
 
-  logOut(){
+  logOut = () => {
     const {firebase} = this.props;
     firebase.logout();
+  }
+
+  logLocalStore = () => {
+    loadFromElectronState().then(localStore => {
+      if(localStore)
+        console.log('localStore', localStore);
+      else
+        console.log('localStore NOT FOUND', localStore);
+    }).catch(err => console.log('localStore NOT FOUND', err))
   }
 
   render() {
@@ -64,6 +74,11 @@ class Settings extends Component {
               }]}
               submitButtonClassName='c-btn c-btn-cta'
               submitLabel='Update User Settings' />
+        </div>
+        <div>
+          <button className='c-link a' onClick={this.logLocalStore}>
+            Log local store
+          </button>
         </div>
         <div>
           <Link to='login' onClick={this.logOut}>

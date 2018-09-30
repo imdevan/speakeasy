@@ -56,7 +56,7 @@ const configureStore = async name => {
 
     let store = await accessStore(fileName);
 
-    if (!store || !store.setUpComplete)
+    if (!store || !store.hotkeyProfiles)
       store = await initializeStore(fileName);
 
     if (store && store.hotkeyProfiles)
