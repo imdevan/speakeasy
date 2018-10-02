@@ -1,5 +1,5 @@
 # MajorKey
-
+---
 
 ### A Cross-platform desktop app to remap keyboards
 
@@ -18,6 +18,11 @@ npm install --global --production windows-build-tools
 npm run abirebuild
 ./node_modules/.bin/electron-rebuild
 ```
+
+#### thanks to @vatyx for encouraging me to pick this project back up
+
+# Notes from the project I forked this from
+---
 
 ## Run
 
@@ -107,3 +112,4 @@ For an example app that uses this boilerplate and packages native dependencies, 
 
 ## Static Type Checking
 This project comes with Flow support out of the box! You can annotate your code with types, [get Flow errors as ESLint errors](https://github.com/amilajack/eslint-plugin-flowtype-errors), and get [type errors during runtime](https://github.com/codemix/flow-runtime) during development. Types are completely optional.
+
