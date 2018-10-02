@@ -44,6 +44,7 @@ const watchFile = fileName => {
     accessStore(fileName).then(store => {
       if (store && store.hotkeyProfiles && store.activeProfile) {
         const { hotkeyProfiles, activeProfile } = store;
+
         events.register(hotkeyProfiles[activeProfile])
       }
     })

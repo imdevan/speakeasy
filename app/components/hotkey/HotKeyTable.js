@@ -66,6 +66,9 @@ class HotKeyTable extends Component {
     });
   }
 
+  /**
+   * Renders empty state... not hotkeys
+   */
   renderEmptyState(){
     return (
       <Row className='align-items-center my-md-5 py-md-5 mx-md-5 px-md-5 mb-md-3'>
@@ -86,6 +89,9 @@ class HotKeyTable extends Component {
     )
   }
 
+  /**
+   * Renders row with hotkey and hotkey action buttons
+   */
   renderRow(item, i){
     const {hotkeyOptions} = this.props
 
@@ -115,17 +121,32 @@ class HotKeyTable extends Component {
     )
   }
 
+  /**
+   * Returns droppable function with row contents
+   */
+  renderRows(items){
+    return (dropP, dropS) => (
+      <div
+        ref={dropP.innerRef}
+        className={`${dropS.isDraggingOver ? '' : ''}`} >
+        {items && items.map(this.renderRow)}
+        {dropP.placeholder}
+      </div>
+    )
+  }
+
   // TODO: split things out into separate components.
   render() {
     const {hotkeyOptions} = this.props
     const {items} = this.state;
 
-    if(!hotkeyOptions)
-      return this.renderEmptyState()
+    // if(!hotkeyOptions)
+    //   return this.renderEmptyState()
 
     return (
       <div>
         <Row>
+          {/* Header */}
           <Col sm={6} className='col'>
             <h5>Key</h5>
           </Col>
@@ -136,14 +157,8 @@ class HotKeyTable extends Component {
 
         <DragDropContext onDragEnd={this.onDragEnd}>
           <Droppable droppableId="droppable">
-            {(dropP, dropS) => (
-              <div
-                ref={dropP.innerRef}
-                className={`${dropS.isDraggingOver ? '' : ''}`} >
-                {items.map(this.renderRow)}
-                {dropP.placeholder}
-              </div>
-            )}
+            {this.renderRows(items)}
+            <input name='inputHotKeyField' type='text' />
           </Droppable>
         </DragDropContext>
       </div>

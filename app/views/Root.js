@@ -9,6 +9,11 @@ type RootType = {
   history: {}
 };
 
+ 
+/**
+ * Returns root of React application. All things front end start here
+ * @param {RootType} param0 obect with store and history passed to it
+ */
 export default function Root({ store, history }: RootType) {
   return (
     <Provider store={store}>

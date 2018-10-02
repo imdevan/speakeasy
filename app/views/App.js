@@ -2,8 +2,8 @@
 import React, { Component } from 'react'
 import type { Children } from 'react'
 import { withRouter } from 'react-router-dom';
-import {connect} from 'react-redux'
-import {bindActionCreators, compose } from 'redux'
+import { connect } from 'react-redux'
+import { bindActionCreators, compose } from 'redux'
 import { firebaseConnect , isLoaded, isEmpty, withFirebase } from 'react-redux-firebase'
 import storage from 'electron-json-storage'
 
@@ -22,45 +22,52 @@ class App extends Component {
   componentWillMount(){
     const {firebase, current_user_actions,location, history} = this.props
 
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (!user) {
-        // User is signed out.
-        current_user_actions.logout()
-      }
-    })
+
+    /**
+     * TODO: 
+     * Find best place to put user auth, subscription, and app version / updates. 
+     * Seperate them as much as possible from everything else
+     */
+    // Check if user auth state changed
+    // firebase.auth().onAuthStateChanged(function(user) {
+    //     // User is signed out.
+    //     if (!user) {
+    //     current_user_actions.logout()
+    //   }
+    // })
   }
 
   componentWillReceiveProps(nextProps){
-    const {
-      current_user_actions,
-      currentUser,
-      hotkeys,
-      history,
-      firebase,
-      location,
-      profile
-    } = nextProps;
-    const authLoggedIn = firebase.auth().currentUser;
+    // const {
+    //   current_user_actions,
+    //   currentUser,
+    //   hotkeys,
+    //   history,
+    //   firebase,
+    //   location,
+    //   profile
+    // } = nextProps;
+    // const authLoggedIn = firebase.auth().currentUser;
 
-    if(!authLoggedIn && location && location.pathname !== '/login') {
-      history.push('/login')
-    }
+    // if(!authLoggedIn && location && location.pathname !== '/login') {
+    //   history.push('/login')
+    // }
 
-    if(isLoaded(profile) && !isEmpty(profile) && !profile.hotKeyProfiles) {
-      // current_user_actions.fill();
-    }
+    // if(isLoaded(profile) && !isEmpty(profile) && !profile.hotKeyProfiles) {
+    //   // current_user_actions.fill();
+    // }
 
-    if (hotkeys.profiles.length === 0) {
-      // current_user_actions.fill();
-    }
+    // if (hotkeys.profiles.length === 0) {
+    //   // current_user_actions.fill();
+    // }
 
-    const majorKey = storage.get('majorKey')
+    // const majorKey = storage.get('majorKey')
 
-    if(isLoaded(profile) && !isEmpty(profile) && !majorKey) {
-      // storage.set('majorKey', { profile }, function(error) {
-      //   if (error) throw error;
-      // });
-    }
+    // if(isLoaded(profile) && !isEmpty(profile) && !majorKey) {
+    //   // storage.set('majorKey', { profile }, function(error) {
+    //   //   if (error) throw error;
+    //   // });
+    // }
   }
 
   render() {

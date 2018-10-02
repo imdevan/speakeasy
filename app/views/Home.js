@@ -21,17 +21,13 @@ import AddHotKeyButton from '../components/hotkey/AddHotKeyButton'
 import loadingString from '../utils/loadingString'
 
 class Home extends Component {
-  constructor(props, context){
-    super(props, context)
-
-    this.state = {
-      showHotkeyPopup: false,
-      activeProfile: 0,
-      propsLoaded: false
-    }
+  state = {
+    showHotkeyPopup: false,
+    activeProfile: 0,
+    propsLoaded: false
   }
 
-  renderLoading(){
+  renderLoading() {
     return (
       <div className='fixed-top d-flex h-100 w-100 justify-content-center align-items-center'>
         <h3 className='mb-0 text-center'>
@@ -40,6 +36,7 @@ class Home extends Component {
       </div>
     )
   }
+
   render() {
     const { firebase, hotkey_actions, hotkeys } = this.props
 
@@ -63,12 +60,7 @@ class Home extends Component {
               Hi, {profile.displayName}
             </Link>
           </div>
-          <ProfileSwitcher className='mb-5'/>
           <HotKeyTable hotkeyOptions={_activeProfile.hotkeys}/>
-        </SCC>
-
-        <SCC className='fixed-bottom'>
-          <AddHotKeyButton onAddHotKey={hotkey_actions.add} />
         </SCC>
       </div>
     )

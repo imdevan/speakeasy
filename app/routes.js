@@ -9,6 +9,7 @@ import Home from './views/Home';
 export default () => (
   <App>
     <Switch>
+      <Route path="/logout" component={Login} />
       <Route path="/login" component={Login} />
       <Route path="/settings" component={Settings} />
       <Route path="/" component={Home} />
