@@ -21,10 +21,7 @@ const registerKeys = keys => {
           break
         case 'paste':
           // TODO: issue => paste only returns value (doesn't actually paste)
-          console.log('copied', value);
-
           cp.copy(value, () => {
-            console.log('copied', value)
             cp.paste(() => console.log('pasted', value))
           })
           break

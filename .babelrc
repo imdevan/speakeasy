@@ -7,14 +7,18 @@
     "stage-0",
     "react"
   ],
-  "plugins": ["add-module-exports", "dynamic-import-webpack"],
+  "plugins": ["emotion", "add-module-exports", "dynamic-import-webpack"],
   "env": {
     "production": {
       "presets": ["react-optimize"],
-      "plugins": ["babel-plugin-dev-expression"]
+      "plugins": [["emotion", { "hoist": true }], "babel-plugin-dev-expression"]
     },
     "development": {
       "plugins": [
+        [
+          "emotion",
+          { "sourceMap": true, "autoLabel": true }
+        ],
         "transform-class-properties",
         "transform-es2015-classes",
         ["flow-runtime", {

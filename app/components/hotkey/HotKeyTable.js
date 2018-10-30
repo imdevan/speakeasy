@@ -131,24 +131,13 @@ class HotKeyTable extends Component {
             <h5>Action</h5>
           </Col>
         </Row>
-
-        <DragDropContext onDragEnd={this.onDragEnd}>
-          <Droppable droppableId="droppable">
-            {(dropP, dropS) => (
-              <div
-                ref={dropP.innerRef}
-                className={`${dropS.isDraggingOver ? '' : ''}`} >
-                {items.map(this.renderRow)}
-                {dropP.placeholder}
-              </div>
-            )}
-          </Droppable>
-        </DragDropContext>
+        {/* create Hotykey form */}
+        {/* created hotkeys */}
       </div>
     );
   }
 }
-
+6
 const mdp = dispatch => ({
   popup_actions: bindActionCreators(popUpActions, dispatch),
 })

@@ -40,6 +40,7 @@ class Home extends Component {
       </div>
     )
   }
+
   render() {
     const { profile, firebase, hotkey_actions, hotkeys } = this.props
 
@@ -58,12 +59,7 @@ class Home extends Component {
               Hi, {profile.displayName}
             </Link>
           </div>
-          <ProfileSwitcher className='mb-5'/>
           <HotKeyTable hotkeyOptions={_activeProfile.hotkeys}/>
-        </SCC>
-
-        <SCC className='fixed-bottom'>
-          <AddHotKeyButton onAddHotKey={hotkey_actions.add} />
         </SCC>
       </div>
     )
