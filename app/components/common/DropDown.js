@@ -2,38 +2,29 @@ import React from 'react';
 import onClickOutside from 'react-onclickoutside';
 
 class DropDown extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {
-      open: false,
-      dropDownOffsetY: 0,
-      dropDownOffsetX: 0
-    };
-
-    this.toggleDropDown = this.toggleDropDown.bind(this);
-    this.closeDropDown = this.closeDropDown.bind(this);
-    this.calculateTransform = this.calculateTransform.bind(this);
-    this.renderDropDown = this.renderDropDown.bind(this);
+  state = {
+    open: false,
+    dropDownOffsetY: 0,
+    dropDownOffsetX: 0
   }
 
   componentDidMount() {
     this.calculateTransform();
   }
 
-  handleClickOutside() {
+  handleClickOutside = () => {
     this.closeDropDown()
   }
 
-  toggleDropDown() {
+  toggleDropDown = () => {
     this.setState({ open: !this.state.open });
   }
 
-  closeDropDown() {
+  closeDropDown = () => {
     this.setState({ open: false });
   }
 
-  calculateTransform() {
+  calculateTransform = () => {
     const { position } = this.props;
     let dropDownOffsetY = 0;
     let dropDownOffsetX = 0;
@@ -44,7 +35,7 @@ class DropDown extends React.Component {
     this.setState({ dropDownOffsetY, dropDownOffsetX });
   }
 
-  renderDropDownOption(option) {
+  renderDropDownOption = (option) => {
     const { dropDownItemClassName } = this.props;
 
     if(React.isValidElement(option))
@@ -57,7 +48,7 @@ class DropDown extends React.Component {
     )
   }
 
-  renderDropDown() {
+  renderDropDown = () => {
     const {options} = this.props;
 
     return (

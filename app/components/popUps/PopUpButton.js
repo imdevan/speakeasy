@@ -6,14 +6,8 @@ import * as popUpActions from '../../actions/popUpActions'
 import PopUp from './PopUp'
 
 class PopUpButton extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = { open: this.props.open }
-
-    this.openPopUp = this.openPopUp.bind(this)
-    this.renderButton = this.renderButton.bind(this)
-  }
-
+  state = { open: this.props.open }
+  
   openPopUp = (e) => {
     const { onClick, name, popup_actions } = this.props
 

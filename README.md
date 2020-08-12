@@ -113,3 +113,23 @@ For an example app that uses this boilerplate and packages native dependencies, 
 ## Static Type Checking
 This project comes with Flow support out of the box! You can annotate your code with types, [get Flow errors as ESLint errors](https://github.com/amilajack/eslint-plugin-flowtype-errors), and get [type errors during runtime](https://github.com/codemix/flow-runtime) during development. Types are completely optional.
 
+
+# Additional development notes
+---
+## Lifecycle
+-> Node main.dev.js app starts
+  -> on build
+    -> pre-built static react app is served to a new chromium window
+      -> keeps running in the background unless the app is "exited"
+    -> Menu and tray objects are created and set
+    -> check if the user has saved settings
+    -> start watching the files for changes from the front end
+  -> on quit
+    -> shut down app window
+    -> stop watching files
+    -> close the app
+    
+
+## Useful links
+https://github.com/electron-userland/electron-json-storage
+

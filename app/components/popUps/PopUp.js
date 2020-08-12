@@ -9,13 +9,7 @@ import ClickOutsideContainer from '../utility/ClickOutsideContainer';
 import SCC from '../layout/SingleColContainer';
 
 class PopUp extends Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.clickOutside = this.clickOutside.bind(this)
-  }
-
-  clickOutside() {
+  clickOutside = () => {
     const { onClickOutside, overRideClickOutside, popup_actions, name } = this.props;
 
     if (!overRideClickOutside) {

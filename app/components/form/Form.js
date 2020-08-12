@@ -14,14 +14,7 @@ class Form extends  React.Component {
     showSubmitButton: true
   }
 
-  constructor(props, context){
-    super(props, context);
-    this.renderField = this.renderField.bind(this);
-    this.renderFieldInput = this.renderFieldInput.bind(this);
-    this.renderSection = this.renderSection.bind(this);
-  }
-
-  renderFieldInput(field){
+  renderFieldInput = (field) => {
     const {
       name,
       component = 'input',
@@ -64,7 +57,7 @@ class Form extends  React.Component {
     }
   }
 
-  renderField(field, key) {
+  renderField = (field, key)  => {
     const {initialValues} = this.props;
     const {
       name,
@@ -86,7 +79,7 @@ class Form extends  React.Component {
     )
   }
 
-  renderSection(section, key){
+  renderSection = (section, key) => {
     const {body} = section;
 
     return (

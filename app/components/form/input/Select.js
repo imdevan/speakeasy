@@ -3,17 +3,15 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 class Select extends Component {
-  constructor(props, context){
-    super(props, context);
-  }
-
   state = {
     selectedOption: '',
   }
+
   handleChange = (selectedOption) => {
     this.setState({ selectedOption });
     console.log(`Selected: ${selectedOption.label}`);
   }
+
   render(){
     return (
       <select>
@@ -22,7 +20,6 @@ class Select extends Component {
         <option value="mercedes">Mercedes</option>
         <option value="audi">Audi</option>
       </select>
-
     )
   }
 }

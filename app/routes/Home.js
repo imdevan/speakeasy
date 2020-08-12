@@ -27,7 +27,7 @@ class Home extends Component {
     propsLoaded: false
   }
 
-  renderLoading() {
+  renderLoading = () => {
     return (
       <div className='fixed-top d-flex h-100 w-100 justify-content-center align-items-center'>
         <h3 className='mb-0 text-center'>
@@ -57,7 +57,7 @@ class Home extends Component {
         <SCC rowProps={{className:'h-100'}}>
           <div className='py-4 text-right'>
             <Link to='/settings' className='c-link'>
-              Hi, {profile.displayName}
+              Hi, {profile.displayName} 
             </Link>
           </div>
           <HotKeyTable hotkeyOptions={_activeProfile.hotkeys}/>

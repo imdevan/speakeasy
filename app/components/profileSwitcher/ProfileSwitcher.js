@@ -8,16 +8,11 @@ import { bindActionCreators, compose } from 'redux'
 import { firebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 
 class ProfileSwitcher extends Component {
-  constructor(props, context) {
-    super(props, context)
-    const profiles = [0, 1, 2, 3, 4].map(i => ({ id: i, label: `Profile ${i + 1}` }))
-
-    this.state = { profiles }
-    this.renderProfile = this.renderProfile.bind(this)
+  state = { 
+    profiles: [0, 1, 2, 3, 4].map(i => ({ id: i, label: `Profile ${i + 1}` }))
   }
 
-
-  renderProfile(_profile, i) {
+  renderProfile = (_profile, i) => {
     const { hotkey_actions, hotkeys } = this.props
     const active = _profile.id === hotkeys.activeProfile
 
@@ -25,7 +20,8 @@ class ProfileSwitcher extends Component {
       <ProfileTag key={i}
         active={active}
         {..._profile}
-        onClick={hotkey_actions.setActive.bind(null, i)} />
+        // onClick={(hotkey_actions.setActive.bind(null, i))} />
+        onClick={() => {}} />
     )
   }
 

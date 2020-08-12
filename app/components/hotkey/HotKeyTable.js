@@ -37,19 +37,11 @@ const reorder = (list, startIndex, endIndex) => {
 };
 
 class HotKeyTable extends Component {
-  constructor(props, context){
-    super(props, context);
-
-    this.state = {
-      items: this.props.hotkeyOptions
-    }
-
-    this.onDragEnd = this.onDragEnd.bind(this);
-    this.renderRow = this.renderRow.bind(this);
-    this.renderEmptyState = this.renderEmptyState.bind(this);
+  state = {
+    items: this.props.hotkeyOptions
   }
 
-  onDragEnd(result) {
+  onDragEnd = (result) => {
     // dropped outside the list
     if (!result.destination) {
       return;
@@ -69,7 +61,7 @@ class HotKeyTable extends Component {
   /**
    * Renders empty state... not hotkeys
    */
-  renderEmptyState(){
+  renderEmptyState = () => {
     return (
       <Row className='align-items-center my-md-5 py-md-5 mx-md-5 px-md-5 mb-md-3'>
         <Col sm={3} className='mb-4 mb-md-0'>
@@ -92,7 +84,7 @@ class HotKeyTable extends Component {
   /**
    * Renders row with hotkey and hotkey action buttons
    */
-  renderRow(item, i){
+  renderRow = (item, i) => {
     const {hotkeyOptions} = this.props
 
     return (
@@ -124,7 +116,7 @@ class HotKeyTable extends Component {
   /**
    * Returns droppable function with row contents
    */
-  renderRows(items){
+  renderRows = (items) => {
     return (dropP, dropS) => (
       <div
         ref={dropP.innerRef}
@@ -146,21 +138,24 @@ class HotKeyTable extends Component {
     return (
       <div>
         <Row>
-          {/* Header */}
           <Col sm={6} className='col'>
             <h5>Key</h5>
           </Col>
+
           <Col sm={6} className='col'>
             <h5>Action</h5>s
           </Col>
         </Row>
 
-        <DragDropContext onDragEnd={this.onDragEnd}>
-          <Droppable droppableId="droppable">
-            {this.renderRows(items)}
-            <input name='inputHotKeyField' type='text' />
-          </Droppable>
-        </DragDropContext>
+        {hotkeyOptions && (
+          <DragDropContext onDragEnd={this.onDragEnd}>
+            <Droppable droppableId="droppable">
+              {this.renderRows(items)}
+            </Droppable>
+          </DragDropContext>
+        )}
+
+        <input name='inputHotKeyField' type='text' />
       </div>
     );
   }

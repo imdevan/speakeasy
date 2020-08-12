@@ -9,13 +9,6 @@ import {browserHistory,withRouter, Link} from "react-router-dom"
 import { loadFromElectronState } from '../store/localStorage';
 
 class Settings extends Component {
-  constructor(props, context){
-    super(props, context);
-
-    this.updateUserSettings = this.updateUserSettings.bind(this);
-    this.logOut = this.logOut.bind(this);
-  }
-
   updateUserSettings = (formValues) => {
     const {form, firebase, currentUser} = this.props;
     firebase.updateProfile(formValues);

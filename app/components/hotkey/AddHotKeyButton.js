@@ -15,17 +15,9 @@ import PopUpButton from '../popUps/PopUpButton';
 
 class AddHotKeyButton extends Component {
   state = {  };
-  constructor(props, context){
-    super(props, context);
-    this.state = {
+    state = {
       key: ''
-    };
-
-    this.renderHotKey = this.renderHotKey.bind(this)
-    this.handleKeyEvent = this.handleKeyEvent.bind(this)
-    this.clearState = this.clearState.bind(this)
-    this.addHotkey = this.addHotkey.bind(this)
-  }
+    }
 
   componentWillMount() {
     document.addEventListener("keydown", this.handleKeyEvent);
@@ -35,12 +27,12 @@ class AddHotKeyButton extends Component {
     document.removeEventListener("keydown", this.handleKeyEvent);
   }
 
-  renderHotKey(){
+  renderHotKey = () => {
     const {key} = this.state;
     let _key = '&nbsp;';
   }
 
-  handleKeyEvent(e) {
+  handleKeyEvent = (e) => {
     const { self } = this.props;
 
     if (self && self.show) {
@@ -66,11 +58,11 @@ class AddHotKeyButton extends Component {
     }
   }
 
-  clearState(){
+  clearState = () => {
     this.setState({ key: '' })
   }
 
-  renderHotkeyButton() {
+  renderHotkeyButton = () => {
     return(
       <div className='c-btn c-btn-round c-position-bottom-right'>
         <FontAwesomeIcon icon={faPlus} />
@@ -78,7 +70,7 @@ class AddHotKeyButton extends Component {
     )
   }
 
-  addHotkey() {
+  addHotkey = () => {
     const {popup_actions, onAddHotKey} = this.props;
     const {key} = this.state;
 

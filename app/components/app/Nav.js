@@ -8,12 +8,7 @@ import {bindActionCreators, compose } from 'redux'
 import { firebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 
 class Nav extends Component {
-  constructor(props, context){
-    super(props, context);
-    this.renderNavLinks = this.renderNavLinks.bind(this);
-    this.state = {}
-  }
-  generateNavLink(location, profile) {
+  generateNavLink = (location, profile) => {
     const link = location.pathname && location.pathname === '/settings' ? (
       <Link to='/' className='c-link'>
         Home
@@ -29,7 +24,7 @@ class Nav extends Component {
   componentWillReceiveProps(nextProps){
     this.generateNavLink(nextProps.location, nextProps.profile)
   }
-  renderNavLinks(){
+  renderNavLinks = () => {
     const {link} = this.state;
 
     return (
@@ -66,8 +61,6 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 export default compose(
-  firebaseConnect ([
-    'profile'
-  ]),
-  connect(mapStateToProps, null)
+  firebaseConnect ([ 'profile' ]),
+  connect(mapStateToProps)
 )(withRouter(Nav))

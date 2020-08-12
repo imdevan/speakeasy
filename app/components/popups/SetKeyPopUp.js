@@ -6,12 +6,6 @@ import PropTypes from 'prop-types';
 
 
 class SetKeyPopUp extends Component {
-  constructor(props, context){
-    super(props, context);
-
-    this.handleKeyDown = this.handleKeyDown.bind(this);
-  }
-
   static propTypes = {
     onChange: PropTypes.func,
     value: PropTypes.string,
@@ -22,7 +16,7 @@ class SetKeyPopUp extends Component {
     value: ''
   };
 
-  handleKeyDown(e) {
+  handleKeyDown = (e) => {
     const {onChange} = this.props;
     onChange(e.key);
   }

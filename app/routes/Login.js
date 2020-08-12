@@ -9,11 +9,6 @@ import {browserHistory,withRouter} from "react-router-dom"
 import * as currentUserActions from '../actions/currentUserActions'
 
 class Login extends Component {
-  constructor(props, context){
-    super(props, context);
-
-    this.submitCreateUserOrSignIn = this.submitCreateUserOrSignIn.bind(this);
-  }
   componentWillReceiveProps(nextProps){
     const {firebase, history} = nextProps;
     const {currentUser} = firebase.auth();
@@ -23,7 +18,7 @@ class Login extends Component {
     }
   }
 
-  submitCreateUserOrSignIn(e){
+  submitCreateUserOrSignIn = (e) => {
     // create user or sign in
     const {form, firebase, history, current_user_actions} = this.props;
     const {email, password} = form.values;
